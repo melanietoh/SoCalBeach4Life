@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class RestaurantActivity extends AppCompatActivity {
     /*
-    Logging in. Button to redirect user to create account if needed.
+    Viewing restaurants with Google Maps API: selecting radius to narrow search,
+    can view restaurant menu with click
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_restaurant);
     }
 }
