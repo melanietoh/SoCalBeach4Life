@@ -6,13 +6,105 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!--    <com.google.android.material.textfield.TextInputLayout-->
+    <!--        android:layout_width="409dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        tools:layout_editor_absoluteX="1dp"-->
+    <!--        tools:layout_editor_absoluteY="386dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" >-->
+
+    <!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="50dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@id/emailField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.369"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/emailIcon"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="55dp"
+        android:contentDescription="@string/email"
+        app:layout_constraintBottom_toTopOf="@id/passwordIcon"
+        app:layout_constraintEnd_toStartOf="@id/emailField"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_BottomOf="@id/logo"
+        app:srcCompat="@drawable/mail" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/emailField"
+        android:layout_width="293dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
+        android:hint="@string/email"
+        app:layout_constraintBottom_toTopOf="@id/passwordField"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/passwordIcon"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="44dp"
+        android:contentDescription="@string/password"
+        app:layout_constraintBottom_toTopOf="@id/logInButton"
+        app:layout_constraintEnd_toStartOf="@id/passwordField"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/password" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/passwordField"
+        android:layout_width="293dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
+        android:hint="@string/password"
+        app:layout_constraintBottom_toTopOf="@id/logInButton"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/logInButton"
+        android:layout_width="175dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/logIn"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/signUpLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:id="@+id/signUpLabel"
+        android:layout_width="287dp"
+        android:layout_height="37dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="80dp"
+        android:text="@string/signUpMessage"
+        android:textAlignment="center"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.88" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
