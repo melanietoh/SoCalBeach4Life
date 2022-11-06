@@ -4,9 +4,14 @@
     <string name="email">Email Address</string>
     <string name="password">Password</string>
     <string name="logIn">Log in</string>
-    <string name="signUp">Sign up</string>
     <string name="signUpMessage">Don\'t have an account yet? Sign up here!</string>
+    <string name="loginFailed">Login failed. Please try again.</string>
+
+    <!--    activity_sign_up.xml -->
+    <string name="displayName">Display Name</string>
+    <string name="signUp">Sign up</string>
     <string name="logInMessage">Have an account already? Log in here!</string>
+    <string name="signUpFailed">An account already exists with that email address. Log in instead!</string>
 
     <string name="title_activity_create_review">CreateReviewActivity</string>
     <!-- Strings used for fragments for navigation -->
