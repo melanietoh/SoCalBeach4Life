@@ -48,7 +48,7 @@ public class BeachModel {
                 '}';
     }
 
-    public Double getRating() {
+    public Double calculateRating() {
         if (reviews == null || reviews.size() == 0) {
             return 0.0;
         } else {
