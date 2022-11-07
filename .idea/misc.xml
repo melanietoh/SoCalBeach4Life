@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ratingstars.xml" value="0.221" />
+        <entry key="app/src/main/res/layout/activity_beach.xml" value="0.18998260498046876" />
+        <entry key="app/src/main/res/layout/activity_beach_review.xml" value="0.2774219015370244" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23733215332031252" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.22662556966145836" />
       </map>

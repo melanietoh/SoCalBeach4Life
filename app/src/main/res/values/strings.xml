@@ -13,6 +13,23 @@
     <string name="logInMessage">Have an account already? Log in here!</string>
     <string name="signUpFailed">An account already exists with that email address. Log in instead!</string>
 
+    <!--    activity_beach_review.xml -->
+    <string name="welcomeMessage"><u>Display name</u></string>
+    <string name="reviews">Reviews</string>
+    <string name="beachName">Beach name</string>
+    <string name="rating">Rating:</string>
+    <string name="anonymous">Anonymous User</string>
+    <string name="reviewDisplayName">User\'s display name</string>
+    <string name="reviewPlaceholder">Review placeholder</string>
+
+    <!--    activity_beach.xml -->
+    <string name="viewBeaches">Beaches near [Current location]</string>
+    <string name="beachAddress">Beach address</string>
+    <string name="ratingUnderlined"><u>Rating:</u></string>
+    <string name="beachDistance">xx miles away</string>
+    <string name="openingHours">9:00–21:00</string>
+    <string name="selectBeach"><u>Select beach</u></string>
+
     <string name="title_activity_create_review">CreateReviewActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
