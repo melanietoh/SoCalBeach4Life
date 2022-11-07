@@ -21,9 +21,10 @@
     <string name="anonymous">Anonymous User</string>
     <string name="reviewDisplayName">User\'s display name</string>
     <string name="reviewPlaceholder">Review placeholder</string>
+    <string name="returnToBeach"><u>Return to beach</u></string>
 
     <!--    activity_create_review.xml -->
-    <string name="leaveReview">Leave review</string>
+    <string name="leaveReview">Leave a review</string>
     <string name="ratingTitle">Rating</string>
     <string name="ratingHint">Rate this beach (1–5 stars)</string>
     <string name="messageTitle">Message</string>
@@ -54,13 +55,26 @@
     <string name="restaurantName">Restaurant name</string>
     <string name="restaurantAddress">Restaurant address</string>
     <string name="restaurantDistance">xx miles away</string>
-    <string name="viewRestaurantMenu">View menu</string>
+    <string name="viewRestaurantMenu"><u>View menu</u></string>
 
     <!--    activity_restaurant_menu.xml -->
     <string name="menu">Menu</string>
     <string name="menuItemName">Menu item name</string>
     <string name="menuItemPrice">$xx</string>
     <string name="menuItemDescription">Description placeholder</string>
+
+    <!--    activity_save_trip.xml -->
+    <string name="tripInformationLabel">Trip Information</string>
+    <string name="departNow">Depart now</string>
+    <string name="mapsLink"><u>Open in Google Maps</u></string>
+    <string name="planAhead">Plan your trip in advance</string>
+    <string name="date">Departure Date</string>
+    <string name="time">Departure time</string>
+    <string name="selectDate"><u>Select departure date</u></string>
+    <string name="selectTime"><u>Select departure time</u></string>
+    <string name="saveTrip"><u>Save trip</u></string>
+    <string name="viewNearbyRestaurants"><u>View nearby restaurants</u></string>
+    <string name="leaveReviewLink"><u>Leave a review</u></string>
 
     <string name="title_activity_create_review">CreateReviewActivity</string>
     <!-- Strings used for fragments for navigation -->
