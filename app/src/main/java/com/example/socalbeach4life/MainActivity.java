@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         boolean isValidated = false;
         // isValidated = validateAccount(email, password);
         if(isValidated) { //
-            Intent switchToHomepageView = new Intent(MainActivity.this, HomepageActivity.class);
+            Intent switchToHomepageView = new Intent(this, HomepageActivity.class);
             startActivity(switchToHomepageView);
         }
         else { // Log in failed error pop up + clear password field

@@ -46,6 +46,21 @@
     <string name="parkingLotDistance">xx miles away</string>
     <string name="selectParkingLot"><u>Select parking lot</u></string>
 
+    <!--    activity_restaurant.xml -->
+    <string name="viewRestaurants">Restaurants near [Beach name]</string>
+    <string name="ft1000">1000 ft. away</string>
+    <string name="ft2000">2000 ft. away</string>
+    <string name="ft3000">3000 ft. away</string>
+    <string name="restaurantName">Restaurant name</string>
+    <string name="restaurantAddress">Restaurant address</string>
+    <string name="restaurantDistance">xx miles away</string>
+    <string name="viewRestaurantMenu">View menu</string>
+
+    <!--    activity_restaurant_menu.xml -->
+    <string name="menu">Menu</string>
+    <string name="menuItemName">Menu item name</string>
+    <string name="menuItemDescription">Description placeholder</string>
+
     <string name="title_activity_create_review">CreateReviewActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

@@ -42,7 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
         boolean hasCreated = false;
         // hasCreated = createAccount(displayName, email, password);
         if(hasCreated) { //
-            Intent switchToHomepageView = new Intent(SignUpActivity.this, HomepageActivity.class);
+            Intent switchToHomepageView = new Intent(this, HomepageActivity.class);
             startActivity(switchToHomepageView);
         }
         else { // Sign up failed error pop up + clear fields
