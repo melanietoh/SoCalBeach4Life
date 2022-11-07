@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-    <TextView
-        android:id="@+id/testText"
-        android:layout_width="340dp"
-        android:layout_height="22dp"
-        android:text="TEST TEXTVIEW TEXT"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="410dp"
@@ -46,37 +36,6 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="126dp"
-        android:layout_marginTop="190dp"
-        android:layout_marginEnd="191dp"
-        android:layout_marginBottom="47dp"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/testText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:onClick = "onClickButton" />
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toTopOf="@id/reviewIcon"
-        app:layout_constraintEnd_toStartOf="@id/profileButton"
-        app:layout_constraintHorizontal_bias="0.022"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/mail" />
-
-    <Button
         android:id="@+id/profileButton"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
@@ -91,59 +50,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/reviewIcon"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="20dp"
-        android:contentDescription="@string/reviews"
-        app:layout_constraintBottom_toTopOf="@id/beachName"
-        app:layout_constraintEnd_toStartOf="@id/reviewLabel"
-        app:srcCompat="@drawable/notes" />
-
-    <TextView
-        android:id="@+id/reviewLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="268dp"
-        android:layout_marginBottom="15dp"
-        android:text="@string/reviews"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileButton"
-        app:layout_constraintBottom_toTopOf="@id/beachName"/>
-
-    <TextView
-        android:id="@+id/beachName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="15dp"
-        android:text="@string/beachName"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/rating"
-        app:layout_constraintHorizontal_bias="0.042" />
-
-    <TextView
-        android:id="@+id/rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/rating"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/tableLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.035"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="16dp" />
-
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="match_parent"
@@ -151,7 +57,7 @@
         android:layout_gravity="center"
         android:stretchColumns="1"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="240dp"
+        android:layout_marginBottom="450dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -162,6 +68,7 @@
 
     <TableRow>
         <TextView
+            android:id="@+id/sectionName"
             android:layout_column="0"
             android:text="@string/reviewDisplayName"
             android:layout_span="2"
@@ -171,31 +78,23 @@
             android:paddingStart="20dip"/>
 
         <RatingBar
-            android:layout_column="1"
+            style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:isIndicator="false"
             android:max="5"
             android:numStars="5"
-            android:rating="4.5"
-            style="?android:attr/ratingBarStyleSmall"
-            android:isIndicator="false"
-            android:stepSize="0.5"
-            android:progressTint="@color/black"
             android:progressBackgroundTint="@color/dark_grey"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="20dp"/>
+            android:progressTint="@color/black"
+            android:rating="4.5"
+            android:stepSize="0.5" />
 
     </TableRow>
 
     <TableRow>
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/reviewPlaceholder"
-            android:layout_column="0"
-            android:padding="5dip"
-            android:paddingStart="20dip"
-            app:srcCompat="@drawable/comment" />
 
         <TextView
             android:layout_column="1"
@@ -205,6 +104,12 @@
             android:textSize="16sp"
             android:textColor="@color/black"
             android:padding="5dip" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
     </TableRow>
 
     <View
@@ -212,6 +117,19 @@
         android:background="@color/grey" />
     </TableLayout>
 
-    </TableLayout>
+<!--    <fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--        xmlns:tools="http://schemas.android.com/tools"-->
+<!--        android:id="@+id/map"-->
+<!--        android:name="com.google.android.gms.maps.SupportMapFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:context="com.example.currentplacedetailsonmap.MapsActivityCurrentPlace" />-->
+<!--    <?xml version="1.0" encoding="utf-8"?>-->
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
