@@ -1,15 +1,17 @@
 package com.example.socalbeach4life;
 
+import java.util.HashMap;
+
 public class ReviewModel {
     public String uid;
-    public String username;
+    public String beachName;
     public String displayName;
     public String message;
     public Double rating;
 
-    public ReviewModel(String uid, String username, String displayName, String message, Double rating) {
+    public ReviewModel(String uid, String beachName, String displayName, String message, Double rating) {
         this.uid = uid;
-        this.username = username;
+        this.beachName = beachName;
         this.displayName = displayName;
         this.message = message;
         this.rating = rating;
@@ -17,7 +19,7 @@ public class ReviewModel {
 
     public ReviewModel() {
         this.uid = "erroruidReview";
-        this.username = "error";
+        this.beachName = "errorbeachNameReview";
         this.displayName = "error";
         this.message = "error";
         this.rating = 0.0;
@@ -27,8 +29,8 @@ public class ReviewModel {
         return uid;
     }
 
-    public String getUsername() {
-        return username;
+    public String getBeachName() {
+        return beachName;
     }
 
     public String getDisplayName() {
@@ -42,4 +44,15 @@ public class ReviewModel {
     public Double getRating() {
         return rating;
     }
+
+    public HashMap<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("uid", uid);
+        result.put("beachName", beachName);
+        result.put("displayName", displayName);
+        result.put("message", message);
+        result.put("rating", rating);
+        return result;
+    }
+
 }
