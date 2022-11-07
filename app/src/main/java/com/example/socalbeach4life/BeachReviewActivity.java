@@ -26,4 +26,9 @@ public class BeachReviewActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void returnToBeach(View view) {
+        Intent switchToBeachView = new Intent(BeachReviewActivity.this, BeachActivity.class);
+        startActivity(switchToBeachView);
+    }
 }

@@ -260,6 +260,21 @@
         <View
             android:layout_height="2dip"
             android:background="@color/grey" />
+
+        <TableRow>
+            <Button
+                android:layout_column="2"
+                android:layout_height="wrap_content"
+                android:text="@string/returnToBeach"
+                android:textSize="16sp"
+                android:textColor="@color/dark_blue"
+                android:textAllCaps="false"
+                android:background="@android:color/transparent"
+                android:padding="5dip"
+                android:paddingEnd="20dip"
+                android:onClick="returnToBeach"/>
+        </TableRow>
+
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

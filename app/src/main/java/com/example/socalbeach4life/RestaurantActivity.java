@@ -48,4 +48,9 @@ public class RestaurantActivity extends AppCompatActivity {
                     break;
         }
     }
+
+    public void viewMenu(View view) {
+        Intent switchToMenuView = new Intent(RestaurantActivity.this, RestaurantMenuActivity.class);
+        startActivity(switchToMenuView);
+    }
 }

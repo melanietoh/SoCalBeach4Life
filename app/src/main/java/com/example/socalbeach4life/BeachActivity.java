@@ -29,4 +29,9 @@ public class BeachActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void saveTrip(View view) {
+        Intent switchToSaveTripView = new Intent(BeachActivity.this, SaveTripActivity.class);
+        startActivity(switchToSaveTripView);
+    }
 }
