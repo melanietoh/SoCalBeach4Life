@@ -1,9 +1,11 @@
 package com.example.socalbeach4life;
 
+import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
@@ -22,28 +24,24 @@ private ActivityCreateReviewBinding binding;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_review);
 
-//         binding = ActivityCreateReviewBinding.inflate(getLayoutInflater());
-//         setContentView(binding.getRoot());
-//
-//        setSupportActionBar(binding.toolbar);
-//
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_create_review);
-//        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-//
-//        binding.fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
 
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_create_review);
-//        return NavigationUI.navigateUp(navController, appBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
+    public void submitReview(View view) {
+        // Retrieve user input
+        EditText ratingField = findViewById(R.id.ratingField);
+        EditText messageField = findViewById(R.id.messageField);
+        String rating = ratingField.getText().toString();
+        String message = messageField.getText().toString();
+
+        // Send to database to create review
+        boolean hasCreated = false;
+        // hasCreated = createAccount(displayName, email, password);
+        if(hasCreated) { //
+            Intent switchToHomepageView = new Intent(this, HomepageActivity.class);
+            startActivity(switchToHomepageView);
+        }
+        else {
+            System.out.println(rating + " " + message);
+        }
+    }
 }

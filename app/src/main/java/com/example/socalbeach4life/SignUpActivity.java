@@ -47,6 +47,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
         else { // Sign up failed error pop up + clear fields
             // Pop up -> Cate
+            System.out.println(displayName + " " + email + " " + password);
             displayNameField.setText("");
             emailField.setText("");
             passwordField.setText("");

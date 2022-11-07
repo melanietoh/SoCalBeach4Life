@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else { // Log in failed error pop up + clear password field
             // Pop up -> Cate
+            System.out.println(email + " " + password);
             passwordField.setText("");
         }
     }
