@@ -47,4 +47,17 @@ public class BeachModel {
                 ", reviews=" + reviews +
                 '}';
     }
+
+    public Double getRating() {
+        if (reviews == null || reviews.size() == 0) {
+            return 0.0;
+        } else {
+            Double count = 0.0;
+            for (ReviewModel r : reviews) {
+                count += r.getRating();
+            }
+            count /= reviews.size();
+            return count;
+        }
+    }
 }
