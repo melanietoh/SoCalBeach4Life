@@ -76,6 +76,13 @@
     <string name="viewNearbyRestaurants"><u>View nearby restaurants</u></string>
     <string name="leaveReviewLink"><u>Leave a review</u></string>
 
+    <!--    activity_profile.xml -->
+    <string name="savedTrips">Saved Trips</string>
+    <string name="myReviews">My Reviews</string>
+    <string name="numReviews">xx reviews</string>
+    <string name="dateAndTimePlaceholder">xx/xx/xx yy:yy</string>
+    <string name="deleteReview"><u>Delete review</u></string>
+
     <string name="title_activity_create_review">CreateReviewActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
