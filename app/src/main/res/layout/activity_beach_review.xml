@@ -128,8 +128,7 @@
                 android:stepSize="0.5"
                 android:progressTint="@color/black"
                 android:progressBackgroundTint="@color/dark_grey"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"/>
+                android:layout_marginTop="8dp" />
 
         </TableRow>
 
@@ -180,9 +179,7 @@
                 android:isIndicator="false"
                 android:stepSize="0.5"
                 android:progressTint="@color/black"
-                android:progressBackgroundTint="@color/dark_grey"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"/>
+                android:progressBackgroundTint="@color/dark_grey" />
         </TableRow>
 
         <TableRow>
@@ -225,16 +222,14 @@
                 android:layout_column="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:max="5"
+                style="?android:attr/ratingBarStyleSmall"
                 android:numStars="5"
                 android:rating="4"
-                style="?android:attr/ratingBarStyleSmall"
                 android:isIndicator="false"
-                android:stepSize="0.5"
                 android:progressTint="@color/black"
                 android:progressBackgroundTint="@color/dark_grey"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"/>
+               />
         </TableRow>
 
         <TableRow>

@@ -19,7 +19,7 @@ public class RestaurantMenuActivity extends AppCompatActivity {
         homepageView.setClickable(true);
         homepageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent switchToHomepageView = new Intent(RestaurantMenuActivity.this, HomepageActivity.class);
+                Intent switchToHomepageView = new Intent(RestaurantMenuActivity.this, BeachMapsActivity.class);
                 startActivity(switchToHomepageView);
             }
         });

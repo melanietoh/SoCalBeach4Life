@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
+    tools:context=".ProfileReviewActivity">
 
     <ImageView
         android:id="@+id/logo"
@@ -12,7 +12,8 @@
         android:layout_height="120dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintEnd_toStartOf="@+id/displayNameLabel"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +36,7 @@
         android:id="@+id/numReviewsLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="178dp"
         android:text="@string/numReviews"
@@ -61,7 +62,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:background="@color/blue"
+            android:background="@color/grey"
+            android:textColor="@color/dark_grey"
+            android:onClick="savedTrips"
             android:text="@string/savedTrips" />
 
         <Button
@@ -69,9 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:background="@color/grey"
-            android:textColor="@color/dark_grey"
-            android:onClick="myReviews"
+            android:background="@color/blue"
             android:text="@string/myReviews" />
     </LinearLayout>
 
@@ -89,9 +90,7 @@
             android:layout_height="2dip"
             android:background="@color/grey" />
 
-        <TableRow
-            android:paddingStart="20dip"
-            android:paddingEnd="20dip">
+        <TableRow>
 
             <TextView
                 android:id="@+id/sectionName"
@@ -103,23 +102,34 @@
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
+            <RatingBar
+                android:layout_column="1"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="3"
+                android:rating="1"
+                android:isIndicator="false"
+                android:stepSize="0.5"
+                android:progressTint="@color/black"
+                android:progressBackgroundTint="@color/dark_grey"
+                android:layout_marginTop="8dp"/>
+
         </TableRow>
 
-        <TableRow
-            android:paddingStart="20dip"
-            android:paddingEnd="20dip">
+        <TableRow>
 
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:contentDescription="@string/date"
+                android:contentDescription="@string/reviewPlaceholder"
                 android:layout_column="0"
                 android:padding="5dip"
-                app:srcCompat="@drawable/calendar" />
+                app:srcCompat="@drawable/comment" />
 
             <TextView
                 android:layout_column="1"
-                android:text="@string/dateAndTimePlaceholder"
+                android:text="@string/reviewPlaceholder"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:padding="5dip" />
@@ -129,12 +139,13 @@
             <Button
                 android:layout_column="2"
                 android:layout_width="wrap_content"
-                android:text="@string/mapsLink"
+                android:text="@string/deleteReview"
                 android:textSize="16sp"
                 android:textColor="@color/dark_blue"
                 android:textAlignment="textEnd"
                 android:background="@android:color/transparent"
                 android:textAllCaps="false"
+                android:onClick="deleteReview"
                 android:padding="5dip"/>
         </TableRow>
 
@@ -144,18 +155,18 @@
     </TableLayout>
 
     <!--    <fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--        xmlns:tools="http://schemas.android.com/tools"-->
-<!--        android:id="@+id/map"-->
-<!--        android:name="com.google.android.gms.maps.SupportMapFragment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        tools:context="com.example.currentplacedetailsonmap.MapsActivityCurrentPlace" />-->
-<!--    <?xml version="1.0" encoding="utf-8"?>-->
-<!--    <fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--        xmlns:map="http://schemas.android.com/apk/res-auto"-->
-<!--        android:name="com.google.android.gms.maps.SupportMapFragment"-->
-<!--        android:id="@+id/map"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"/>-->
+    <!--        xmlns:tools="http://schemas.android.com/tools"-->
+    <!--        android:id="@+id/map"-->
+    <!--        android:name="com.google.android.gms.maps.SupportMapFragment"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        tools:context="com.example.currentplacedetailsonmap.MapsActivityCurrentPlace" />-->
+    <!--    <?xml version="1.0" encoding="utf-8"?>-->
+    <!--    <fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--        xmlns:map="http://schemas.android.com/apk/res-auto"-->
+    <!--        android:name="com.google.android.gms.maps.SupportMapFragment"-->
+    <!--        android:id="@+id/map"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
