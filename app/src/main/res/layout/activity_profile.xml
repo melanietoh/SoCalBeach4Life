@@ -212,4 +212,6 @@
         android:background="@color/grey" />
     </TableLayout>
 
+    </TableLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
