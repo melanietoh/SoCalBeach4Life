@@ -6,6 +6,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
@@ -23,6 +24,16 @@ private ActivityCreateReviewBinding binding;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_review);
+
+        // Clickable logo -> Return to homepage
+        ImageView homepageView = findViewById(R.id.logo);
+        homepageView.setClickable(true);
+        homepageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent switchToHomepageView = new Intent(CreateReviewActivity.this, HomepageActivity.class);
+                startActivity(switchToHomepageView);
+            }
+        });
 
     }
 
