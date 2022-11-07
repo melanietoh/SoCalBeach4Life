@@ -60,6 +60,9 @@
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
+            android:name=".ProfileReviewActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
