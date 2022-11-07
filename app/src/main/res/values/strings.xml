@@ -22,13 +22,29 @@
     <string name="reviewDisplayName">User\'s display name</string>
     <string name="reviewPlaceholder">Review placeholder</string>
 
-    <!--    activity_beach.xml -->
+    <!--    activity_create_review.xml -->
+    <string name="leaveReview">Leave review</string>
+    <string name="ratingTitle">Rating</string>
+    <string name="ratingHint">Rate this beach (1–5 stars)</string>
+    <string name="messageTitle">Message</string>
+    <string name="messageHint">Describe your experience!</string>
+    <string name="postAnonymously">Post anonymously</string>
+    <string name="submitReview">Submit review</string>
+
+    <!--    activity_homepage.xml -->
     <string name="viewBeaches">Beaches near [Current location]</string>
     <string name="beachAddress">Beach address</string>
     <string name="ratingUnderlined"><u>Rating:</u></string>
     <string name="beachDistance">xx miles away</string>
     <string name="openingHours">9:00–21:00</string>
     <string name="selectBeach"><u>Select beach</u></string>
+
+    <!--    activity_beach.xml -->
+    <string name="viewParkingLots">Parking lots near [Beach name]</string>
+    <string name="parkingLotName">Parking lot name</string>
+    <string name="parkingLotAddress">Parking lot address</string>
+    <string name="parkingLotDistance">xx miles away</string>
+    <string name="selectParkingLot"><u>Select parking lot</u></string>
 
     <string name="title_activity_create_review">CreateReviewActivity</string>
     <!-- Strings used for fragments for navigation -->
