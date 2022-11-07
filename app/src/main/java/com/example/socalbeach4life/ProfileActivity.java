@@ -10,8 +10,21 @@ import android.widget.Button;
 import java.util.ArrayList;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Parcelable;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import android.location.Location;
+import com.google.android.gms.location.LocationServices;
+
 
 public class ProfileActivity extends AppCompatActivity {
+    // public class ProfileActivity extends AppCompatActivity implements OnMapReadyCallback {
     /*
     Viewing user information, including saved trips, reviews (including delete functionality).
      */
@@ -33,12 +46,26 @@ public class ProfileActivity extends AppCompatActivity {
         arrayListTwo.add("Review 1");
         Button b3 = (Button) findViewById(R.id.button3);
         b3.setOnClickListener(this::onClickButton);
-        Button b5 = (Button) findViewById(R.id.button5);
-        b3.setOnClickListener(this::onClickButton);
 //        Button b4 = (Button)findViewById(R.id.button4);
 //        b4.setOnClickListener(this::onClick);
         // alertView("testing alert controller");
+        // Initialize the SDK
+//        Places.initialize(getApplicationContext(), "AIzaSyBis7UdegqS1LDfzWWWOlwrYbo9W3eRQoU");
+//        // Create a new PlacesClient instance
+//        PlacesClient placesClient = Places.createClient(this);
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.map);
+//        mapFragment.getMapAsync(this);
     }
+//    @Override
+//    public void onMapReady(GoogleMap map) {
+//        this.map = map;
+//        // ...
+//        // Turn on the My Location layer and the related control on the map.
+//        updateLocationUI();
+//        // Get the current location of the device and set the position of the map.
+//        getDeviceLocation();
+//   }
 //    private void alertView( String message ) {
 //        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 //        dialog.setTitle( "Hello" )
@@ -64,20 +91,30 @@ public class ProfileActivity extends AppCompatActivity {
 //    }
     // display either ArrayList<Trip> or ArrayList<Review> depending on which button was clicked
     // hard part is dynamically figuring out TableView but it should be fine with Mel's code
+//    @Override
+//    public void onMapReady(GoogleMap googleMap) {
+//        googleMap.addMarker(new MarkerOptions()
+//                .position(new LatLng(0, 0))
+//                .title("Marker"));
+//    }
     public void onClickButton(View v) {
         System.out.println("Button is being clicked");
         Button button = (Button)findViewById(v.getId());
         // based on button, set one to on and the other off
         button.setBackgroundColor(Color.RED);
-        TextView tv = findViewById(R.id.testText);
+        TextView tv = findViewById(R.id.sectionName);
         if (button.getId() == R.id.button3) {
             // set button 2 to false
+            Button notButton = (Button)findViewById(R.id.button4);
+            notButton.setBackgroundColor(Color.GRAY);
             // dynamically show array
             // add text field to see if clicking on diff buttons works before fully implementing grid layout
             // text.
             tv.setText("Saved Trips Data");
         }
         else {
+            Button notButton = (Button)findViewById(R.id.button3);
+            notButton.setBackgroundColor(Color.GRAY);
             // set button 1 to false
             // dynamically show array, OR JUST SHOW BOTH OUTSIDE OF IF/ELSE? idk yet tbh
             tv.setText("Reviews Data");
