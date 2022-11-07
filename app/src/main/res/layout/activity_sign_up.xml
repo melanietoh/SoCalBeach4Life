@@ -6,4 +6,132 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="40dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@id/displayNameField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.395"
+        app:srcCompat="@drawable/mail" />
+
+    <ImageView
+        android:id="@+id/userIcon"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="45dp"
+        android:contentDescription="@string/displayName"
+        app:layout_constraintBottom_toTopOf="@+id/emailIcon"
+        app:layout_constraintEnd_toStartOf="@id/displayNameField"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/user" />
+
+    <EditText
+        android:id="@+id/displayNameField"
+        android:layout_width="293dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:autofillHints="name"
+        android:hint="@string/displayName"
+        android:inputType="text"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toTopOf="@id/emailField"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <ImageView
+        android:id="@+id/emailIcon"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="45dp"
+        android:contentDescription="@string/email"
+        app:layout_constraintBottom_toTopOf="@id/passwordIcon"
+        app:layout_constraintEnd_toStartOf="@id/emailField"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/mail" />
+
+    <EditText
+        android:id="@+id/emailField"
+        android:layout_width="293dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:autofillHints="emailAddress"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toTopOf="@id/passwordField"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <ImageView
+        android:id="@+id/passwordIcon"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="36dp"
+        android:contentDescription="@string/password"
+        app:layout_constraintBottom_toTopOf="@id/logInButton"
+        app:layout_constraintEnd_toStartOf="@id/passwordField"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/password" />
+
+    <EditText
+        android:id="@+id/passwordField"
+        android:layout_width="293dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:autofillHints="password"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toTopOf="@id/logInButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <Button
+        android:id="@+id/logInButton"
+        android:layout_width="175dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="118dp"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="30dp"
+        android:background="@color/blue"
+        android:onClick="signUp"
+        android:text="@string/signUp"
+        app:layout_constraintBottom_toTopOf="@id/logInLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/logInLabel"
+        android:layout_width="287dp"
+        android:layout_height="37dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="62dp"
+        android:layout_marginEnd="62dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/logInMessage"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

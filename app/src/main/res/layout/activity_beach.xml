@@ -6,4 +6,150 @@
     android:layout_height="match_parent"
     tools:context=".BeachActivity">
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@id/mapPlaceholder"
+        app:layout_constraintEnd_toStartOf="@id/profileButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/mail" />
+
+    <Button
+        android:id="@+id/profileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/transparent"
+        android:text="@string/welcomeMessage"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/dark_blue"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/mapPlaceholder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/mapPlaceholder"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/mail" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:stretchColumns="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TableRow>
+            <TextView
+                android:layout_column="0"
+                android:text="@string/viewParkingLots"
+                android:layout_span="3"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:padding="5dip"
+                android:paddingStart="20dip"/>
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="@color/grey" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="0"
+                android:text="@string/parkingLotName"
+                android:layout_span="3"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:padding="5dip"
+                android:paddingStart="20dip"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="0"
+                android:layout_span="3"
+                android:text="@string/parkingLotAddress"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:padding="5dip"
+                android:paddingStart="20dip"/>
+        </TableRow>
+
+        <TableRow>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+                android:contentDescription="@string/parkingLotDistance"
+                android:layout_column="0"
+                android:padding="5dip"
+                android:paddingStart="20dip"
+                app:srcCompat="@drawable/location" />
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/parkingLotDistance"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:padding="5dip" />
+        </TableRow>
+
+        <TableRow>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+                android:contentDescription="@string/openingHours"
+                android:layout_column="0"
+                android:padding="5dip"
+                android:paddingStart="20dip"
+                app:srcCompat="@drawable/clock" />
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/openingHours"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:padding="5dip" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="2"
+                android:layout_width="wrap_content"
+                android:text="@string/selectParkingLot"
+                android:textSize="16sp"
+                android:textColor="@color/dark_blue"
+                android:padding="5dip"
+                android:paddingEnd="20dip"/>
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="@color/grey" />
+    </TableLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
