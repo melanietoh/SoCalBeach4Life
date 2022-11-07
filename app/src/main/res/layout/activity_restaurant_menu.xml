@@ -116,6 +116,13 @@
                 android:textColor="@color/black"
                 android:padding="5dip"
                 android:paddingStart="20dip"/>
+            <TextView
+                android:layout_column="2"
+                android:text="@string/menuItemPrice"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:padding="5dip"
+                android:paddingEnd="20dip"/>
 
         </TableRow>
 
@@ -144,7 +151,7 @@
             android:layout_height="2dip"
             android:background="@color/grey" />
 
-        <!--        Second review   -->
+        <!--        Second menu item   -->
         <TableRow>
             <TextView
                 android:layout_column="0"
@@ -155,6 +162,13 @@
                 android:padding="5dip"
                 android:paddingStart="20dip"/>
 
+            <TextView
+                android:layout_column="2"
+                android:text="@string/menuItemPrice"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:padding="5dip"
+                android:paddingEnd="20dip"/>
         </TableRow>
 
         <TableRow>
@@ -181,7 +195,7 @@
             android:layout_height="2dip"
             android:background="@color/grey" />
 
-        <!--        Third review -->
+        <!--        Third menu item -->
 
         <TableRow>
             <TextView
@@ -193,6 +207,13 @@
                 android:padding="5dip"
                 android:paddingStart="20dip"/>
 
+            <TextView
+                android:layout_column="2"
+                android:text="@string/menuItemPrice"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:padding="5dip"
+                android:paddingEnd="20dip"/>
         </TableRow>
 
         <TableRow>
