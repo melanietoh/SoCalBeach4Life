@@ -56,6 +56,11 @@
     <string name="restaurantDistance">xx miles away</string>
     <string name="viewRestaurantMenu">View menu</string>
 
+    <!--    activity_restaurant_menu.xml -->
+    <string name="menu">Menu</string>
+    <string name="menuItemName">Menu item name</string>
+    <string name="menuItemDescription">Description placeholder</string>
+
     <string name="title_activity_create_review">CreateReviewActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
