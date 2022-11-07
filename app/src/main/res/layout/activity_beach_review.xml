@@ -128,8 +128,7 @@
                 android:stepSize="0.5"
                 android:progressTint="@color/black"
                 android:progressBackgroundTint="@color/dark_grey"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"/>
+                android:layout_marginTop="8dp" />
 
         </TableRow>
 
@@ -180,9 +179,7 @@
                 android:isIndicator="false"
                 android:stepSize="0.5"
                 android:progressTint="@color/black"
-                android:progressBackgroundTint="@color/dark_grey"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"/>
+                android:progressBackgroundTint="@color/dark_grey" />
         </TableRow>
 
         <TableRow>
@@ -225,16 +222,14 @@
                 android:layout_column="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:max="5"
+                style="?android:attr/ratingBarStyleSmall"
                 android:numStars="5"
                 android:rating="4"
-                style="?android:attr/ratingBarStyleSmall"
                 android:isIndicator="false"
-                android:stepSize="0.5"
                 android:progressTint="@color/black"
                 android:progressBackgroundTint="@color/dark_grey"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"/>
+               />
         </TableRow>
 
         <TableRow>
@@ -260,6 +255,21 @@
         <View
             android:layout_height="2dip"
             android:background="@color/grey" />
+
+        <TableRow>
+            <Button
+                android:layout_column="2"
+                android:layout_height="wrap_content"
+                android:text="@string/returnToBeach"
+                android:textSize="16sp"
+                android:textColor="@color/dark_blue"
+                android:textAllCaps="false"
+                android:background="@android:color/transparent"
+                android:padding="5dip"
+                android:paddingEnd="20dip"
+                android:onClick="returnToBeach"/>
+        </TableRow>
+
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

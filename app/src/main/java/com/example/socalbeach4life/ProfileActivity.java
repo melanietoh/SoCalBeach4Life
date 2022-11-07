@@ -3,6 +3,7 @@ package com.example.socalbeach4life;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -36,16 +37,27 @@ public class ProfileActivity extends AppCompatActivity {
     private ArrayList<String> arrayListTwo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("RUNNING PROFILE ACTIVITY");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        // Clickable logo -> Return to homepage
+        ImageView homepageView = findViewById(R.id.logo);
+        homepageView.setClickable(true);
+        homepageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent switchToHomepageView = new Intent(ProfileActivity.this, BeachMapsActivity.class);
+                startActivity(switchToHomepageView);
+            }
+        });
+
         // start on "Saved Trips"
         arrayListOne = new ArrayList<String>();
         arrayListTwo = new ArrayList<String>();
         arrayListOne.add("Trip 1");
         arrayListTwo.add("Review 1");
-        Button b3 = (Button) findViewById(R.id.button3);
-        b3.setOnClickListener(this::onClickButton);
+//        Button b3 = (Button) findViewById(R.id.button3);
+//        b3.setOnClickListener(this::onClickButton);
 //        Button b4 = (Button)findViewById(R.id.button4);
 //        b4.setOnClickListener(this::onClick);
         // alertView("testing alert controller");
@@ -97,27 +109,8 @@ public class ProfileActivity extends AppCompatActivity {
 //                .position(new LatLng(0, 0))
 //                .title("Marker"));
 //    }
-    public void onClickButton(View v) {
-        System.out.println("Button is being clicked");
-        Button button = (Button)findViewById(v.getId());
-        // based on button, set one to on and the other off
-        button.setBackgroundColor(Color.RED);
-        TextView tv = findViewById(R.id.sectionName);
-        if (button.getId() == R.id.button3) {
-            // set button 2 to false
-            Button notButton = (Button)findViewById(R.id.button4);
-            notButton.setBackgroundColor(Color.GRAY);
-            // dynamically show array
-            // add text field to see if clicking on diff buttons works before fully implementing grid layout
-            // text.
-            tv.setText("Saved Trips Data");
-        }
-        else {
-            Button notButton = (Button)findViewById(R.id.button3);
-            notButton.setBackgroundColor(Color.GRAY);
-            // set button 1 to false
-            // dynamically show array, OR JUST SHOW BOTH OUTSIDE OF IF/ELSE? idk yet tbh
-            tv.setText("Reviews Data");
-        }
+    public void myReviews(View v) {
+        Intent switchToReviewView = new Intent(ProfileActivity.this, ProfileReviewActivity.class);
+        startActivity(switchToReviewView);
     }
 }

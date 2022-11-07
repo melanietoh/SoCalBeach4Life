@@ -24,9 +24,14 @@ public class BeachActivity extends AppCompatActivity {
         homepageView.setClickable(true);
         homepageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent switchToHomepageView = new Intent(BeachActivity.this, HomepageActivity.class);
+                Intent switchToHomepageView = new Intent(BeachActivity.this, BeachMapsActivity.class);
                 startActivity(switchToHomepageView);
             }
         });
+    }
+
+    public void saveTrip(View view) {
+        Intent switchToSaveTripView = new Intent(BeachActivity.this, SaveTripActivity.class);
+        startActivity(switchToSaveTripView);
     }
 }
