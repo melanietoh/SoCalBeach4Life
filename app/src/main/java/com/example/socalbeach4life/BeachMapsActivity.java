@@ -18,10 +18,15 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import android.content.Intent;
 
+import java.util.ArrayList;
+
 public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private boolean beachSelected = false;
     private GoogleMap mMap;
     private ActivityBeachMapsBinding binding;
+    private String selectedBeach = "";
+    private double lat;
+    private double lon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +65,7 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
         LatLng playaDelRey = new LatLng(33.95, -118.44);
         LatLng elSegundo = new LatLng(33.91, -118.42);
         LatLng usc = new LatLng(34.02, -118.29);
-
+        // ArrayList<BeachModel> beaches = new ArrayList<BeachModel>();
         mMap.addMarker(new MarkerOptions().position(dockweiler).title("Dockweiler Beach").snippet("Address\nDistance\nHours"));
         mMap.addMarker(new MarkerOptions().position(bruce).title("Bruce's Beach"));
         mMap.addMarker(new MarkerOptions().position(venice).title("Venice Beach"));
@@ -75,9 +80,42 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
                 // which is clicked and displaying it in a toast message.
                 beachSelected = true;
                 String markerName = marker.getTitle();
+                selectedBeach = marker.getTitle();
+                lat = marker.getPosition().latitude;
+                lon = marker.getPosition().longitude;
+                TextView beachInformation = findViewById(R.id.beachInformationView);
+                String beachAddress = "Address: ";
+                String beachHours = "Hours: ";
+                Double rating = 0.0;
+                if (selectedBeach.equalsIgnoreCase("Venice Beach")) {
+                    beachAddress += "1800 Ocean Front Walk\nVenice, CA 90291";
+                    beachHours += "6am - 12am";
+                    rating = 4.4;
+                }
+                else if (selectedBeach.equalsIgnoreCase("Bruce's Beach")) {
+                    beachAddress += "2600 Highland Ave\nManhattan Beach, CA 90266";
+                    beachHours += "6am - 10PM";
+                    rating = 4.7;
+                }
+                else if (selectedBeach.equalsIgnoreCase("Playa del Rey Beach")) {
+                    beachAddress += "Culver Blvd & Pacific Ave\nLos Angeles, CA 90293";
+                    beachHours += "9am - 5PM";
+                    rating = 4.7;
+                }
+                else if (selectedBeach.equalsIgnoreCase("El Segundo Beach")) {
+                    beachAddress += "Grand Ave & Vista Del Mar Blvd\nEl Segundo, CA 90245";
+                    beachHours += "6am - 10PM";
+                    rating = 4.6;
+                }
+                else { // Dockweiler
+                    beachAddress += "12000 Vista Del Mar\nPlaya Del Rey, CA 90293";
+                    beachHours += "6am - 10PM";
+                    rating = 4.5;
+                }
+                beachInformation.setText( beachAddress + "\n" + beachHours + "\n");
                 Toast.makeText(BeachMapsActivity.this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show();
                 TextView t = findViewById(R.id.reviewView);
-                t.setText("Rating: 3.8");
+                t.setText("Rating: " + rating);
                 TextView s = findViewById(R.id.selectView);
                 s.setText("Select beach");
 
@@ -99,7 +137,10 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
         System.out.println("Selected Beach");
         if (beachSelected) {
             // start intent to continue with trip information
-            Intent intent = new Intent(BeachMapsActivity.this, SaveTripActivity.class);
+            Intent intent = new Intent(BeachMapsActivity.this, ParkingLotMapsActivity.class);
+            intent.putExtra("beachName", selectedBeach);
+            intent.putExtra("latitude", lat);
+            intent.putExtra("longitude", lon);
             startActivity(intent);
         }
     }
