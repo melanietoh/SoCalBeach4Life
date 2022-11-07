@@ -11,15 +11,16 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="40dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toTopOf="@id/displayNameField"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.369"
+        app:layout_constraintVertical_bias="0.395"
         app:srcCompat="@drawable/mail" />
 
     <ImageView
@@ -28,13 +29,11 @@
         android:layout_height="33dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="45dp"
         android:contentDescription="@string/displayName"
-        app:layout_constraintBottom_toTopOf="@id/emailIcon"
+        app:layout_constraintBottom_toTopOf="@+id/emailIcon"
         app:layout_constraintEnd_toStartOf="@id/displayNameField"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/user" />
 
     <EditText
@@ -57,7 +56,7 @@
         android:layout_height="33dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="45dp"
         android:contentDescription="@string/email"
         app:layout_constraintBottom_toTopOf="@id/passwordIcon"
         app:layout_constraintEnd_toStartOf="@id/emailField"
@@ -109,10 +108,13 @@
         android:id="@+id/logInButton"
         android:layout_width="175dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/signUp"
         android:layout_gravity="center"
+        android:layout_marginStart="118dp"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="30dp"
+        android:background="@color/blue"
         android:onClick="signUp"
+        android:text="@string/signUp"
         app:layout_constraintBottom_toTopOf="@id/logInLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -122,14 +124,14 @@
         android:layout_width="287dp"
         android:layout_height="37dp"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginEnd="62dp"
         android:layout_marginBottom="50dp"
         android:text="@string/logInMessage"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.88" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
