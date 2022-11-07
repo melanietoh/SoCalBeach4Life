@@ -12,7 +12,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toTopOf="@id/reviewIcon"
         app:layout_constraintEnd_toStartOf="@id/profileButton"
@@ -28,7 +28,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:background="@android:color/transparent"
         android:text="@string/welcomeMessage"
         android:textAlignment="viewEnd"
@@ -41,27 +41,25 @@
         android:id="@+id/reviewIcon"
         android:layout_width="33dp"
         android:layout_height="33dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="20dp"
         android:contentDescription="@string/reviews"
         app:layout_constraintBottom_toTopOf="@id/beachName"
         app:layout_constraintEnd_toStartOf="@id/reviewLabel"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toBottomOf="@id/logo"
         app:srcCompat="@drawable/notes" />
 
     <TextView
         android:id="@+id/reviewLabel"
         android:layout_width="wrap_content"
         android:layout_height="33dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="268dp"
+        android:layout_marginBottom="15dp"
         android:text="@string/reviews"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileButton" />
+        app:layout_constraintTop_toBottomOf="@id/profileButton"
+        app:layout_constraintBottom_toTopOf="@id/beachName"/>
 
     <TextView
         android:id="@+id/beachName"
@@ -83,13 +81,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/rating"
         android:textSize="18sp"
-        app:layout_constraintBottom_toStartOf="@id/tableLayout"
+        app:layout_constraintBottom_toTopOf="@id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.035"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/beachName"
         tools:layout_editor_absoluteY="16dp" />
 
     <TableLayout
