@@ -10,6 +10,10 @@ import android.widget.Button;
 import java.util.ArrayList;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Parcelable;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.net.PlacesClient;
 
 public class ProfileActivity extends AppCompatActivity {
     /*
@@ -33,11 +37,13 @@ public class ProfileActivity extends AppCompatActivity {
         arrayListTwo.add("Review 1");
         Button b3 = (Button) findViewById(R.id.button3);
         b3.setOnClickListener(this::onClickButton);
-        Button b5 = (Button) findViewById(R.id.button5);
-        b3.setOnClickListener(this::onClickButton);
 //        Button b4 = (Button)findViewById(R.id.button4);
 //        b4.setOnClickListener(this::onClick);
         // alertView("testing alert controller");
+        // Initialize the SDK
+        Places.initialize(getApplicationContext(), "AIzaSyBis7UdegqS1LDfzWWWOlwrYbo9W3eRQoU");
+        // Create a new PlacesClient instance
+        PlacesClient placesClient = Places.createClient(this);
     }
 //    private void alertView( String message ) {
 //        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
