@@ -6,4 +6,282 @@
     android:layout_height="match_parent"
     tools:context=".SaveTripActivity">
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="218dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintEnd_toStartOf="@+id/profileButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mail" />
+
+    <Button
+        android:id="@+id/profileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:color/transparent"
+        android:text="@string/welcomeMessage"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/dark_blue"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tripLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="247dp"
+        android:text="@string/tripInformationLabel"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tripLabel" />
+
+    <TextView
+        android:id="@+id/beachName"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="280dp"
+        android:text="@string/beachName"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <ImageView
+        android:id="@+id/carIcon"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="@string/parkingLotName"
+        app:layout_constraintEnd_toStartOf="@+id/parkingLotLabel"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/beachName"
+        app:srcCompat="@drawable/car" />
+
+    <TextView
+        android:id="@+id/parkingLotLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="215dp"
+        android:text="@string/parkingLotName"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/beachName" />
+
+    <ImageView
+        android:id="@+id/mapPlaceholder"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carIcon"
+        app:srcCompat="@drawable/mail" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="70dp"
+        android:stretchColumns="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mapPlaceholder">
+
+        <View
+            android:layout_height="1dip"
+            android:background="@color/grey" />
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="0"
+                android:layout_span="3"
+                android:padding="5dip"
+                android:paddingStart="20dip"
+                android:text="@string/departNow"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+        </TableRow>
+
+        <TableRow android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+                android:layout_column="0"
+                android:contentDescription="@string/mapsLink"
+                android:padding="5dip"
+                android:paddingStart="20dip"
+                app:srcCompat="@drawable/location" />
+
+            <Button
+                android:layout_height="35dp"
+                android:layout_column="1"
+                android:layout_span="2"
+                android:background="@android:color/transparent"
+                android:padding="5dip"
+                android:text="@string/mapsLink"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_blue"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <View
+            android:layout_height="1dip"
+            android:background="@color/grey" />
+
+        <!--        Second menu item   -->
+        <TableRow>
+
+            <TextView
+                android:layout_column="0"
+                android:layout_span="3"
+                android:padding="5dip"
+                android:paddingTop="10dip"
+                android:paddingStart="20dip"
+                android:text="@string/planAhead"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <EditText
+                android:id="@+id/dateField"
+                android:layout_width="wrap_content"
+                android:layout_column="0"
+                android:hint="@string/date"
+                android:inputType="date"
+                android:padding="5dip"
+                android:paddingStart="20dip"
+                android:textColorHint="#757575"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/dateSelector"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_column="1"
+                android:background="@android:color/transparent"
+                android:text="@string/selectDate"
+                android:textAllCaps="false"
+                android:textAlignment="textStart"
+                android:layout_marginStart="5dip"
+                android:paddingEnd="20dip"/>
+        </TableRow>
+
+        <TableRow>
+
+            <EditText
+                android:id="@+id/timeField"
+                android:layout_width="wrap_content"
+                android:layout_column="0"
+                android:hint="@string/time"
+                android:inputType="time"
+                android:padding="5dip"
+                android:paddingStart="20dip"
+                android:textColorHint="#757575"
+                android:textSize="16sp"
+                android:importantForAutofill="no" />
+
+            <Button
+                android:id="@+id/timeSelector"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_column="1"
+                android:background="@android:color/transparent"
+                android:text="@string/selectTime"
+                android:textAllCaps="false"
+                android:textAlignment="textStart"
+                android:layout_marginStart="5dip"
+                android:paddingEnd="20dip" />
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:layout_height="35dp"
+                android:layout_column="1"
+                android:layout_span="2"
+                android:background="@android:color/transparent"
+                android:padding="5dip"
+                android:paddingEnd="20dip"
+                android:text="@string/saveTrip"
+                android:textAlignment="textEnd"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_blue"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <View
+            android:layout_height="1dip"
+            android:background="@color/grey" />
+
+        <TableRow>
+
+            <Button
+                android:layout_height="35dp"
+                android:layout_column="1"
+                android:layout_span="2"
+                android:background="@android:color/transparent"
+                android:paddingEnd="20dip"
+                android:text="@string/viewNearbyRestaurants"
+                android:textAlignment="textEnd"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_blue"
+                android:textSize="14sp"
+                android:onClick="viewNearbyRestaurants"/>
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:layout_height="35dp"
+                android:layout_column="1"
+                android:layout_span="2"
+                android:background="@android:color/transparent"
+                android:paddingEnd="20dip"
+                android:text="@string/leaveReviewLink"
+                android:textAlignment="textEnd"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_blue"
+                android:textSize="14sp"
+                android:onClick="leaveReview"/>
+        </TableRow>
+
+    </TableLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
