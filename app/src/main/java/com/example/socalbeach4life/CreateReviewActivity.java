@@ -40,8 +40,5 @@ private ActivityCreateReviewBinding binding;
             Intent switchToHomepageView = new Intent(this, HomepageActivity.class);
             startActivity(switchToHomepageView);
         }
-        else {
-            System.out.println(rating + " " + message);
-        }
     }
 }
