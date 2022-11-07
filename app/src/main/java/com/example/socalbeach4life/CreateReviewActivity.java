@@ -8,17 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import com.example.socalbeach4life.databinding.ActivityCreateReviewBinding;
-
 public class CreateReviewActivity extends AppCompatActivity {
-
-    private AppBarConfiguration appBarConfiguration;
-private ActivityCreateReviewBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
