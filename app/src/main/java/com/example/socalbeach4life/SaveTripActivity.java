@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.RadioButton;
 import android.widget.TimePicker;
 
 public class SaveTripActivity extends AppCompatActivity {
@@ -112,6 +113,7 @@ public class SaveTripActivity extends AppCompatActivity {
         Intent switchToReviewView = new Intent(SaveTripActivity.this, CreateReviewActivity.class);
         startActivity(switchToReviewView);
     }
+    
     public void departNowRedirect(View view) {
        // Uri uri = Uri.parse("http://www.google.com");
         // Uri uri = Uri.parse("https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=AIzaSyCEnsK36FKyv44d_stqm4i0jwwBAIPS8zg");
@@ -119,5 +121,25 @@ public class SaveTripActivity extends AppCompatActivity {
         // https://www.google.com/maps/dir/34.0324863,-118.2819881//@34.0325965,-118.3172156,13z/data=!4m5!4m4!1m1!4e1!1m0!3e2
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
+    }
+
+    public void selectRadius(View view) {
+        boolean selected = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.ft1000Button:
+                if (selected)
+                    // Database call
+                    break;
+            case R.id.ft2000Button:
+                if (selected)
+                    // Database call
+                    break;
+            case R.id.ft3000Button:
+                if(selected)
+                    // Database call
+                    break;
+        }
     }
 }

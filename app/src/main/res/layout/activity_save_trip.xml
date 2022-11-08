@@ -101,7 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="70dp"
         android:stretchColumns="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -155,7 +155,6 @@
             android:layout_height="1dip"
             android:background="@color/grey" />
 
-        <!--        Second menu item   -->
         <TableRow>
 
             <TextView
@@ -243,7 +242,43 @@
             android:background="@color/grey" />
 
         <TableRow>
+            <TextView
+                android:layout_column="0"
+                android:layout_span="3"
+                android:padding="5dip"
+                android:paddingStart="20dip"
+                android:paddingTop="10dip"
+                android:text="@string/selectRadius"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+        </TableRow>
 
+        <TableRow>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="3"
+                android:padding="5dip"
+                android:paddingStart="20dip"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/ft1000Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ft1000"
+                    android:onClick="selectRadius"/>
+                <RadioButton android:id="@+id/ft2000Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ft2000"
+                    android:onClick="selectRadius"/>
+                <RadioButton android:id="@+id/ft3000Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ft3000"
+                    android:onClick="selectRadius"/>
+            </RadioGroup>
+        </TableRow>
+        <TableRow>
             <Button
                 android:layout_height="35dp"
                 android:layout_column="1"

@@ -58,6 +58,7 @@
     <string name="restaurantAddress">Restaurant address</string>
     <string name="restaurantDistance">xx miles away</string>
     <string name="viewRestaurantMenu"><u>View menu</u></string>
+    <string name="selectRadius">Select radius from the beach for restaurants</string>
 
     <!--    activity_restaurant_menu.xml -->
     <string name="menu">Menu</string>
