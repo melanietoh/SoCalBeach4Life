@@ -1,14 +1,23 @@
 package com.example.socalbeach4life;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class ProfileReviewActivity extends AppCompatActivity {
 
@@ -33,14 +42,27 @@ public class ProfileReviewActivity extends AppCompatActivity {
         if (user != null) {
             // Name, email address, uid
             String name = user.getDisplayName();
-            String email = user.getEmail();
-            String uid = user.getUid();
-
             TextView displayNameLabel = findViewById(R.id.displayNameLabel);
             displayNameLabel.setText(name);
 
-            TextView numReviewsLabel = findViewById(R.id.numReviewsLabel);
-//            numReviewsLabel.setText(); ArrayList.count
+            FirebaseDatabase root = FirebaseDatabase.getInstance();
+
+            root.getReference("users").child(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        //User retrieved
+                        UserModel result = task.getResult().getValue(UserModel.class);
+                        HashMap<String, ReviewModel> reviews = result.getReviews();
+
+                        TextView numReviewsLabel = findViewById(R.id.numReviewsLabel);
+                        numReviewsLabel.setText(reviews.size() + " reviews");
+                    }
+                }
+            });
         }
     }
 
