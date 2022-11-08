@@ -33,9 +33,26 @@ public abstract class DatabaseHelper {
             Map<String, Object> childUpdates = new HashMap<>();
 
             childUpdates.put("/users/" + uid + "/reviews/" + timeID, reviewValues);
-            childUpdates.put("/beaches/" + reviewToAdd.getBeachName() + "/reviews", reviewValues);
+            childUpdates.put("/beaches/" + reviewToAdd.getBeachName() + "/reviews/" + timeID, reviewValues);
 
             mDatabase.updateChildren(childUpdates);
+        }
+    }
+
+    /**
+     * Deletes reviews
+     * @param reviewID id of review. stored in ReviewModel.getId
+     * @param beachName name of beach. must match exactly
+     */
+    public static void deleteReview(String reviewID, String beachName) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference beachReview = mDatabase.child("beaches").child(beachName).child("reviews").child(reviewID);
+            beachReview.removeValue();
+
+            DatabaseReference userReview = mDatabase.child("users").child(user.getUid()).child("reviews").child(reviewID);
+            userReview.removeValue();
         }
     }
 }

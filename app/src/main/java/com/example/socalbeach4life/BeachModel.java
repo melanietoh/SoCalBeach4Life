@@ -1,25 +1,29 @@
 package com.example.socalbeach4life;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BeachModel {
     String name;
     String coord;
     ArrayList<ParkingLotModel> parkingLots;
-    ArrayList<ReviewModel> reviews;
+    HashMap<String, ReviewModel> reviews;
+    ArrayList<RestaurantModel> restaruants;
 
-    public BeachModel(String name, String coord, ArrayList<ParkingLotModel> parkingLots, ArrayList<ReviewModel> reviews) {
+    public BeachModel(String name, String coord, ArrayList<ParkingLotModel> parkingLots, HashMap<String, ReviewModel> reviews, ArrayList<RestaurantModel> restaruants) {
         this.name = name;
         this.coord = coord;
         this.parkingLots = parkingLots;
         this.reviews = reviews;
+        this.restaruants = restaruants;
     }
 
     public BeachModel() {
         this.name = "errorbeach";
         this.coord = "0.0";
         this.parkingLots = new ArrayList<>();
-        this.reviews = new ArrayList<>();
+        this.reviews = new HashMap<>();
+        this.restaruants = new ArrayList<>();
     }
 
     public String getName() {
@@ -34,7 +38,7 @@ public class BeachModel {
         return parkingLots;
     }
 
-    public ArrayList<ReviewModel> getReviews() {
+    public HashMap<String,ReviewModel> getReviews() {
         return reviews;
     }
 
@@ -53,8 +57,10 @@ public class BeachModel {
             return 0.0;
         } else {
             Double count = 0.0;
-            for (ReviewModel r : reviews) {
-                count += r.getRating();
+            for (HashMap.Entry<String, ReviewModel> set :
+                    reviews.entrySet()) {
+
+                count += set.getValue().getRating();
             }
             count /= reviews.size();
             return count;
