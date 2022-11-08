@@ -95,6 +95,8 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
             lotOneObj = new ParkingLotModel("Grand Ave Parking Lot", "12793 Vista Del Mar, Playa Del Rey, CA 90293", 18.0, 33.94, -118.44);
             lotTwoObj = new ParkingLotModel("Dockweiler - Grand Ave", "699 W Grand Ave, El Segundo, CA 90293", 17.7, 33.919, -118.4165);
         }
+        lot1 = new LatLng(lotOneObj.getLatitude(), lotOneObj.getLongitude());
+        lot2 = new LatLng(lotTwoObj.getLatitude(), lotTwoObj.getLongitude());
         LatLng beach = new LatLng(beachLat, beachLon);
         mMap.addMarker(new MarkerOptions().position(beach).title(beachName).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
         mMap.addMarker(new MarkerOptions().position(lot1).title(lotOneObj.name));
