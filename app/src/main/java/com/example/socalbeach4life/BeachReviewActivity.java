@@ -6,8 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class BeachReviewActivity extends AppCompatActivity {
     /*
@@ -62,7 +68,45 @@ public class BeachReviewActivity extends AppCompatActivity {
                 }
                 else {
                     BeachModel beachResult = task.getResult().getValue(BeachModel.class);
-                    System.out.println(beachResult);
+//                    System.out.println(beachResult);
+                    // No reviews
+                    HashMap<String, ReviewModel> reviews = beachResult.getReviews();
+                    if(reviews.isEmpty()) {
+                        TextView rating = findViewById(R.id.rating);
+                        rating.setText("Rating: N/A");
+
+                        TableLayout table = findViewById(R.id.tableLayout);
+                        TableRow row1 = (TableRow) LayoutInflater.from(BeachReviewActivity.this).inflate(R.layout.review_row1, null);
+                        ((TextView)row1.findViewById(R.id.firstRowLabel)).setText("No reviews yet!");
+                        ((RatingBar)row1.findViewById(R.id.firstRowRating)).setNumStars(0);
+                        table.addView(row1);
+                    }
+                    // Display reviews
+                    else {
+                        TableLayout table = findViewById(R.id.tableLayout);
+                        TextView rating = findViewById(R.id.rating);
+                        rating.setText("Rating: " + beachResult.calculateRating());
+
+                        for(int i=0; i<reviews.size(); i++) {
+                            String displayName = reviews.get(i).getDisplayName();
+                            Double userRating = reviews.get(i).getRating();
+                            String message = reviews.get(i).getMessage();
+
+                            TableRow row1 = (TableRow) LayoutInflater.from(BeachReviewActivity.this).inflate(R.layout.review_row1, null);
+                            ((TextView)row1.findViewById(R.id.firstRowLabel)).setText(displayName);
+//                            ((RatingBar)row1.findViewById(R.id.firstRowRating)).setRating(userRating);
+                            table.addView(row1);
+
+                            if(!message.isEmpty()) {
+                                TableRow row2 = (TableRow) LayoutInflater.from(BeachReviewActivity.this).inflate(R.layout.review_row2, null);
+                                ((TextView)row2.findViewById(R.id.secondRowMessage)).setText(message);
+                                table.addView(row2);
+                            }
+
+                            TableRow divider = (TableRow) LayoutInflater.from(BeachReviewActivity.this).inflate(R.layout.review_divider, null);
+                            table.addView(divider);
+                        }
+                    }
                 }
             }
         });
