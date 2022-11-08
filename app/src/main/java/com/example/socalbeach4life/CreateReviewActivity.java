@@ -15,6 +15,7 @@ import android.widget.TextView;
 public class CreateReviewActivity extends AppCompatActivity {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String beachNameToSearch = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +36,13 @@ public class CreateReviewActivity extends AppCompatActivity {
         if (user != null) {
             // Name, email address, uid
             String name = user.getDisplayName();
-            String email = user.getEmail();
-            String uid = user.getUid();
             TextView profileButton = findViewById(R.id.profileButton);
             profileButton.setText(name);
         }
 
         // Setting beach information
         Intent intent = getIntent();
-        String beachNameToSearch = intent.getStringExtra("beachName");
+        beachNameToSearch = intent.getStringExtra("beachName");
         TextView beachName = findViewById(R.id.beachName);
         beachName.setText(beachNameToSearch);
     }
@@ -56,7 +55,7 @@ public class CreateReviewActivity extends AppCompatActivity {
         String message = messageField.getText().toString();
 
         // Send to database to create review
-//        DatabaseHelper.createReview(BeachModel.getName(), rating, message);
+        DatabaseHelper.createReview(beachNameToSearch, rating, message);
 
         Intent switchToProfileReviewView = new Intent(this, ProfileReviewActivity.class);
         startActivity(switchToProfileReviewView);

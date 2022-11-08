@@ -43,8 +43,6 @@ public class BeachReviewActivity extends AppCompatActivity {
         if (user != null) {
             // Name, email address, uid
             String name = user.getDisplayName();
-            String email = user.getEmail();
-            String uid = user.getUid();
             TextView profileButton = findViewById(R.id.profileButton);
             profileButton.setText(name);
         }
