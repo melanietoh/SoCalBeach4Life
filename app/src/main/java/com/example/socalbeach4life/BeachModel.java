@@ -5,14 +5,16 @@ import java.util.HashMap;
 
 public class BeachModel {
     String name;
-    String coord;
+    Double latitude;
+    Double longitude;
     ArrayList<ParkingLotModel> parkingLots;
     HashMap<String, ReviewModel> reviews;
     ArrayList<RestaurantModel> restaruants;
 
-    public BeachModel(String name, String coord, ArrayList<ParkingLotModel> parkingLots, HashMap<String, ReviewModel> reviews, ArrayList<RestaurantModel> restaruants) {
+    public BeachModel(String name, Double latitude, Double longitude, ArrayList<ParkingLotModel> parkingLots, HashMap<String, ReviewModel> reviews, ArrayList<RestaurantModel> restaruants) {
         this.name = name;
-        this.coord = coord;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.parkingLots = parkingLots;
         this.reviews = reviews;
         this.restaruants = restaruants;
@@ -20,7 +22,8 @@ public class BeachModel {
 
     public BeachModel() {
         this.name = "errorbeach";
-        this.coord = "0.0";
+        this.latitude = 0.0;
+        this.longitude = 0.0;
         this.parkingLots = new ArrayList<>();
         this.reviews = new HashMap<>();
         this.restaruants = new ArrayList<>();
@@ -30,8 +33,16 @@ public class BeachModel {
         return name;
     }
 
-    public String getCoord() {
-        return coord;
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public ArrayList<RestaurantModel> getRestaruants() {
+        return restaruants;
     }
 
     public ArrayList<ParkingLotModel> getParkingLots() {
@@ -46,9 +57,11 @@ public class BeachModel {
     public String toString() {
         return "BeachModel{" +
                 "name='" + name + '\'' +
-                ", coord='" + coord + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
                 ", parkingLots=" + parkingLots +
                 ", reviews=" + reviews +
+                ", restaruants=" + restaruants +
                 '}';
     }
 
