@@ -55,4 +55,27 @@ public abstract class DatabaseHelper {
             userReview.removeValue();
         }
     }
+
+    /**
+     * Creates a trip associated with a user
+     * @param dateAndTime start time.
+     * @param arrivalTime end time
+     * @param beach Beach name. Must case match exactly
+     * @param parkingLotModel a model object of the parkingLot
+     */
+    public static void createTrip(String dateAndTime, String arrivalTime, String beach, ParkingLotModel parkingLotModel) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String timeID = String.valueOf(System.currentTimeMillis());
+            Map<String, Object> childUpdates = new HashMap<>();
+
+            TripModel trip = new TripModel(timeID, dateAndTime, arrivalTime, beach, parkingLotModel);
+            Map<String, Object> tripValues = trip.toMap();
+            childUpdates.put("/users/" + user.getUid() + "/trips/" + timeID, tripValues);
+
+
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+            mDatabase.updateChildren(childUpdates);
+        }
+    }
 }
