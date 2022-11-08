@@ -263,7 +263,7 @@
                 android:paddingStart="20dip"
                 android:orientation="horizontal">
                 <RadioButton android:id="@+id/ft1000Button"
-                    android:checked="true"
+                    android:checked="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ft1000"
