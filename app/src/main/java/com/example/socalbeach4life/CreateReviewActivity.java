@@ -55,7 +55,7 @@ public class CreateReviewActivity extends AppCompatActivity {
         String message = messageField.getText().toString();
 
         // Send to database to create review
-        DatabaseHelper.createReview(beachNameToSearch, rating, message);
+        DatabaseHelper.createReview(beachNameToSearch, rating, message, false);
 
         Intent switchToProfileReviewView = new Intent(this, ProfileReviewActivity.class);
         startActivity(switchToProfileReviewView);
