@@ -130,7 +130,7 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
                         t.setText("Address: " + lotTwoObj.address + "\nDistance: " + lotTwoObj.distance);
                     }
                     TextView s = findViewById(R.id.selectView);
-                    s.setText("Select beach");
+                    s.setText("Select parking lot");
                 }
                 // not sure what extra data we want to pass to SaveTripActivity
                 Intent intent = new Intent(ParkingLotMapsActivity.this, SaveTripActivity.class);
