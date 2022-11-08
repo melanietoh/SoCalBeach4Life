@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context=".BeachMapsActivity">
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
@@ -14,38 +14,94 @@
         tools:context=".BeachMapsActivity" />
 
     <TextView
-    android:id="@+id/selectView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="0dp"
-    android:layout_marginEnd="0dp"
-    android:layout_marginBottom="0dp"
-    android:text="nothing"
-    android:textSize="30sp"
-    android:textColor="@color/teal_700"
-    android:onClick="selectViewClick" />
+        android:id="@+id/selectView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/blue"
+        android:onClick="selectViewClick"
+        android:text="@string/beachName"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/reviewView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="500dp"
-        android:text="TEST"
-        android:textSize="30sp"
-        android:textColor="@color/teal_700"
-        android:onClick="viewReviewClick" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="15dp"
+        android:background="@color/blue"
+        android:onClick="viewReviewClick"
+        android:text="@string/ratingUnderlined"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/beachInformationView"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/beachInformationView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="10000dp"
-        android:text="BEACH INFORMATION"
-        android:textSize="30sp"
-        android:textColor="@color/teal_700"
-        android:onClick="viewReviewClick" />
-</RelativeLayout>
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue"
+        android:onClick="viewReviewClick"
+        android:text="@string/beachInformation"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical">-->
+
+<!--    <fragment-->
+<!--        xmlns:map="http://schemas.android.com/apk/res-auto"-->
+<!--        xmlns:tools="http://schemas.android.com/tools"-->
+<!--        android:id="@+id/map"-->
+<!--        android:name="com.google.android.gms.maps.SupportMapFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:context=".BeachMapsActivity" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/selectView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:onClick="selectViewClick"-->
+<!--        android:text="@string/beachName"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:background="@color/blue"-->
+<!--        android:textSize="25sp"/>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/reviewView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:text="@string/ratingUnderlined"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:background="@color/blue"-->
+<!--        android:textSize="20sp"-->
+<!--        android:onClick="viewReviewClick" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/beachInformationView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:onClick="viewReviewClick"-->
+<!--        android:text="@string/beachInformation"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:background="@color/blue"-->
+<!--        android:textSize="20sp" />-->
+<!--</RelativeLayout>-->
