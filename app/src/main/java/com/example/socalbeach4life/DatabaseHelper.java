@@ -79,8 +79,12 @@ public abstract class DatabaseHelper {
         }
     }
 
+    /**
+    * Generates a Google Maps Route link from USC to the given address
+    * @param destination String destination address. Pulled from the Firebase Realtime DB
+    */
     public static String generateRouteFromUSC(String destination) {
-        // https://www.google.com/maps?f=d&saddr=Thompson+St,+New+York,+NY,+USA&daddr=Wooster+St,+New+York,+NY,+USA&dirflg=d
+        //Always start from USC
         String start = "3551 Trousdale Pkwy, Los Angeles, CA 90089";
 
         String link = "https://www.google.com/maps?f=d&saddr=" + parseAddress(start)
