@@ -1,5 +1,7 @@
 package com.example.socalbeach4life;
 
+import java.util.HashMap;
+
 public class TripModel {
     public String tripid;
     public String dateAndTime;
@@ -41,5 +43,15 @@ public class TripModel {
 
     public ParkingLotModel getParkingLotModel() {
         return parkingLotModel;
+    }
+
+    public HashMap<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("tripid", tripid);
+        result.put("dateAndTime", dateAndTime);
+        result.put("arrivalTime", arrivalTime);
+        result.put("beach", beach);
+        result.put("parkingLotModel", parkingLotModel);
+        return result;
     }
 }
