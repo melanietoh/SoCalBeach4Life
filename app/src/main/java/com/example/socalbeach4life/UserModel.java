@@ -1,15 +1,16 @@
 package com.example.socalbeach4life;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserModel {
     public String uid;
     public String email;
     public String displayName;
-    public ArrayList<TripModel> trips;
-    public ArrayList<ReviewModel> reviews;
+    public HashMap<String, TripModel> trips;
+    public HashMap<String, ReviewModel> reviews;
 
-    public UserModel(String uid, String email, String displayName, ArrayList<TripModel> trips, ArrayList<ReviewModel> reviews) {
+    public UserModel(String uid, String email, String displayName, HashMap<String, TripModel> trips, HashMap<String, ReviewModel> reviews) {
         this.uid = uid;
         this.email = email;
         this.displayName = displayName;
@@ -21,8 +22,8 @@ public class UserModel {
         this.uid = "erroruid";
         this.email = "erroruseremail";
         this.displayName = "erroruserdisplayname";
-        this.trips = new ArrayList<>();
-        this.reviews = new ArrayList<>();
+        this.trips = new HashMap<>();
+        this.reviews = new HashMap<>();
     }
 
     public String getUid() {
@@ -37,11 +38,11 @@ public class UserModel {
         return displayName;
     }
 
-    public ArrayList<TripModel> getTrips() {
+    public HashMap<String, TripModel> getTrips() {
         return trips;
     }
 
-    public ArrayList<ReviewModel> getReviews() {
+    public HashMap<String, ReviewModel> getReviews() {
         return reviews;
     }
 }
