@@ -4,10 +4,10 @@ public class TripModel {
     public String tripid;
     public String dateAndTime;
     public String arrivalTime;
-    public BeachModel beach;
+    public String beach;
     public ParkingLotModel parkingLotModel;
 
-    public TripModel(String tripid, String dateAndTime, String arrivalTime, BeachModel beach, ParkingLotModel parkingLotModel) {
+    public TripModel(String tripid, String dateAndTime, String arrivalTime, String beach, ParkingLotModel parkingLotModel) {
         this.tripid = tripid;
         this.dateAndTime = dateAndTime;
         this.arrivalTime = arrivalTime;
@@ -35,7 +35,7 @@ public class TripModel {
         return arrivalTime;
     }
 
-    public BeachModel getBeach() {
+    public String getBeach() {
         return beach;
     }
 
