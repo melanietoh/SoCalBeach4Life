@@ -42,8 +42,10 @@ public class CreateReviewActivity extends AppCompatActivity {
         }
 
         // Setting beach information
+        Intent intent = getIntent();
+        String beachNameToSearch = intent.getStringExtra("beachName");
         TextView beachName = findViewById(R.id.beachName);
-//        beachName.setText(BeachModel.getName());
+        beachName.setText(beachNameToSearch);
     }
 
     public void submitReview(View view) {
