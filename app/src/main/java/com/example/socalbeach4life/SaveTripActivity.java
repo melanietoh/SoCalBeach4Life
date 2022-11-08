@@ -6,12 +6,14 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 public class SaveTripActivity extends AppCompatActivity {
@@ -22,12 +24,19 @@ public class SaveTripActivity extends AppCompatActivity {
     Button dateSelector, timeSelector;
     EditText dateField, timeField;
     private int year, month, day, hour, minute;
+    private String beachName, parkingLotName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_trip);
-
+        Intent intent = getIntent();
+        beachName = intent.getStringExtra("beachName");
+        parkingLotName = intent.getStringExtra("parkingLot");
+        TextView beachNameHeader = findViewById(R.id.beachName);
+        beachNameHeader.setText(beachName);
+        TextView lotNameHeader = findViewById(R.id.parkingLotLabel);
+        lotNameHeader.setText(parkingLotName);
         // Clickable logo -> Return to homepage
         ImageView homepageView = findViewById(R.id.logo);
         homepageView.setClickable(true);
@@ -43,6 +52,8 @@ public class SaveTripActivity extends AppCompatActivity {
         timeSelector = findViewById(R.id.timeSelector);
         dateField = findViewById(R.id.dateField);
         timeField = findViewById(R.id.timeField);
+        View openMapsNow = findViewById(R.id.googleMapsNow);
+        openMapsNow.setOnClickListener(this::departNowRedirect);
 
         dateSelector.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -88,15 +99,25 @@ public class SaveTripActivity extends AppCompatActivity {
                 timePickerDialog.show();
             }
         });
+
     }
 
     public void viewNearbyRestaurants(View view) {
         Intent switchToRestaurantView = new Intent(SaveTripActivity.this, RestaurantActivity.class);
+        switchToRestaurantView.putExtra("beachName", beachName);
         startActivity(switchToRestaurantView);
     }
 
     public void leaveReview(View view) {
         Intent switchToReviewView = new Intent(SaveTripActivity.this, CreateReviewActivity.class);
         startActivity(switchToReviewView);
+    }
+    public void departNowRedirect(View view) {
+       // Uri uri = Uri.parse("http://www.google.com");
+        // Uri uri = Uri.parse("https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=AIzaSyCEnsK36FKyv44d_stqm4i0jwwBAIPS8zg");
+        Uri uri = Uri.parse("https://www.google.com/maps/dir/34.0324863,-118.2819881/University+of+Southern+California,+Los+Angeles,+CA+90007/@34.0274191,-118.2883858,16z/data=!3m1!4b1!4m17!1m6!3m5!1s0x80c2c7e49c71a5ed:0xaa905a5bb427a2c4!2sUniversity+of+Southern+California!8m2!3d34.0223519!4d-118.285117!4m9!1m1!4e1!1m5!1m1!1s0x80c2c7e49c71a5ed:0xaa905a5bb427a2c4!2m2!1d-118.285117!2d34.0223519!3e2");
+        // https://www.google.com/maps/dir/34.0324863,-118.2819881//@34.0325965,-118.3172156,13z/data=!4m5!4m4!1m1!4e1!1m0!3e2
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 }

@@ -137,6 +137,7 @@
                 app:srcCompat="@drawable/location" />
 
             <Button
+                android:id="@+id/googleMapsNow"
                 android:layout_height="35dp"
                 android:layout_column="1"
                 android:layout_span="2"
@@ -146,7 +147,8 @@
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
                 android:textColor="@color/dark_blue"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:onClick="departNowRedirect" />
         </TableRow>
 
         <View

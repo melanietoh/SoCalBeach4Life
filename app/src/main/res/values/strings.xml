@@ -96,4 +96,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_beach_maps">BeachMapsActivity</string>
     <string name="title_activity_parking_lot_maps">ParkingLotMapsActivity</string>
+    <string name="title_activity_restaurant_maps">RestaurantMapsActivity</string>
 </resources>
