@@ -32,10 +32,6 @@ public class ProfileActivity extends AppCompatActivity {
     Viewing user information, including saved trips, reviews (including delete functionality).
      */
 
-//    private ArrayList<Trip>;
-//    private ArrayList<Review>;
-    private ArrayList<String> arrayListOne;
-    private ArrayList<String> arrayListTwo;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override

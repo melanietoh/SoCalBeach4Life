@@ -78,6 +78,7 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
                 }
                 else {
                     GenericTypeIndicator<HashMap<String, BeachModel>> t = new GenericTypeIndicator<HashMap<String,BeachModel>>() {}; //beaches are Id'd by name
+
                     List<BeachModel> beachList = new ArrayList<>(task.getResult().getValue(t).values());
                     Log.d("firebase", String.valueOf(beachList));
                     for (int i=0; i<beachList.size(); i++) {
@@ -93,6 +94,7 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(usc, 10));
 
+
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
@@ -101,9 +103,11 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
                 beachSelected = true;
                 String markerName = marker.getTitle();
                 selectedBeach = marker.getTitle();
+                System.out.println("Beach view: " + selectedBeach);
                 lat = marker.getPosition().latitude;
                 lon = marker.getPosition().longitude;
                 TextView beachInformation = findViewById(R.id.beachInformationView);
+
                 // Double rating = 0.0;
                 String beachNameToSearch = marker.getTitle();
                 FirebaseDatabase root = FirebaseDatabase.getInstance();
@@ -133,8 +137,9 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
                     }
                 });
 
+
                 // not sure what extra data we want to pass to SaveTripActivity
-                Intent intent = new Intent(BeachMapsActivity.this, SaveTripActivity.class);
+//                Intent intent = new Intent(BeachMapsActivity.this, SaveTripActivity.class);
                 // startActivity(intent);
                 return false;
             }
@@ -144,17 +149,18 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
         // start intent to redirect to reviews page
         if (beachSelected) {
             Intent intent = new Intent(BeachMapsActivity.this, BeachReviewActivity.class);
+            intent.putExtra("beachName", selectedBeach);
             startActivity(intent);
         }
     }
     public void selectViewClick(View view) {
-        System.out.println("Selected Beach");
+//        System.out.println("Selected Beach");
         if (beachSelected) {
             // start intent to continue with trip information
             Intent intent = new Intent(BeachMapsActivity.this, ParkingLotMapsActivity.class);
             intent.putExtra("beachName", selectedBeach);
-            intent.putExtra("latitude", lat);
-            intent.putExtra("longitude", lon);
+//            intent.putExtra("latitude", lat);
+//            intent.putExtra("longitude", lon);
             startActivity(intent);
         }
     }

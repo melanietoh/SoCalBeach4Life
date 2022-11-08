@@ -51,5 +51,11 @@ public class ProfileReviewActivity extends AppCompatActivity {
 
     public void deleteReview(View view) {
         // Database call
+        /**
+         * Deletes reviews
+         * @param reviewID id of review. stored in ReviewModel.getId
+         * @param beachName name of beach. must match exactly
+         */
+        DatabaseHelper.deleteReview("1667887691369", "beach1");
     }
 }

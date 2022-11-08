@@ -134,6 +134,7 @@ public class SaveTripActivity extends AppCompatActivity {
 
     public void leaveReview(View view) {
         Intent switchToReviewView = new Intent(this, CreateReviewActivity.class);
+        switchToReviewView.putExtra("beachName", beachName);
         startActivity(switchToReviewView);
     }
     
