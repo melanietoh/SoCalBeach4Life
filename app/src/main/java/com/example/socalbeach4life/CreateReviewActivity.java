@@ -59,4 +59,9 @@ public class CreateReviewActivity extends AppCompatActivity {
         Intent switchToProfileReviewView = new Intent(this, ProfileReviewActivity.class);
         startActivity(switchToProfileReviewView);
     }
+
+    public void goToProfileView(View view) {
+        Intent switchToProfileView = new Intent(CreateReviewActivity.this, ProfileActivity.class);
+        startActivity(switchToProfileView);
+    }
 }
