@@ -31,6 +31,7 @@ public class SaveTripActivity extends AppCompatActivity {
     private int year, month, day, hour, minute;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String beachName, parkingLotName;
+    private int radius = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,13 +126,14 @@ public class SaveTripActivity extends AppCompatActivity {
     }
 
     public void viewNearbyRestaurants(View view) {
-        Intent switchToRestaurantView = new Intent(SaveTripActivity.this, RestaurantActivity.class);
-        switchToRestaurantView.putExtra("beachName", beachName);
-        startActivity(switchToRestaurantView);
+        Intent switchToRestaurant = new Intent(this, RestaurantMapsActivity.class);
+        switchToRestaurant.putExtra("beachName", beachName);
+        switchToRestaurant.putExtra("radius", radius);
+        startActivity(switchToRestaurant);
     }
 
     public void leaveReview(View view) {
-        Intent switchToReviewView = new Intent(SaveTripActivity.this, CreateReviewActivity.class);
+        Intent switchToReviewView = new Intent(this, CreateReviewActivity.class);
         startActivity(switchToReviewView);
     }
     
@@ -152,14 +154,17 @@ public class SaveTripActivity extends AppCompatActivity {
             case R.id.ft1000Button:
                 if (selected)
                     // Database call
+                    radius = 1000;
                     break;
             case R.id.ft2000Button:
                 if (selected)
                     // Database call
+                    radius = 2000;
                     break;
             case R.id.ft3000Button:
                 if(selected)
                     // Database call
+                    radius = 3000;
                     break;
         }
     }
