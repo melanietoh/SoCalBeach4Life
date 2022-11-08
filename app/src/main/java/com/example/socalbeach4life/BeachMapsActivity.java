@@ -21,6 +21,7 @@ import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 
@@ -53,7 +54,6 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
         t.setOnClickListener(this::viewReviewClick);
         TextView s = findViewById(R.id.selectView);
         s.setOnClickListener(this::selectViewClick);
-
     }
 
     /**
@@ -81,19 +81,19 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
 
                     List<BeachModel> beachList = new ArrayList<>(task.getResult().getValue(t).values());
                     Log.d("firebase", String.valueOf(beachList));
-                    LatLng usc = new LatLng(34.02, -118.29);
-
-                    for(int i=0; i<beachList.size(); i++) {
-                        Double lat = beachList.get(i).getLatitude();
-                        Double lon = beachList.get(i).getLongitude();
-                        String name = beachList.get(i).getName();
-                        LatLng beach = new LatLng(lat, lon);
-                        mMap.addMarker(new MarkerOptions().position(beach).title(name));
+                    for (int i=0; i<beachList.size(); i++) {
+                        LatLng temp = new LatLng(beachList.get(i).getLatitude(), beachList.get(i).getLongitude());
+                        mMap.addMarker(new MarkerOptions().position(temp).title(beachList.get(i).getName()));
+                        System.out.println(beachList.get(i).getName() + ": " + beachList.get(i).getLatitude() + ", " + beachList.get(i).getLongitude() + "\n");
                     }
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(usc, 10));
                 }
             }
         });
+
+        LatLng usc = new LatLng(34.02, -118.29);
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(usc, 10));
+
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
@@ -107,40 +107,36 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
                 lat = marker.getPosition().latitude;
                 lon = marker.getPosition().longitude;
                 TextView beachInformation = findViewById(R.id.beachInformationView);
-                String beachAddress = "Address: ";
-                String beachHours = "Hours: ";
-                Double rating = 0.0;
-                if (selectedBeach.equalsIgnoreCase("Venice Beach")) {
-                    beachAddress += "1800 Ocean Front Walk\nVenice, CA 90291";
-                    beachHours += "6am - 12am";
-                    rating = 4.4;
-                }
-                else if (selectedBeach.equalsIgnoreCase("Bruce's Beach")) {
-                    beachAddress += "2600 Highland Ave\nManhattan Beach, CA 90266";
-                    beachHours += "6am - 10PM";
-                    rating = 4.7;
-                }
-                else if (selectedBeach.equalsIgnoreCase("Playa del Rey Beach")) {
-                    beachAddress += "Culver Blvd & Pacific Ave\nLos Angeles, CA 90293";
-                    beachHours += "9am - 5PM";
-                    rating = 4.7;
-                }
-                else if (selectedBeach.equalsIgnoreCase("El Segundo Beach")) {
-                    beachAddress += "Grand Ave & Vista Del Mar Blvd\nEl Segundo, CA 90245";
-                    beachHours += "6am - 10PM";
-                    rating = 4.6;
-                }
-                else { // Dockweiler
-                    beachAddress += "12000 Vista Del Mar\nPlaya Del Rey, CA 90293";
-                    beachHours += "6am - 10PM";
-                    rating = 4.5;
-                }
-                beachInformation.setText(beachAddress + "\n" + beachHours + "\n");
-                Toast.makeText(BeachMapsActivity.this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show();
-                TextView t = findViewById(R.id.reviewView);
-                t.setText("Rating: " + rating);
-                TextView s = findViewById(R.id.selectView);
-                s.setText("Select beach");
+
+                // Double rating = 0.0;
+                String beachNameToSearch = marker.getTitle();
+                FirebaseDatabase root = FirebaseDatabase.getInstance();
+                root.getReference("beaches").child(beachNameToSearch).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (!task.isSuccessful()) {
+                            Log.e("firebase", "Error getting data", task.getException());
+                        }
+                        else {
+                            BeachModel beachResult = task.getResult().getValue(BeachModel.class);
+                            System.out.println(beachResult);
+                            String beachAddress = "Address: " + beachResult.getAddress();
+                            String beachHours = "Hours: " + beachResult.getHours();
+                            beachInformation.setText( beachAddress + "\n" + beachHours + "\n");
+                            Toast.makeText(BeachMapsActivity.this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show();
+                            TextView t = findViewById(R.id.reviewView);
+                            if (beachResult.calculateRating() == 0) {
+                                t.setText("Rating: N/A");
+                            }
+                            else {
+                                t.setText("Rating: " + beachResult.calculateRating());
+                            }
+                            TextView s = findViewById(R.id.selectView);
+                            s.setText("Select beach");
+                        }
+                    }
+                });
+
 
                 // not sure what extra data we want to pass to SaveTripActivity
 //                Intent intent = new Intent(BeachMapsActivity.this, SaveTripActivity.class);
