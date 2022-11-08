@@ -163,4 +163,9 @@ public class SaveTripActivity extends AppCompatActivity {
                     break;
         }
     }
+
+    public void goToProfileView(View view) {
+        Intent switchToProfileView = new Intent(SaveTripActivity.this, ProfileActivity.class);
+        startActivity(switchToProfileView);
+    }
 }

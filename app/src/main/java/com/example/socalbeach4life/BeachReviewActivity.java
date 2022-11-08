@@ -45,7 +45,12 @@ public class BeachReviewActivity extends AppCompatActivity {
     }
 
     public void returnToBeach(View view) {
-        Intent switchToBeachView = new Intent(BeachReviewActivity.this, BeachActivity.class);
+        Intent switchToBeachView = new Intent(BeachReviewActivity.this, BeachMapsActivity.class);
         startActivity(switchToBeachView);
+    }
+
+    public void goToProfileView(View view) {
+        Intent switchToProfileView = new Intent(BeachReviewActivity.this, ProfileActivity.class);
+        startActivity(switchToProfileView);
     }
 }
