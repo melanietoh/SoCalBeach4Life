@@ -5,14 +5,14 @@ import java.util.HashMap;
 public class TripModel {
     public String tripid;
     public String dateAndTime;
-    public String arrivalTime;
+    public String mapsLink;
     public String beach;
     public ParkingLotModel parkingLotModel;
 
     public TripModel(String tripid, String dateAndTime, String arrivalTime, String beach, ParkingLotModel parkingLotModel) {
         this.tripid = tripid;
         this.dateAndTime = dateAndTime;
-        this.arrivalTime = arrivalTime;
+        this.mapsLink = arrivalTime;
         this.beach = beach;
         this.parkingLotModel = parkingLotModel;
     }
@@ -20,7 +20,7 @@ public class TripModel {
     public TripModel() {
         this.tripid = "errortripid";
         this.dateAndTime = "errortripdateandtime";
-        this.arrivalTime = "errorarrivaltime";
+        this.mapsLink = "errortripLink";
         this.beach = null;
         this.parkingLotModel = null;
     }
@@ -33,8 +33,8 @@ public class TripModel {
         return dateAndTime;
     }
 
-    public String getArrivalTime() {
-        return arrivalTime;
+    public String getMapsLink() {
+        return mapsLink;
     }
 
     public String getBeach() {
@@ -49,7 +49,7 @@ public class TripModel {
         HashMap<String, Object> result = new HashMap<>();
         result.put("tripid", tripid);
         result.put("dateAndTime", dateAndTime);
-        result.put("arrivalTime", arrivalTime);
+        result.put("arrivalTime", mapsLink);
         result.put("beach", beach);
         result.put("parkingLotModel", parkingLotModel);
         return result;
