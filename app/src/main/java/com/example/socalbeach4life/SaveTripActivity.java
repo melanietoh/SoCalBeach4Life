@@ -54,6 +54,12 @@ public class SaveTripActivity extends AppCompatActivity {
             profileButton.setText(name);
         }
 
+        // Setting trip information
+        TextView beachName = findViewById(R.id.beachName);
+//        beachName.setText(BeachModel.getName());
+        TextView parkingLotName = findViewById(R.id.parkingLotLabel);
+//        parkingLotName.setText(ParkingLotModel.getName());
+
         // Date and time selectors
         dateSelector = findViewById(R.id.dateSelector);
         timeSelector = findViewById(R.id.timeSelector);

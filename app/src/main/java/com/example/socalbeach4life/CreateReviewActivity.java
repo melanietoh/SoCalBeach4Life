@@ -41,21 +41,22 @@ public class CreateReviewActivity extends AppCompatActivity {
             profileButton.setText(name);
         }
 
+        // Setting beach information
+        TextView beachName = findViewById(R.id.beachName);
+//        beachName.setText(BeachModel.getName());
     }
 
     public void submitReview(View view) {
         // Retrieve user input
         EditText ratingField = findViewById(R.id.ratingField);
         EditText messageField = findViewById(R.id.messageField);
-        String rating = ratingField.getText().toString();
+        Double rating = Double.parseDouble(ratingField.getText().toString());
         String message = messageField.getText().toString();
 
         // Send to database to create review
-        boolean hasCreated = false;
-        // hasCreated = createAccount(displayName, email, password);
-        if(hasCreated) { //
-            Intent switchToHomepageView = new Intent(this, HomepageActivity.class);
-            startActivity(switchToHomepageView);
-        }
+//        DatabaseHelper.createReview(BeachModel.getName(), rating, message);
+
+        Intent switchToProfileReviewView = new Intent(this, ProfileReviewActivity.class);
+        startActivity(switchToProfileReviewView);
     }
 }
