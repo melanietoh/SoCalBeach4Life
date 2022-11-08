@@ -91,28 +91,23 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                     System.out.println(beachResult);
                     LatLng beach = new LatLng(beachResult.getLatitude(), beachResult.getLongitude());
                     mMap.addMarker(new MarkerOptions().position(beach).title(beachResult.getName()));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(beach, 15));
-//                    for (int i=0; i<beachResult.getRestaruants(); i++) {
-//
-//                    }
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(beach, 10));
+                    ArrayList<RestaurantModel> restaurants = beachResult.getRestaruants();
+                    for (int i=0; i<restaurants.size(); i++) {
+                        // display on map if within radius
+                        // if (restaurants.get(i).getDist()*5280 < radius) {
+                        System.out.println(restaurants.get(i).getRestaurantName());
+                            LatLng res = new LatLng(restaurants.get(i).getLatitude(), restaurants.get(i).getLongitude());
+                            mMap.addMarker(new MarkerOptions().position(res).title(restaurants.get(i).getRestaurantName()));
+                        // }
+                    }
                     Circle circle = mMap.addCircle(new CircleOptions()
-                            .center(new LatLng(-34, 151))
+                            .center(new LatLng(beachResult.getLatitude(), beachResult.getLongitude()))
                             .radius(radius/3.28)
                             .strokeColor(Color.RED)
                     );
                 }
             }
         });
-        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        LatLng test2 = new LatLng(-34.3, 151.3);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.addMarker(new MarkerOptions().position(test2).title("Marker Test2"));
-        // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(beach, 15));
-//        Circle circle = mMap.addCircle(new CircleOptions()
-//                .center(new LatLng(-34, 151))
-//                        .radius(radius/3.28)
-//                        .strokeColor(Color.RED)
-//        );
     }
 }

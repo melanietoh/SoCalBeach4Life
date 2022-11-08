@@ -5,14 +5,18 @@ import java.util.HashMap;
 
 public class BeachModel {
     String name;
+    String address;
+    String hours;
     Double latitude;
     Double longitude;
     ArrayList<ParkingLotModel> parkingLots;
     HashMap<String, ReviewModel> reviews;
     ArrayList<RestaurantModel> restaruants;
 
-    public BeachModel(String name, Double latitude, Double longitude, ArrayList<ParkingLotModel> parkingLots, HashMap<String, ReviewModel> reviews, ArrayList<RestaurantModel> restaruants) {
+    public BeachModel(String name, String address, String hours, Double latitude, Double longitude, ArrayList<ParkingLotModel> parkingLots, HashMap<String, ReviewModel> reviews, ArrayList<RestaurantModel> restaruants) {
         this.name = name;
+        this.address = address;
+        this.hours = hours;
         this.latitude = latitude;
         this.longitude = longitude;
         this.parkingLots = parkingLots;
@@ -22,6 +26,8 @@ public class BeachModel {
 
     public BeachModel() {
         this.name = "errorbeach";
+        this.address = "errorbeachaddress";
+        this.hours = "errorbeachhours";
         this.latitude = 0.0;
         this.longitude = 0.0;
         this.parkingLots = new ArrayList<>();
@@ -31,6 +37,14 @@ public class BeachModel {
 
     public String getName() {
         return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getHours() {
+        return hours;
     }
 
     public Double getLatitude() {
