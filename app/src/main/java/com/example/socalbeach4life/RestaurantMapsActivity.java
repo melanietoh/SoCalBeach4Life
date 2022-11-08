@@ -80,6 +80,7 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
             }
         });
         String beachNameToSearch = intent.getStringExtra("beachName");
+        System.out.println("Searching for Restaurants Near Beach: " + beachNameToSearch);
         root.getReference("beaches").child(beachNameToSearch).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -91,6 +92,7 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                     System.out.println(beachResult);
                     LatLng beach = new LatLng(beachResult.getLatitude(), beachResult.getLongitude());
                     mMap.addMarker(new MarkerOptions().position(beach).title(beachResult.getName()));
+                    System.out.println("Beach Latitude: " + beachResult.getLatitude() + ", longitude: " + beachResult.getLongitude());
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(beach, 10));
                     ArrayList<RestaurantModel> restaurants = beachResult.getRestaruants();
                     for (int i=0; i<restaurants.size(); i++) {
