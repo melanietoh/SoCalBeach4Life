@@ -23,13 +23,16 @@ public abstract class DatabaseHelper {
             String name = user.getDisplayName();
             String email = user.getEmail();
             String uid = user.getUid();
-            ReviewModel reviewToAdd = new ReviewModel(uid, beachName, name, message, rating);
+
+            String timeID = String.valueOf(System.currentTimeMillis());
+            ReviewModel reviewToAdd = new ReviewModel(timeID, uid, beachName, name, message, rating);
 
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
             Map<String, Object> reviewValues = reviewToAdd.toMap();
 
             Map<String, Object> childUpdates = new HashMap<>();
-            childUpdates.put("/users/" + uid + "/reviews", reviewValues);
+
+            childUpdates.put("/users/" + uid + "/reviews/" + timeID, reviewValues);
             childUpdates.put("/beaches/" + reviewToAdd.getBeachName() + "/reviews", reviewValues);
 
             mDatabase.updateChildren(childUpdates);

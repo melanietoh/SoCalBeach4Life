@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SignUpActivity extends AppCompatActivity {
     /*
@@ -68,7 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
                     DatabaseReference reference;
                     root = FirebaseDatabase.getInstance();
 
-                    UserModel newUser = new UserModel(user.getUid(),user.getEmail(),user.getDisplayName(), new ArrayList<>(), new ArrayList<>());
+                    UserModel newUser = new UserModel(user.getUid(),user.getEmail(),user.getDisplayName(), new HashMap<>(), new HashMap<>());
                     reference = root.getReference("users");
                     reference.child(newUser.getUid()).setValue(newUser);
 
