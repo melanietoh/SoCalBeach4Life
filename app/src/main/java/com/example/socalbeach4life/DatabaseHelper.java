@@ -78,4 +78,21 @@ public abstract class DatabaseHelper {
             mDatabase.updateChildren(childUpdates);
         }
     }
+
+    public static String generateRouteFromUSC(String destination) {
+        // https://www.google.com/maps?f=d&saddr=Thompson+St,+New+York,+NY,+USA&daddr=Wooster+St,+New+York,+NY,+USA&dirflg=d
+        String start = "3551 Trousdale Pkwy, Los Angeles, CA 90089";
+
+        String link = "https://www.google.com/maps?f=d&saddr=" + parseAddress(start)
+                + "&daddr=" + parseAddress(destination) + "&dirflg=d";
+
+        return link;
+    }
+
+    private static String parseAddress(String address){
+        address = address.substring(0, address.length()-6);
+        address += ", USA";
+        address = address.replaceAll(" ", "+");
+        return address;
+    }
 }
