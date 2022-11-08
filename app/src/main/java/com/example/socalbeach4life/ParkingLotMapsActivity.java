@@ -125,9 +125,8 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
                                     String name = parkingLots.get(i).getName();
                                     String address = parkingLots.get(i).getAddress();
                                     Double distance = parkingLots.get(i).getDistance();
-                                    if (t.getText().equals(name)) {
-                                        t.setText("");
-                                        t.setText("Address: " + address + "\nDistance: " + distance);
+                                    if (markerName.equals(name)) {
+                                        t.setText("Address: " + address + "\nDistance: " + distance + " miles");
                                         s.setText("Select " + name);
                                         break;
                                     }

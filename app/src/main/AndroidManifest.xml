@@ -38,9 +38,6 @@
             android:exported="false"
             android:label="@string/title_activity_beach_maps" />
         <activity
-            android:name=".RestaurantMenuActivity"
-            android:exported="false" />
-        <activity
             android:name=".CreateReviewActivity"
             android:exported="false"
             android:label="@string/title_activity_create_review"
@@ -49,16 +46,7 @@
             android:name=".SaveTripActivity"
             android:exported="false" />
         <activity
-            android:name=".RestaurantActivity"
-            android:exported="false" />
-        <activity
-            android:name=".BeachActivity"
-            android:exported="false" />
-        <activity
             android:name=".BeachReviewActivity"
-            android:exported="false" />
-        <activity
-            android:name=".HomepageActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"

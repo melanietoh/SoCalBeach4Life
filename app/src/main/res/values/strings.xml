@@ -32,7 +32,7 @@
     <string name="postAnonymously">Post anonymously</string>
     <string name="submitReview">Submit review</string>
 
-    <!--    activity_homepage.xml -->
+    <!--    activity_beach_maps.xml -->
     <string name="viewBeaches">Beaches near [Current location]</string>
     <string name="beachAddress">Beach address</string>
     <string name="ratingUnderlined"><u>Rating:</u></string>
@@ -40,8 +40,9 @@
     <string name="openingHours">9:00–21:00</string>
     <string name="selectBeach"><u>Select beach</u></string>
     <string name="beachInformation">Beach information</string>
+    <string name="selectMarker">Click on a marker to learn more</string>
 
-    <!--    activity_beach.xml -->
+    <!--    activity_parking_lot_maps.xml -->
     <string name="viewParkingLots">Parking lots near [Beach name]</string>
     <string name="parkingLotName">Parking lot name</string>
     <string name="parkingLotAddress">Parking lot address</string>
@@ -49,7 +50,7 @@
     <string name="selectParkingLot"><u>Select parking lot</u></string>
     <string name="parkingLotInformation">Parking lot information</string>
 
-    <!--    activity_restaurant.xml -->
+    <!--    activity_restaurant_maps.xml -->
     <string name="viewRestaurants">Restaurants near [Beach name]</string>
     <string name="ft1000">1000 ft. away</string>
     <string name="ft2000">2000 ft. away</string>
@@ -59,12 +60,6 @@
     <string name="restaurantDistance">xx miles away</string>
     <string name="viewRestaurantMenu"><u>View menu</u></string>
     <string name="selectRadius">Select radius from the beach for restaurants</string>
-
-    <!--    activity_restaurant_menu.xml -->
-    <string name="menu">Menu</string>
-    <string name="menuItemName">Menu item name</string>
-    <string name="menuItemPrice">$xx</string>
-    <string name="menuItemDescription">Description placeholder</string>
 
     <!--    activity_save_trip.xml -->
     <string name="tripInformationLabel">Trip Information</string>
