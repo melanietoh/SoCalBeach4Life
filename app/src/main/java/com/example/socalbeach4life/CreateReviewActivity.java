@@ -3,12 +3,18 @@ package com.example.socalbeach4life;
 import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class CreateReviewActivity extends AppCompatActivity {
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +30,16 @@ public class CreateReviewActivity extends AppCompatActivity {
                 startActivity(switchToHomepageView);
             }
         });
+
+        // Setting user related info
+        if (user != null) {
+            // Name, email address, uid
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            String uid = user.getUid();
+            TextView profileButton = findViewById(R.id.profileButton);
+            profileButton.setText(name);
+        }
 
     }
 

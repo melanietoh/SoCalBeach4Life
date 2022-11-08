@@ -6,11 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class BeachReviewActivity extends AppCompatActivity {
     /*
     Displays reviews for a beach.
      */
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +32,16 @@ public class BeachReviewActivity extends AppCompatActivity {
                 startActivity(switchToHomepageView);
             }
         });
+
+        // Setting user related info
+        if (user != null) {
+            // Name, email address, uid
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            String uid = user.getUid();
+            TextView profileButton = findViewById(R.id.profileButton);
+            profileButton.setText(name);
+        }
     }
 
     public void returnToBeach(View view) {
