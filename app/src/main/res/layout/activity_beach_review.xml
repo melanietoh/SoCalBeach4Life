@@ -11,12 +11,10 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="218dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toTopOf="@+id/reviewIcon"
-        app:layout_constraintEnd_toStartOf="@+id/profileButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
@@ -25,16 +23,14 @@
         android:id="@+id/profileButton"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="187dp"
         android:background="@android:color/transparent"
+        android:onClick="goToProfileView"
         android:text="@string/welcomeMessage"
         android:textAlignment="viewEnd"
         android:textColor="@color/dark_blue"
         android:textSize="16sp"
-        android:onClick="goToProfileView"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,221 +52,140 @@
         android:id="@+id/reviewLabel"
         android:layout_width="wrap_content"
         android:layout_height="33dp"
-        android:layout_marginTop="143dp"
-        android:layout_marginEnd="268dp"
+        android:layout_marginEnd="276dp"
         android:layout_marginBottom="15dp"
         android:text="@string/reviews"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/beachName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/profileButton"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/beachName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="280dp"
         android:layout_marginBottom="15dp"
         android:text="@string/beachName"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/rating"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="336dp"
         android:layout_marginBottom="20dp"
         android:text="@string/rating"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/tableLayout"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/scrollView"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TableLayout
-        android:id="@+id/tableLayout"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:stretchColumns="1"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="200dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="310dp"
+        android:layout_marginBottom="20dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/returnBeachButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <View
-            android:layout_height="2dip"
-            android:background="@color/grey" />
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:stretchColumns="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TableRow>
-            <TextView
-                android:layout_column="0"
-                android:text="@string/reviewDisplayName"
-                android:layout_span="2"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:padding="5dip"
-                android:paddingStart="20dip"/>
+            <TableRow android:layout_height="2dip" android:background="@color/grey">
+                <TextView android:layout_span="3" android:layout_height="2dip"
+                    android:layout_width="fill_parent" android:text="">
+                </TextView>
+            </TableRow>
 
-            <RatingBar
-                android:layout_column="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:max="5"
-                android:numStars="5"
-                android:rating="4.5"
-                style="?android:attr/ratingBarStyleSmall"
-                android:isIndicator="false"
-                android:stepSize="0.5"
-                android:progressTint="@color/black"
-                android:progressBackgroundTint="@color/dark_grey"
-                android:layout_marginTop="8dp" />
+<!--            <TableRow-->
+<!--                android:id="@+id/firstRow">-->
 
-        </TableRow>
+<!--                <TextView-->
+<!--                    android:id="@+id/firstRowLabel"-->
+<!--                    android:layout_column="0"-->
+<!--                    android:layout_span="2"-->
+<!--                    android:padding="5dip"-->
+<!--                    android:paddingStart="20dip"-->
+<!--                    android:text="@string/reviewDisplayName"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="18sp" />-->
 
-        <TableRow android:orientation="vertical">
+<!--                <RatingBar-->
+<!--                    android:id="@+id/firstRowRating"-->
+<!--                    style="?android:attr/ratingBarStyleSmall"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_column="1"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:isIndicator="false"-->
+<!--                    android:max="5"-->
+<!--                    android:numStars="5"-->
+<!--                    android:progressBackgroundTint="@color/dark_grey"-->
+<!--                    android:progressTint="@color/black"-->
+<!--                    android:rating="5"-->
+<!--                    android:stepSize="0.5" />-->
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="35dp"
-                android:layout_column="0"
-                android:contentDescription="@string/reviewPlaceholder"
-                android:padding="5dip"
-                android:paddingStart="20dip"
-                app:srcCompat="@drawable/comment" />
+<!--            </TableRow>-->
 
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_span="2"
-                android:padding="5dip"
-                android:text="@string/reviewPlaceholder"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-        </TableRow>
+<!--            <TableRow-->
+<!--                android:id="@+id/secondRow"-->
+<!--                android:orientation="vertical">-->
 
-        <View
-            android:layout_height="2dip"
-            android:background="@color/grey" />
+<!--                <ImageView-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="35dp"-->
+<!--                    android:layout_column="0"-->
+<!--                    android:contentDescription="@string/reviewPlaceholder"-->
+<!--                    android:padding="5dip"-->
+<!--                    android:paddingStart="20dip"-->
+<!--                    app:srcCompat="@drawable/comment" />-->
 
-        <!--        Second review   -->
-        <TableRow>
-            <TextView
-                android:layout_column="0"
-                android:text="@string/reviewDisplayName"
-                android:layout_span="2"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:padding="5dip"
-                android:paddingStart="20dip"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/secondRowMessage"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_column="1"-->
+<!--                    android:layout_span="2"-->
+<!--                    android:padding="5dip"-->
+<!--                    android:text="@string/reviewPlaceholder"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="16sp" />-->
+<!--            </TableRow>-->
 
-            <RatingBar
-                android:layout_column="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:max="5"
-                android:numStars="5"
-                android:rating="4"
-                style="?android:attr/ratingBarStyleSmall"
-                android:isIndicator="false"
-                android:stepSize="0.5"
-                android:progressTint="@color/black"
-                android:progressBackgroundTint="@color/dark_grey" />
-        </TableRow>
+<!--            <View-->
+<!--                android:layout_height="2dip"-->
+<!--                android:background="@color/grey" />-->
 
-        <TableRow>
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="35dp"
-                android:contentDescription="@string/reviewPlaceholder"
-                android:layout_column="0"
-                android:padding="5dip"
-                android:paddingStart="20dip"
-                app:srcCompat="@drawable/comment" />
+        </TableLayout>
+    </ScrollView>
 
-            <TextView
-                android:layout_column="1"
-                android:layout_span="2"
-                android:layout_height="wrap_content"
-                android:text="@string/reviewPlaceholder"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:padding="5dip" />
-        </TableRow>
-
-        <View
-            android:layout_height="2dip"
-            android:background="@color/grey" />
-
-        <!--        Third review -->
-
-        <TableRow>
-            <TextView
-                android:layout_column="0"
-                android:text="@string/reviewDisplayName"
-                android:layout_span="2"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:padding="5dip"
-                android:paddingStart="20dip"/>
-
-            <RatingBar
-                android:layout_column="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="?android:attr/ratingBarStyleSmall"
-                android:numStars="5"
-                android:rating="4"
-                android:isIndicator="false"
-                android:progressTint="@color/black"
-                android:progressBackgroundTint="@color/dark_grey"
-                android:layout_marginTop="8dp"
-               />
-        </TableRow>
-
-        <TableRow>
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="35dp"
-                android:contentDescription="@string/reviewPlaceholder"
-                android:layout_column="0"
-                android:padding="5dip"
-                android:paddingStart="20dip"
-                app:srcCompat="@drawable/comment" />
-
-            <TextView
-                android:layout_column="1"
-                android:layout_span="2"
-                android:layout_height="wrap_content"
-                android:text="@string/reviewPlaceholder"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:padding="5dip" />
-        </TableRow>
-
-        <View
-            android:layout_height="2dip"
-            android:background="@color/grey" />
-
-        <TableRow>
-            <Button
-                android:layout_column="2"
-                android:layout_height="wrap_content"
-                android:text="@string/returnToBeach"
-                android:textSize="16sp"
-                android:textColor="@color/dark_blue"
-                android:textAllCaps="false"
-                android:background="@android:color/transparent"
-                android:padding="5dip"
-                android:paddingEnd="20dip"
-                android:onClick="returnToBeach"/>
-        </TableRow>
-
-    </TableLayout>
+    <Button
+        android:id="@+id/returnBeachButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="278dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@android:color/transparent"
+        android:onClick="returnToBeach"
+        android:text="@string/returnToBeach"
+        android:textAllCaps="false"
+        android:textColor="@color/dark_blue"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
