@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TimePicker;
 
 public class SaveTripActivity extends AppCompatActivity {
@@ -98,5 +99,25 @@ public class SaveTripActivity extends AppCompatActivity {
     public void leaveReview(View view) {
         Intent switchToReviewView = new Intent(SaveTripActivity.this, CreateReviewActivity.class);
         startActivity(switchToReviewView);
+    }
+
+    public void selectRadius(View view) {
+        boolean selected = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.ft1000Button:
+                if (selected)
+                    // Database call
+                    break;
+            case R.id.ft2000Button:
+                if (selected)
+                    // Database call
+                    break;
+            case R.id.ft3000Button:
+                if(selected)
+                    // Database call
+                    break;
+        }
     }
 }
