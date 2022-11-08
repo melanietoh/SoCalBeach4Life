@@ -34,13 +34,8 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
     private GoogleMap mMap;
     private ActivityParkingLotMapsBinding binding;
     private String beachName = "";
-    private ArrayList<ParkingLotModel> parkingLots;
     private boolean lotSelected = false;
     private String selectedLot = "";
-    private Double beachLat;
-    private double beachLon;
-    private Double lotDist;
-//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +48,13 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        // Retrieve selected beach and set relevant info
         Intent intent = getIntent();
         beachName = intent.getStringExtra("beachName");
-        beachLat = intent.getDoubleExtra("latitude", 0.0);
-        beachLon = intent.getDoubleExtra("longitude", 0.0);
         TextView tv = findViewById(R.id.headerView);
-        tv.setText("Parking Lots near " + beachName);
-        parkingLots = new ArrayList<ParkingLotModel>(); // not sure how to pass ArrayList of custom class from BeachMaps Activity
+        tv.setText("Parking lots near " + beachName);
+
         TextView s = findViewById(R.id.selectView);
         s.setOnClickListener(this::selectViewClick);
     }
@@ -76,10 +71,6 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng lot1 = null;
-        String lotOneName = "";
-        LatLng lot2 = null;
-        String lotTwoName = "";
 
         // Marker for selected beach
         Intent intent = getIntent();
@@ -97,6 +88,8 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
                     BeachModel beachResult = task.getResult().getValue(BeachModel.class);
                     LatLng beach = new LatLng(beachResult.getLatitude(), beachResult.getLongitude());
                     mMap.addMarker(new MarkerOptions().position(beach).title(beachNameToSearch).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+
+                    // Iterate through parking lots to create markers
                     ArrayList<ParkingLotModel> parkingLots = beachResult.getParkingLots();
                     for(int i=0; i<parkingLots.size(); i++) {
                         Double lat = parkingLots.get(i).getLatitude();
@@ -127,6 +120,7 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
                                 selectedLot = marker.getTitle();
                                 Toast.makeText(ParkingLotMapsActivity.this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show();
                                 TextView t = findViewById(R.id.informationView);
+                                TextView s = findViewById(R.id.selectView);
                                 for(int i=0; i<parkingLots.size(); i++) {
                                     String name = parkingLots.get(i).getName();
                                     String address = parkingLots.get(i).getAddress();
@@ -134,52 +128,17 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
                                     if (t.getText().equals(name)) {
                                         t.setText("");
                                         t.setText("Address: " + address + "\nDistance: " + distance);
+                                        s.setText("Select " + name);
                                         break;
                                     }
                                 }
-                                TextView s = findViewById(R.id.selectView);
-                                s.setText("Select parking lot");
                             }
-//                            // not sure what extra data we want to pass to SaveTripActivity
-//                            Intent intent = new Intent(ParkingLotMapsActivity.this, SaveTripActivity.class);
-//                            // startActivity(intent);
                             return false;
                         }
                     });
                 }
             }
         });
-
-//        // Add a marker in Sydney and move the camera
-//        if (beachName.equalsIgnoreCase("Venice Beach")) {
-//            lotOneObj = new ParkingLotModel("Lot 9", "89 Ashland Ave, Santa Monica, CA 90405", 14.7, 34.0, -118.48);
-//            lotOneName = "Lot 9, 89 Ashland Ave, Santa Monica, CA 90405";
-//            lotTwoObj = new ParkingLotModel("Parking", "2100 Ocean Front Walk, Venice, CA 90291", 13.7, 33.98, -118.47);
-//            lotTwoName = "Parking, 2100 Ocean Front Walk, Venice, CA 90291";
-//        }
-//        else if (beachName.equalsIgnoreCase("Bruce's Beach")) {
-//            lotOneObj = new ParkingLotModel("111 26th St Parking", "111 26th St, Manhattan Beach, CA 90266", 18.5, 33.89, -118.41);
-//            lotTwoObj = new ParkingLotModel("Dune Park Parking", "Manhattan Beach, CA 90266", 16.8, 33.90, -118.41);
-//        }
-//        else if (beachName.equalsIgnoreCase("Playa del Rey Beach")) {
-//            lotOneObj = new ParkingLotModel("AirGarage", "200 Culver Blvd, Playa Del Rey, CA 90293", 16.0, 33.959, -118.448);
-//            lotTwoObj = new ParkingLotModel("422 Campdell St Parking", "422 Campdell St, Playa Del Rey, CA 90293", 17.0, 33.957, -118.44);
-//        }
-//        else if (beachName.equalsIgnoreCase("El Segundo Beach")) {
-//            lotOneObj = new ParkingLotModel("Grand Ave Parking Lot", "12793 Vista Del Mar, Playa Del Rey, CA 90293", 18.0, 33.94, -118.44);
-//            lotTwoObj = new ParkingLotModel("533 Main St Parking", "533 Main St, El Segundo, CA 90245", 16.0, 33.923, -118.416);
-//        }
-//        else {
-//            lotOneObj = new ParkingLotModel("Grand Ave Parking Lot", "12793 Vista Del Mar, Playa Del Rey, CA 90293", 18.0, 33.94, -118.44);
-//            lotTwoObj = new ParkingLotModel("Dockweiler - Grand Ave", "699 W Grand Ave, El Segundo, CA 90293", 17.7, 33.919, -118.4165);
-//        }
-//        lot1 = new LatLng(lotOneObj.getLatitude(), lotOneObj.getLongitude());
-//        lot2 = new LatLng(lotTwoObj.getLatitude(), lotTwoObj.getLongitude());
-//        LatLng beach = new LatLng(beachLat, beachLon);
-//        mMap.addMarker(new MarkerOptions().position(beach).title(beachName).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-//        mMap.addMarker(new MarkerOptions().position(lot1).title(lotOneObj.name));
-//        mMap.addMarker(new MarkerOptions().position(lot2).title(lotTwoObj.name));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(beach, 11));
     }
 
     public void selectViewClick(View view) {
@@ -189,8 +148,6 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
             Intent intent = new Intent(ParkingLotMapsActivity.this, SaveTripActivity.class);
             intent.putExtra("beachName", beachName);
             intent.putExtra("parkingLot", selectedLot);
-//                    intent.putExtra("latitude", lat);
-//                    intent.putExtra("longitude", lon);
              startActivity(intent);
         }
     }
