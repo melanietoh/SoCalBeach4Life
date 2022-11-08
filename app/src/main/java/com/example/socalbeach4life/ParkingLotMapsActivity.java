@@ -154,6 +154,7 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
         if (lotSelected) {
             // start intent to continue with trip information
             Intent intent = new Intent(ParkingLotMapsActivity.this, SaveTripActivity.class);
+            intent.putExtra("beachName", beachName);
             intent.putExtra("parkingLot", selectedLot);
 //                    intent.putExtra("latitude", lat);
 //                    intent.putExtra("longitude", lon);

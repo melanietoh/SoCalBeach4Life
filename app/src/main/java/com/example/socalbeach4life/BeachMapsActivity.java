@@ -1,5 +1,6 @@
 package com.example.socalbeach4life;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
         t.setOnClickListener(this::viewReviewClick);
         TextView s = findViewById(R.id.selectView);
         s.setOnClickListener(this::selectViewClick);
+
     }
 
     /**
