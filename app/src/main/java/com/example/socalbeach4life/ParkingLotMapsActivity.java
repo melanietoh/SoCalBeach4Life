@@ -75,35 +75,25 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
         // Add a marker in Sydney and move the camera
         if (beachName.equalsIgnoreCase("Venice Beach")) {
             lotOneObj = new ParkingLotModel("Lot 9", "89 Ashland Ave, Santa Monica, CA 90405", 14.7, 34.0, -118.48);
-            lot1 = new LatLng(34, -118.48);
             lotOneName = "Lot 9, 89 Ashland Ave, Santa Monica, CA 90405";
             lotTwoObj = new ParkingLotModel("Parking", "2100 Ocean Front Walk, Venice, CA 90291", 13.7, 33.98, -118.47);
-            lot2 = new LatLng(33.98, -118.47);
             lotTwoName = "Parking, 2100 Ocean Front Walk, Venice, CA 90291";
         }
         else if (beachName.equalsIgnoreCase("Bruce's Beach")) {
             lotOneObj = new ParkingLotModel("111 26th St Parking", "111 26th St, Manhattan Beach, CA 90266", 18.5, 33.89, -118.41);
-            lot1 = new LatLng(lotOneObj.lat, lotOneObj.lon);
             lotTwoObj = new ParkingLotModel("Dune Park Parking", "Manhattan Beach, CA 90266", 16.8, 33.90, -118.41);
-            lot2 = new LatLng(lotTwoObj.lat, lotTwoObj.lon);
         }
         else if (beachName.equalsIgnoreCase("Playa del Rey Beach")) {
             lotOneObj = new ParkingLotModel("AirGarage", "200 Culver Blvd, Playa Del Rey, CA 90293", 16.0, 33.959, -118.448);
-            lot1 = new LatLng(lotOneObj.lat, lotOneObj.lon);
             lotTwoObj = new ParkingLotModel("422 Campdell St Parking", "422 Campdell St, Playa Del Rey, CA 90293", 17.0, 33.957, -118.44);
-            lot2 = new LatLng(lotTwoObj.lat, lotTwoObj.lon);
         }
         else if (beachName.equalsIgnoreCase("El Segundo Beach")) {
             lotOneObj = new ParkingLotModel("Grand Ave Parking Lot", "12793 Vista Del Mar, Playa Del Rey, CA 90293", 18.0, 33.94, -118.44);
-            lot1 = new LatLng(lotOneObj.lat, lotOneObj.lon);
             lotTwoObj = new ParkingLotModel("533 Main St Parking", "533 Main St, El Segundo, CA 90245", 16.0, 33.923, -118.416);
-            lot2 = new LatLng(lotTwoObj.lat, lotTwoObj.lon);
         }
         else {
             lotOneObj = new ParkingLotModel("Grand Ave Parking Lot", "12793 Vista Del Mar, Playa Del Rey, CA 90293", 18.0, 33.94, -118.44);
-            lot1 = new LatLng(lotOneObj.lat, lotOneObj.lon);
             lotTwoObj = new ParkingLotModel("Dockweiler - Grand Ave", "699 W Grand Ave, El Segundo, CA 90293", 17.7, 33.919, -118.4165);
-            lot2 = new LatLng(lotTwoObj.lat, lotTwoObj.lon);
         }
         LatLng beach = new LatLng(beachLat, beachLon);
         mMap.addMarker(new MarkerOptions().position(beach).title(beachName).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
