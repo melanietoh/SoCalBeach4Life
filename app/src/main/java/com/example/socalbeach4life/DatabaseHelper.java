@@ -16,7 +16,7 @@ public abstract class DatabaseHelper {
      * @param rating double for how many stars out of 5
      * @param message Optional field. Leave empty string if no message. CANNOT BE NULL
      */
-    public static void createReview(String beachName, Double rating, String message) {
+    public static void createReview(String beachName, Double rating, String message, boolean isAnonymous) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // Name, email address, uid
@@ -25,7 +25,9 @@ public abstract class DatabaseHelper {
             String uid = user.getUid();
 
             String timeID = String.valueOf(System.currentTimeMillis());
-            ReviewModel reviewToAdd = new ReviewModel(timeID, uid, beachName, name, message, rating);
+            ReviewModel reviewToAdd = new ReviewModel(timeID, uid, beachName, name, isAnonymous, message, rating);
+
+            System.out.println(reviewToAdd.getBeachName());
 
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
             Map<String, Object> reviewValues = reviewToAdd.toMap();
