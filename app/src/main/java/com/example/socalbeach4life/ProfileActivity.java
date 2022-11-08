@@ -22,6 +22,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import android.location.Location;
 import com.google.android.gms.location.LocationServices;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class ProfileActivity extends AppCompatActivity {
@@ -29,12 +31,13 @@ public class ProfileActivity extends AppCompatActivity {
     /*
     Viewing user information, including saved trips, reviews (including delete functionality).
      */
-    private boolean buttonOnePressed = true;
-    private boolean buttonTwoPressed = false;
+
 //    private ArrayList<Trip>;
 //    private ArrayList<Review>;
     private ArrayList<String> arrayListOne;
     private ArrayList<String> arrayListTwo;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,6 +53,20 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(switchToHomepageView);
             }
         });
+
+        // Setting user related info
+        if (user != null) {
+            // Name, email address, uid
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            String uid = user.getUid();
+
+            TextView displayNameLabel = findViewById(R.id.displayNameLabel);
+            displayNameLabel.setText(name);
+
+            TextView numTripsLabel = findViewById(R.id.numReviewsLabel);
+//            numReviewsLabel.setText(); ArrayList.count
+        }
 
         // start on "Saved Trips"
         arrayListOne = new ArrayList<String>();

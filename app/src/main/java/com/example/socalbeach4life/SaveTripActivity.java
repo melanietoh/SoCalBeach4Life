@@ -15,7 +15,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.TimePicker;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SaveTripActivity extends AppCompatActivity {
     /*
@@ -25,6 +29,7 @@ public class SaveTripActivity extends AppCompatActivity {
     Button dateSelector, timeSelector;
     EditText dateField, timeField;
     private int year, month, day, hour, minute;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String beachName, parkingLotName;
 
     @Override
@@ -47,6 +52,22 @@ public class SaveTripActivity extends AppCompatActivity {
                 startActivity(switchToHomepageView);
             }
         });
+
+        // Setting user related info
+        if (user != null) {
+            // Name, email address, uid
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            String uid = user.getUid();
+            TextView profileButton = findViewById(R.id.profileButton);
+            profileButton.setText(name);
+        }
+
+        // Setting trip information
+        TextView beachName = findViewById(R.id.beachName);
+//        beachName.setText(BeachModel.getName());
+        TextView parkingLotName = findViewById(R.id.parkingLotLabel);
+//        parkingLotName.setText(ParkingLotModel.getName());
 
         // Date and time selectors
         dateSelector = findViewById(R.id.dateSelector);

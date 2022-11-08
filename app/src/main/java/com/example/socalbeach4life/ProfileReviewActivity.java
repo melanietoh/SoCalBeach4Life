@@ -5,8 +5,14 @@ import android.view.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileReviewActivity extends AppCompatActivity {
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +28,20 @@ public class ProfileReviewActivity extends AppCompatActivity {
                 startActivity(switchToHomepageView);
             }
         });
+
+        // Setting user related info
+        if (user != null) {
+            // Name, email address, uid
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            String uid = user.getUid();
+
+            TextView displayNameLabel = findViewById(R.id.displayNameLabel);
+            displayNameLabel.setText(name);
+
+            TextView numReviewsLabel = findViewById(R.id.numReviewsLabel);
+//            numReviewsLabel.setText(); ArrayList.count
+        }
     }
 
     public void savedTrips(View view) {

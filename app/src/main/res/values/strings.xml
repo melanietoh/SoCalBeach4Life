@@ -83,6 +83,7 @@
     <string name="savedTrips">Saved Trips</string>
     <string name="myReviews">My Reviews</string>
     <string name="numReviews">xx reviews</string>
+    <string name="numTrips">xx saved trips</string>
     <string name="dateAndTimePlaceholder">xx/xx/xx yy:yy</string>
     <string name="deleteReview"><u>Delete review</u></string>
 
