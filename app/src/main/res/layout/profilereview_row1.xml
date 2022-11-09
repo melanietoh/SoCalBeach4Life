@@ -4,7 +4,6 @@
     <TextView
         android:id="@+id/firstRowLabel"
         android:layout_column="0"
-        android:layout_span="2"
         android:padding="5dip"
         android:paddingStart="20dip"
         android:text="@string/reviewDisplayName"
