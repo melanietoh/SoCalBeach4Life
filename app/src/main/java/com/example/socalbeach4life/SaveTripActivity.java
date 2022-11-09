@@ -31,7 +31,7 @@ public class SaveTripActivity extends AppCompatActivity {
     private int year, month, day, hour, minute;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String beachName, parkingLotName;
-    private int radius = 1000;
+    private int radius = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

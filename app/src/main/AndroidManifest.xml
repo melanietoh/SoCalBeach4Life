@@ -38,6 +38,9 @@
             android:exported="false"
             android:label="@string/title_activity_beach_maps" />
         <activity
+            android:name=".RestaurantMapsActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreateReviewActivity"
             android:exported="false"
             android:label="@string/title_activity_create_review"

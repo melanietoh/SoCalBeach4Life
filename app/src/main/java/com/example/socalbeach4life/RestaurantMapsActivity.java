@@ -12,6 +12,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
@@ -47,7 +48,7 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
         mapFragment.getMapAsync(this);
         RestaurantModel restaurantOne = new RestaurantModel("Restaurant Name", "Yelp.com", "2pm-8pm", 0.0, 0.0, 0.0);
         Intent intent = getIntent();
-        radius = intent.getIntExtra("radius", 1000);
+        radius = intent.getIntExtra("radius", 0);
         beachName = intent.getStringExtra("beachName");
     }
 
@@ -80,6 +81,7 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
             }
         });
         String beachNameToSearch = intent.getStringExtra("beachName");
+        System.out.println("Searching for Restaurants Near Beach: " + beachNameToSearch);
         root.getReference("beaches").child(beachNameToSearch).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -90,16 +92,25 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                     BeachModel beachResult = task.getResult().getValue(BeachModel.class);
                     System.out.println(beachResult);
                     LatLng beach = new LatLng(beachResult.getLatitude(), beachResult.getLongitude());
-                    mMap.addMarker(new MarkerOptions().position(beach).title(beachResult.getName()));
+                    mMap.addMarker(new MarkerOptions().position(beach).title(beachResult.getName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                    System.out.println("Beach Latitude: " + beachResult.getLatitude() + ", longitude: " + beachResult.getLongitude());
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(beach, 10));
                     ArrayList<RestaurantModel> restaurants = beachResult.getRestaruants();
-                    for (int i=0; i<restaurants.size(); i++) {
-                        // display on map if within radius
-                        // if (restaurants.get(i).getDist()*5280 < radius) {
-                        System.out.println(restaurants.get(i).getRestaurantName());
+                    if (radius == 0) {
+                        for (int i=0; i<restaurants.size(); i++) {
                             LatLng res = new LatLng(restaurants.get(i).getLatitude(), restaurants.get(i).getLongitude());
                             mMap.addMarker(new MarkerOptions().position(res).title(restaurants.get(i).getRestaurantName()));
-                        // }
+                        }
+                    }
+                    else {
+                        for (int i=0; i<restaurants.size(); i++) {
+                            // display on map if within radius
+                            if (restaurants.get(i).getDist()*5280 < radius) {
+                                // System.out.println(restaurants.get(i).getRestaurantName());
+                                LatLng res = new LatLng(restaurants.get(i).getLatitude(), restaurants.get(i).getLongitude());
+                                mMap.addMarker(new MarkerOptions().position(res).title(restaurants.get(i).getRestaurantName()));
+                            }
+                        }
                     }
                     Circle circle = mMap.addCircle(new CircleOptions()
                             .center(new LatLng(beachResult.getLatitude(), beachResult.getLongitude()))

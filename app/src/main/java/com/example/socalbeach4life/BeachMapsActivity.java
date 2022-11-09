@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 
@@ -50,6 +51,7 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
         t.setOnClickListener(this::viewReviewClick);
         TextView s = findViewById(R.id.selectView);
         s.setOnClickListener(this::selectViewClick);
+        createData();
     }
 
     /**
