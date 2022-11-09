@@ -7,6 +7,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -53,9 +55,11 @@ public class CreateReviewActivity extends AppCompatActivity {
         EditText messageField = findViewById(R.id.messageField);
         Double rating = Double.parseDouble(ratingField.getText().toString());
         String message = messageField.getText().toString();
+        SwitchCompat anonymousSwitch = findViewById(R.id.anonymousSwitch);
+        Boolean isAnonymous = anonymousSwitch.isEnabled();
 
         // Send to database to create review
-        DatabaseHelper.createReview(beachNameToSearch, rating, message, false);
+        DatabaseHelper.createReview(beachNameToSearch, rating, message, isAnonymous);
 
         Intent switchToProfileReviewView = new Intent(this, ProfileReviewActivity.class);
         startActivity(switchToProfileReviewView);

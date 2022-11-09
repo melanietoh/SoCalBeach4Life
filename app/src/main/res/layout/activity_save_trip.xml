@@ -12,10 +12,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="218dp"
         android:contentDescription="@string/app_name"
-        app:layout_constraintEnd_toStartOf="@+id/profileButton"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
@@ -63,10 +60,8 @@
         android:layout_height="33dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="280dp"
         android:text="@string/beachName"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
@@ -76,12 +71,9 @@
         android:layout_height="33dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginBottom="15dp"
         android:contentDescription="@string/parkingLotName"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
-        app:layout_constraintEnd_toStartOf="@+id/parkingLotLabel"
-        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/beachName"
         app:srcCompat="@drawable/car" />
@@ -90,11 +82,11 @@
         android:id="@+id/parkingLotLabel"
         android:layout_width="wrap_content"
         android:layout_height="33dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="215dp"
         android:text="@string/parkingLotName"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/carIcon"
         app:layout_constraintTop_toBottomOf="@+id/beachName" />
 
     <TableLayout

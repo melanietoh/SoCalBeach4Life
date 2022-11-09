@@ -22,6 +22,11 @@
         <entry key="app/src/main/res/layout/review_divider.xml" value="0.14635416666666667" />
         <entry key="app/src/main/res/layout/review_row.xml" value="0.14635416666666667" />
         <entry key="app/src/main/res/layout/review_row1.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/review_row3.xml" value="0.32653985507246375" />
+        <entry key="app/src/main/res/layout/savedtrip_row3.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/savedtrips_row1.xml" value="0.24427083333333333" />
+        <entry key="app/src/main/res/layout/savedtrips_row2.xml" value="0.3536458333333333" />
+        <entry key="app/src/main/res/layout/savedtrips_row3.xml" value="0.3536458333333333" />
       </map>
     </option>
   </component>

@@ -4,8 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -80,6 +84,40 @@ public class ProfileActivity extends AppCompatActivity {
 
                         TextView numTripsLabel = findViewById(R.id.numTripsLabel);
                         numTripsLabel.setText(trips.size() + " saved trips");
+
+                        // No saved trips
+                        if(trips.isEmpty()) {
+                            TableLayout table = findViewById(R.id.tableLayout);
+                            TableRow row1 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row1, null);
+                            ((TextView)row1.findViewById(R.id.firstRowLabel)).setText("No saved trips yet!");
+                            table.addView(row1);
+                        }
+                        // Dynamically allocate rows to display each saved trip
+                        else {
+                            TableLayout table = findViewById(R.id.tableLayout);
+                            TextView rating = findViewById(R.id.rating);
+
+                            for(int i=0; i<trips.size(); i++) {
+                                String beachName = trips.get(i).getBeach();
+                                String dateAndTime = trips.get(i).getDateAndTime();
+                                String mapLink = trips.get(i).getMapsLink();
+
+                                TableRow row1 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row1, null);
+                                ((TextView) row1.findViewById(R.id.firstRowLabel)).setText(beachName);
+                                table.addView(row1);
+
+                                TableRow row2 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row2, null);
+                                ((TextView) row2.findViewById(R.id.secondRowLabel)).setText(dateAndTime);
+                                table.addView(row2);
+
+                                TableRow row3 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row3, null);
+                                ((Button) row2.findViewById(R.id.thirdRowButton)).setText("<u><a href=\"" + mapLink + "\">Open in Google Maps</a></u>");
+                                table.addView(row3);
+
+                                TableRow divider = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.review_divider, null);
+                                table.addView(divider);
+                            }
+                        }
                     }
                 }
             });

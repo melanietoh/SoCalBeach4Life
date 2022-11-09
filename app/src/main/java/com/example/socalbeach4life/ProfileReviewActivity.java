@@ -4,10 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,6 +64,41 @@ public class ProfileReviewActivity extends AppCompatActivity {
 
                         TextView numReviewsLabel = findViewById(R.id.numReviewsLabel);
                         numReviewsLabel.setText(reviews.size() + " reviews");
+
+                        // No reviews
+                        if(reviews.isEmpty()) {
+                            TableLayout table = findViewById(R.id.tableLayout);
+                            TableRow row1 = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.review_row1, null);
+                            ((TextView)row1.findViewById(R.id.firstRowLabel)).setText("No reviews yet!");
+                            table.addView(row1);
+                        }
+                        // Dynamically allocate rows to display each review
+                        else {
+                            TableLayout table = findViewById(R.id.tableLayout);
+
+                            for(int i=0; i<reviews.size(); i++) {
+                                String beachName = reviews.get(i).getBeachName();
+                                Float userRating = reviews.get(i).getRating().floatValue();
+                                String message = reviews.get(i).getMessage();
+
+                                TableRow row1 = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.review_row1, null);
+                                ((TextView)row1.findViewById(R.id.firstRowLabel)).setText(beachName);
+                                ((RatingBar)row1.findViewById(R.id.firstRowRating)).setRating(userRating);
+                                table.addView(row1);
+
+                                if(!message.isEmpty()) {
+                                    TableRow row2 = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.review_row2, null);
+                                    ((TextView)row2.findViewById(R.id.secondRowMessage)).setText(message);
+                                    table.addView(row2);
+                                }
+
+                                TableRow row3 = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.review_row3, null);
+                                table.addView(row3);
+
+                                TableRow divider = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.review_divider, null);
+                                table.addView(divider);
+                            }
+                        }
                     }
                 }
             });
@@ -78,6 +117,7 @@ public class ProfileReviewActivity extends AppCompatActivity {
          * @param reviewID id of review. stored in ReviewModel.getId
          * @param beachName name of beach. must match exactly
          */
-        DatabaseHelper.deleteReview("1667887691369", "beach1");
+
+//        DatabaseHelper.deleteReview("1667887691369", "beach1");
     }
 }

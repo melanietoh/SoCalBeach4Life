@@ -78,7 +78,7 @@ public class BeachReviewActivity extends AppCompatActivity {
                         TableLayout table = findViewById(R.id.tableLayout);
                         TableRow row1 = (TableRow) LayoutInflater.from(BeachReviewActivity.this).inflate(R.layout.review_row1, null);
                         ((TextView)row1.findViewById(R.id.firstRowLabel)).setText("No reviews yet!");
-                        ((RatingBar)row1.findViewById(R.id.firstRowRating)).setNumStars(0);
+                        ((RatingBar)row1.findViewById(R.id.firstRowRating)).setVisibility(View.GONE);
                         table.addView(row1);
                     }
                     // Display reviews
@@ -89,12 +89,15 @@ public class BeachReviewActivity extends AppCompatActivity {
 
                         for(int i=0; i<reviews.size(); i++) {
                             String displayName = reviews.get(i).getDisplayName();
-                            Double userRating = reviews.get(i).getRating();
+                            if(reviews.get(i).isAnonymous()) {
+                                displayName = "Anonymous user";
+                            }
+                            Float userRating = reviews.get(i).getRating().floatValue();
                             String message = reviews.get(i).getMessage();
 
                             TableRow row1 = (TableRow) LayoutInflater.from(BeachReviewActivity.this).inflate(R.layout.review_row1, null);
                             ((TextView)row1.findViewById(R.id.firstRowLabel)).setText(displayName);
-//                            ((RatingBar)row1.findViewById(R.id.firstRowRating)).setRating(userRating);
+                            ((RatingBar)row1.findViewById(R.id.firstRowRating)).setRating(userRating);
                             table.addView(row1);
 
                             if(!message.isEmpty()) {

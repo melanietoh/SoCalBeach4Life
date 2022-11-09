@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingStart="20dip"
+    android:paddingEnd="20dip">
+
+    <TextView
+        android:id="@+id/firstRowLabel"
+        android:layout_width="wrap_content"
+        android:layout_column="0"
+        android:layout_span="2"
+        android:padding="5dip"
+        android:text="@string/beachName"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+</TableRow>
