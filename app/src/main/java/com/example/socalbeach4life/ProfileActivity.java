@@ -112,7 +112,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 table.addView(row2);
 
                                 TableRow row3 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row3, null);
-                                ((Button) row2.findViewById(R.id.thirdRowButton)).setText("<u><a href=\"" + mapLink + "\">Open in Google Maps</a></u>");
+                                ((Button) row3.findViewById(R.id.thirdRowButton)).setText("<u><a href=\"" + mapLink + "\">Open in Google Maps</a></u>");
                                 table.addView(row3);
 
                                 TableRow divider = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.review_divider, null);
