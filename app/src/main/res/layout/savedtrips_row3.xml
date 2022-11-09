@@ -11,6 +11,6 @@
         android:textAlignment="textEnd"
         android:background="@android:color/transparent"
         android:textAllCaps="false"
-        android:onClick="deleteReview"
+        android:onClick="redirectClick"
         android:padding="5dip"/>
 </TableRow>

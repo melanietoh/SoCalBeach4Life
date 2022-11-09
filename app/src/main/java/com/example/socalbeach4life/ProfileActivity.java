@@ -3,6 +3,7 @@ package com.example.socalbeach4life;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
     /*
     Viewing user information, including saved trips, reviews (including delete functionality).
      */
-
+    String mapLink = "";
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
@@ -51,6 +52,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+//        View openMapsNow = findViewById(R.id.thirdRowButton);
+//        openMapsNow.setOnClickListener(this::redirectClick);
 
         // Clickable logo -> Return to homepage
         ImageView homepageView = findViewById(R.id.logo);
@@ -101,7 +105,7 @@ public class ProfileActivity extends AppCompatActivity {
                             for(int i=0; i<trips.size(); i++) {
                                 String beachName = trips.get(i).getBeach();
                                 String dateAndTime = trips.get(i).getDateAndTime();
-                                String mapLink = trips.get(i).getMapsLink();
+                                mapLink = trips.get(i).getMapsLink();
 
                                 TableRow row1 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row1, null);
                                 ((TextView) row1.findViewById(R.id.firstRowLabel)).setText(beachName);
@@ -128,5 +132,10 @@ public class ProfileActivity extends AppCompatActivity {
     public void myReviews(View view) {
         Intent switchToReviewView = new Intent(ProfileActivity.this, ProfileReviewActivity.class);
         startActivity(switchToReviewView);
+    }
+    public void redirectClick(View view) {
+        Uri uri = Uri.parse(mtestapLink);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 }
