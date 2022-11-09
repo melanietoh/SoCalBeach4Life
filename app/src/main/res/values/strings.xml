@@ -81,6 +81,7 @@
     <string name="numTrips">xx saved trips</string>
     <string name="dateAndTimePlaceholder">xx/xx/xx yy:yy</string>
     <string name="deleteReview"><u>Delete review</u></string>
+    <string name="logOut"><u>Log out</u></string>
 
     <string name="title_activity_create_review">CreateReviewActivity</string>
     <!-- Strings used for fragments for navigation -->
