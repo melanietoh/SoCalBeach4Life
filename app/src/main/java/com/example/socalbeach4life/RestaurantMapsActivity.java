@@ -57,8 +57,8 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
         Intent intent = getIntent();
         radius = intent.getIntExtra("radius", 0);
         beachName = intent.getStringExtra("beachName");
-        View yelp = (View)findViewById(R.id.yelpView);
-        yelp.setOnClickListener(this::linkClicked);
+        View yelp = findViewById(R.id.yelpView);
+        yelp.setOnClickListener(this::menuLinkClicked);
     }
 
     /**
@@ -153,8 +153,8 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                                                 if (markerName.equals(name)) {
                                                     s.setText(name);
                                                     t.setText("Hours: " + hours + "\n");
-                                                    y.setText("Menu: " + yelpLink);
-                                                    System.out.println("Hours: " + hours + "\nMenu: " + yelpLink);
+                                                    y.setText("View Menu Here");
+                                                    // System.out.println("Hours: " + hours + "\nMenu: " + yelpLink);
                                                     break;
                                                 }
                                             }
@@ -169,7 +169,7 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
             }
         });
     }
-    public void linkClicked(View view) {
+    public void menuLinkClicked(View view) {
         String link = "";
         System.out.println("link clicked");
         for (int i=0; i<beachObj.getRestaruants().size(); i++) {
