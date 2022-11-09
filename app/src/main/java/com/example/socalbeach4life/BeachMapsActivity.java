@@ -51,7 +51,6 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
         t.setOnClickListener(this::viewReviewClick);
         TextView s = findViewById(R.id.selectView);
         s.setOnClickListener(this::selectViewClick);
-        createData();
     }
 
     /**

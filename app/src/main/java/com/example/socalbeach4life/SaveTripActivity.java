@@ -1,5 +1,6 @@
 package com.example.socalbeach4life;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,8 +20,14 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class SaveTripActivity extends AppCompatActivity {
     /*
@@ -44,6 +52,7 @@ public class SaveTripActivity extends AppCompatActivity {
         beachNameHeader.setText(beachName);
         TextView lotNameHeader = findViewById(R.id.parkingLotLabel);
         lotNameHeader.setText(parkingLotName);
+
         // Clickable logo -> Return to homepage
         ImageView homepageView = findViewById(R.id.logo);
         homepageView.setClickable(true);
@@ -63,12 +72,6 @@ public class SaveTripActivity extends AppCompatActivity {
             TextView profileButton = findViewById(R.id.profileButton);
             profileButton.setText(name);
         }
-
-        // Setting trip information
-        TextView beachName = findViewById(R.id.beachName);
-//        beachName.setText(BeachModel.getName());
-        TextView parkingLotName = findViewById(R.id.parkingLotLabel);
-//        parkingLotName.setText(ParkingLotModel.getName());
 
         // Date and time selectors
         dateSelector = findViewById(R.id.dateSelector);
@@ -171,6 +174,37 @@ public class SaveTripActivity extends AppCompatActivity {
     }
 
     public void goToProfileView(View view) {
+        Intent switchToProfileView = new Intent(SaveTripActivity.this, ProfileActivity.class);
+        startActivity(switchToProfileView);
+    }
+
+    public void saveTrip(View view) {
+        FirebaseDatabase root = FirebaseDatabase.getInstance();
+        root.getReference("beaches").child(beachName).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    BeachModel beachResult = task.getResult().getValue(BeachModel.class);
+                    System.out.println(beachResult);
+
+                    String dateAndTime = dateField.getText() + " " + timeField.getText();
+
+                    // Search for parking lot
+                    ArrayList<ParkingLotModel> parkingLots = beachResult.getParkingLots();
+                    for(int i=0; i<parkingLots.size(); i++) {
+                        if (parkingLots.get(i).getName().equals(parkingLotName)) {
+                            DatabaseHelper.createTrip(dateAndTime, DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress()), beachName, parkingLots.get(i));
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+
+        // Redirect to profile view once done
         Intent switchToProfileView = new Intent(SaveTripActivity.this, ProfileActivity.class);
         startActivity(switchToProfileView);
     }
