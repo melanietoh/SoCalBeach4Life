@@ -123,5 +123,9 @@ public class ProfileReviewActivity extends AppCompatActivity {
         String beachName = (String) button.getText().subSequence(15, length);
         System.out.println("Deleting: " + beachName);
         DatabaseHelper.deleteReviewByBeachName(beachName);
+
+        // Reload
+        finish();
+        startActivity(getIntent());
     }
 }
