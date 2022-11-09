@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -205,7 +206,15 @@ public class SaveTripActivity extends AppCompatActivity {
         });
 
         // Redirect to profile view once done
-        Intent switchToProfileView = new Intent(SaveTripActivity.this, ProfileActivity.class);
-        startActivity(switchToProfileView);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //time delay to allow database to update
+                Intent switchToProfileView = new Intent(SaveTripActivity.this, ProfileActivity.class);
+                startActivity(switchToProfileView);
+            }
+        }, 200);
+
     }
 }
