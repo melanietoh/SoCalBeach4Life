@@ -47,13 +47,8 @@ public abstract class DatabaseHelper {
                         HashMap<String, ReviewModel> pulledReviews = task.getResult().getValue(t);
                         if (pulledReviews != null) {
                             List<ReviewModel> reviewList = new ArrayList<>(pulledReviews.values());
-                            System.out.println("Starting Review Dupe search with beachname=" + beachName + " uid=" + uid);
                             for (ReviewModel r : reviewList) {
-                                System.out.println(r.getId());
-                                System.out.println(r.getBeachName());
-                                System.out.println(r.getUid());
                                 if (r.getBeachName().equals(beachName) && r.getUid().equals(uid)) {
-                                    System.out.println("Dupe found");
                                     DatabaseHelper.deleteReview(r.getId(), r.beachName);
                                     break;
                                 }
