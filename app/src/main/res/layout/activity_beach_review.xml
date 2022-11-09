@@ -110,64 +110,6 @@
                 </TextView>
             </TableRow>
 
-<!--            <TableRow-->
-<!--                android:id="@+id/firstRow">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/firstRowLabel"-->
-<!--                    android:layout_column="0"-->
-<!--                    android:layout_span="2"-->
-<!--                    android:padding="5dip"-->
-<!--                    android:paddingStart="20dip"-->
-<!--                    android:text="@string/reviewDisplayName"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="18sp" />-->
-
-<!--                <RatingBar-->
-<!--                    android:id="@+id/firstRowRating"-->
-<!--                    style="?android:attr/ratingBarStyleSmall"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_column="1"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:isIndicator="false"-->
-<!--                    android:max="5"-->
-<!--                    android:numStars="5"-->
-<!--                    android:progressBackgroundTint="@color/dark_grey"-->
-<!--                    android:progressTint="@color/black"-->
-<!--                    android:rating="5"-->
-<!--                    android:stepSize="0.5" />-->
-
-<!--            </TableRow>-->
-
-<!--            <TableRow-->
-<!--                android:id="@+id/secondRow"-->
-<!--                android:orientation="vertical">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="50dp"-->
-<!--                    android:layout_height="35dp"-->
-<!--                    android:layout_column="0"-->
-<!--                    android:contentDescription="@string/reviewPlaceholder"-->
-<!--                    android:padding="5dip"-->
-<!--                    android:paddingStart="20dip"-->
-<!--                    app:srcCompat="@drawable/comment" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/secondRowMessage"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_column="1"-->
-<!--                    android:layout_span="2"-->
-<!--                    android:padding="5dip"-->
-<!--                    android:text="@string/reviewPlaceholder"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="16sp" />-->
-<!--            </TableRow>-->
-
-<!--            <View-->
-<!--                android:layout_height="2dip"-->
-<!--                android:background="@color/grey" />-->
-
         </TableLayout>
     </ScrollView>
 

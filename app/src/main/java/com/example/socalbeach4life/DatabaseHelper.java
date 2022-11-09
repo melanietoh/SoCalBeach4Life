@@ -91,6 +91,42 @@ public abstract class DatabaseHelper {
         }
     }
 
+    public static void deleteReviewByBeachName(String beachName) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, uid
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            String uid = user.getUid();
+            FirebaseDatabase root = FirebaseDatabase.getInstance();
+            root.getReference("users").child(uid).child("reviews").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        GenericTypeIndicator<HashMap<String, ReviewModel>> t = new GenericTypeIndicator<HashMap<String,ReviewModel>>() {}; //beaches are Id'd by name
+                        HashMap<String, ReviewModel> pulledReviews = task.getResult().getValue(t);
+                        if (pulledReviews != null) {
+                            List<ReviewModel> reviewList = new ArrayList<>(pulledReviews.values());
+                            System.out.println("Starting Review Dupe search with beachname=" + beachName + " uid=" + uid);
+                            for (ReviewModel r : reviewList) {
+                                System.out.println(r.getId());
+                                System.out.println(r.getBeachName());
+                                System.out.println(r.getUid());
+                                if (r.getBeachName().equals(beachName) && r.getUid().equals(uid)) {
+                                    DatabaseHelper.deleteReview(r.getId(), r.beachName);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
+
     /**
      * Creates a trip associated with a user
      * @param dateAndTime start time.
