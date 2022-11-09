@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProfileReviewActivity extends AppCompatActivity {
@@ -60,7 +61,8 @@ public class ProfileReviewActivity extends AppCompatActivity {
                     else {
                         //User retrieved
                         UserModel result = task.getResult().getValue(UserModel.class);
-                        HashMap<String, ReviewModel> reviews = result.getReviews();
+                        HashMap<String, ReviewModel> reviewsHashMap = result.getReviews();
+                        ArrayList<ReviewModel> reviews = new ArrayList<>(reviewsHashMap.values());
 
                         TextView numReviewsLabel = findViewById(R.id.numReviewsLabel);
                         numReviewsLabel.setText(reviews.size() + " reviews");

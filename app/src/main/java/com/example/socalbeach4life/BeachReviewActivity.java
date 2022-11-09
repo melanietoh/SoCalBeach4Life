@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BeachReviewActivity extends AppCompatActivity {
@@ -70,7 +71,8 @@ public class BeachReviewActivity extends AppCompatActivity {
                     BeachModel beachResult = task.getResult().getValue(BeachModel.class);
 //                    System.out.println(beachResult);
                     // No reviews
-                    HashMap<String, ReviewModel> reviews = beachResult.getReviews();
+                    HashMap<String, ReviewModel> reviewsHashMap = beachResult.getReviews();
+                    ArrayList<ReviewModel> reviews = new ArrayList<>(reviewsHashMap.values());
                     if(reviews.isEmpty()) {
                         TextView rating = findViewById(R.id.rating);
                         rating.setText("Rating: N/A");

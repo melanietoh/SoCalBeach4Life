@@ -80,7 +80,8 @@ public class ProfileActivity extends AppCompatActivity {
                     else {
                         //User retrieved
                         UserModel result = task.getResult().getValue(UserModel.class);
-                        HashMap<String, TripModel> trips = result.getTrips();
+                        HashMap<String, TripModel> tripsHashMap = result.getTrips();
+                        ArrayList<TripModel> trips = new ArrayList<>(tripsHashMap.values());
 
                         TextView numTripsLabel = findViewById(R.id.numTripsLabel);
                         numTripsLabel.setText(trips.size() + " saved trips");
