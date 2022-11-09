@@ -86,7 +86,7 @@ public class ProfileReviewActivity extends AppCompatActivity {
                                 Float userRating = reviews.get(i).getRating().floatValue();
                                 String message = reviews.get(i).getMessage();
 
-                                TableRow row1 = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.profilereview_row1, null);
+                                TableRow row1 = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.review_row1, null);
                                 ((TextView)row1.findViewById(R.id.firstRowLabel)).setText(beachName);
                                 ((RatingBar)row1.findViewById(R.id.firstRowRating)).setRating(userRating);
                                 table.addView(row1);
