@@ -5,8 +5,12 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -16,6 +20,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.socalbeach4life.databinding.ActivityRestaurantMapsBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,13 +39,15 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
     private ActivityRestaurantMapsBinding binding;
     private int radius;
     private String beachName;
+    private BeachModel beachObj;
+    private String restaurantName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-     binding = ActivityRestaurantMapsBinding.inflate(getLayoutInflater());
-     setContentView(binding.getRoot());
+        binding = ActivityRestaurantMapsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -50,6 +57,8 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
         Intent intent = getIntent();
         radius = intent.getIntExtra("radius", 0);
         beachName = intent.getStringExtra("beachName");
+        View yelp = (View)findViewById(R.id.yelpView);
+        yelp.setOnClickListener(this::linkClicked);
     }
 
     /**
@@ -77,48 +86,100 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
 
                     List<BeachModel> beachList = new ArrayList<>(task.getResult().getValue(t).values());
                     Log.d("firebase", String.valueOf(beachList));
-                }
-            }
-        });
-        String beachNameToSearch = intent.getStringExtra("beachName");
-        System.out.println("Searching for Restaurants Near Beach: " + beachNameToSearch);
-        root.getReference("beaches").child(beachNameToSearch).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
-                    BeachModel beachResult = task.getResult().getValue(BeachModel.class);
-                    System.out.println(beachResult);
-                    LatLng beach = new LatLng(beachResult.getLatitude(), beachResult.getLongitude());
-                    mMap.addMarker(new MarkerOptions().position(beach).title(beachResult.getName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-                    System.out.println("Beach Latitude: " + beachResult.getLatitude() + ", longitude: " + beachResult.getLongitude());
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(beach, 10));
-                    ArrayList<RestaurantModel> restaurants = beachResult.getRestaruants();
-                    if (radius == 0) {
-                        for (int i=0; i<restaurants.size(); i++) {
-                            LatLng res = new LatLng(restaurants.get(i).getLatitude(), restaurants.get(i).getLongitude());
-                            mMap.addMarker(new MarkerOptions().position(res).title(restaurants.get(i).getRestaurantName()));
-                        }
-                    }
-                    else {
-                        for (int i=0; i<restaurants.size(); i++) {
-                            // display on map if within radius
-                            if (restaurants.get(i).getDist()*5280 < radius) {
-                                // System.out.println(restaurants.get(i).getRestaurantName());
-                                LatLng res = new LatLng(restaurants.get(i).getLatitude(), restaurants.get(i).getLongitude());
-                                mMap.addMarker(new MarkerOptions().position(res).title(restaurants.get(i).getRestaurantName()));
+
+                    String beachNameToSearch = intent.getStringExtra("beachName");
+                    System.out.println("Searching for Restaurants Near Beach: " + beachNameToSearch);
+                    root.getReference("beaches").child(beachNameToSearch).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            if (!task.isSuccessful()) {
+                                Log.e("firebase", "Error getting data", task.getException());
+                            }
+                            else {
+                                BeachModel beachResult = task.getResult().getValue(BeachModel.class);
+                                BeachModel beachObj = beachResult;
+                                // System.out.println(beachResult);
+                                LatLng beach = new LatLng(beachResult.getLatitude(), beachResult.getLongitude());
+                                mMap.addMarker(new MarkerOptions().position(beach).title(beachResult.getName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                                System.out.println("Beach Latitude: " + beachResult.getLatitude() + ", longitude: " + beachResult.getLongitude());
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(beach, 10));
+                                ArrayList<RestaurantModel> restaurants = beachResult.getRestaruants();
+                                if (radius == 0) {
+                                    for (int i=0; i<restaurants.size(); i++) {
+                                        LatLng res = new LatLng(restaurants.get(i).getLatitude(), restaurants.get(i).getLongitude());
+                                        mMap.addMarker(new MarkerOptions().position(res).title(restaurants.get(i).getRestaurantName()));
+                                    }
+                                }
+                                else {
+                                    for (int i=0; i<restaurants.size(); i++) {
+                                        // display on map if within radius
+                                        if (restaurants.get(i).getDist()*5280 < radius) {
+                                            // System.out.println(restaurants.get(i).getRestaurantName());
+                                            LatLng res = new LatLng(restaurants.get(i).getLatitude(), restaurants.get(i).getLongitude());
+                                            mMap.addMarker(new MarkerOptions().position(res).title(restaurants.get(i).getRestaurantName()));
+                                        }
+                                    }
+                                }
+                                Circle circle = mMap.addCircle(new CircleOptions()
+                                        .center(new LatLng(beachResult.getLatitude(), beachResult.getLongitude()))
+                                        .radius(radius/3.28)
+                                        .strokeColor(Color.RED)
+                                );
+                                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                                    @Override
+                                    public boolean onMarkerClick(Marker marker) {
+                                        // on marker click we are getting the title of our marker
+                                        // which is clicked and displaying it in a toast message.
+                                        if (marker.getTitle().equalsIgnoreCase(beachName)) {
+                                            restaurantName = "";
+                                            String markerName = marker.getTitle();
+                                            Toast.makeText(RestaurantMapsActivity.this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show();
+                                            TextView t = findViewById(R.id.informationView);
+                                            t.setText("");
+                                            TextView s = findViewById(R.id.titleView);
+                                            s.setText("");
+                                        }
+                                        else {
+                                            String markerName = marker.getTitle();
+                                            restaurantName = markerName;
+                                            Toast.makeText(RestaurantMapsActivity.this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show();
+                                            TextView t = findViewById(R.id.informationView);
+                                            TextView s = findViewById(R.id.titleView);
+                                            TextView y = findViewById(R.id.yelpView);
+                                            for(int i=0; i<beachResult.getRestaruants().size(); i++) {
+                                                String name = beachResult.getRestaruants().get(i).getRestaurantName();
+                                                String hours = beachResult.getRestaruants().get(i).getHours();
+                                                String yelpLink = beachResult.getRestaruants().get(i).getYelpLink();
+                                                if (markerName.equals(name)) {
+                                                    s.setText(name);
+                                                    t.setText("Hours: " + hours + "\n");
+                                                    y.setText("Menu: " + yelpLink);
+                                                    System.out.println("Hours: " + hours + "\nMenu: " + yelpLink);
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        return false;
+                                    }
+                                });
                             }
                         }
-                    }
-                    Circle circle = mMap.addCircle(new CircleOptions()
-                            .center(new LatLng(beachResult.getLatitude(), beachResult.getLongitude()))
-                            .radius(radius/3.28)
-                            .strokeColor(Color.RED)
-                    );
+                    });
                 }
             }
         });
     }
+    public void linkClicked(View view) {
+        String link = "";
+        System.out.println("link clicked");
+        for (int i=0; i<beachObj.getRestaruants().size(); i++) {
+            if (beachObj.getRestaruants().get(i).getRestaurantName().equalsIgnoreCase(restaurantName)) {
+                link = beachObj.getRestaruants().get(i).getYelpLink();
+            }
+        }
+        Uri uri = Uri.parse("https://" + link);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
 }
