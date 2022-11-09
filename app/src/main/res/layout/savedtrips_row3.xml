@@ -2,6 +2,7 @@
 <TableRow
     xmlns:android="http://schemas.android.com/apk/res/android">
     <Button
+
         android:layout_column="2"
         android:layout_width="wrap_content"
         android:text="@string/mapsLink"
