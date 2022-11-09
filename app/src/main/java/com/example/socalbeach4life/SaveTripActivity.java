@@ -196,7 +196,7 @@ public class SaveTripActivity extends AppCompatActivity {
                     ArrayList<ParkingLotModel> parkingLots = beachResult.getParkingLots();
                     for(int i=0; i<parkingLots.size(); i++) {
                         if (parkingLots.get(i).getName().equals(parkingLotName)) {
-                            DatabaseHelper.createTrip("<startTimeAndDat>", DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress()), beachName, parkingLots.get(i));
+                            DatabaseHelper.createTrip(dateAndTime, DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress()), beachName, parkingLots.get(i));
                             break;
                         }
                     }
