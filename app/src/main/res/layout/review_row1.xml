@@ -19,6 +19,7 @@
         android:layout_column="1"
         android:layout_marginTop="8dp"
         android:isIndicator="false"
+        android:max="5"
         android:numStars="5"
         android:progressBackgroundTint="@color/dark_grey"
         android:progressTint="@color/black"
