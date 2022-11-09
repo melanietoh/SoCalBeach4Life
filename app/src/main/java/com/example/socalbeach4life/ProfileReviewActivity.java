@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TableLayout;
@@ -97,6 +98,7 @@ public class ProfileReviewActivity extends AppCompatActivity {
                                 }
 
                                 TableRow row3 = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.review_row3, null);
+                                ((Button)row3.findViewById(R.id.thirdRowButton)).setText("Delete review: " + beachName);
                                 table.addView(row3);
 
                                 TableRow divider = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.review_divider, null);
@@ -116,12 +118,14 @@ public class ProfileReviewActivity extends AppCompatActivity {
 
     public void deleteReview(View view) {
         // Database call
-        /**
-         * Deletes reviews
-         * @param reviewID id of review. stored in ReviewModel.getId
-         * @param beachName name of beach. must match exactly
-         */
+        Button button = (Button)view;
+        int length = button.getText().length();
+        String beachName = (String) button.getText().subSequence(15, length);
+        System.out.println("Deleting: " + beachName);
+        DatabaseHelper.deleteReviewByBeachName(beachName);
 
-//        DatabaseHelper.deleteReview("1667887691369", "beach1");
+        // Reload
+        finish();
+        startActivity(getIntent());
     }
 }
