@@ -64,12 +64,14 @@ public class ProfileReviewActivity extends AppCompatActivity {
 
                         TextView numReviewsLabel = findViewById(R.id.numReviewsLabel);
                         numReviewsLabel.setText(reviews.size() + " reviews");
+                        System.out.println("Number of reviews: " + reviews.size());
 
                         // No reviews
                         if(reviews.isEmpty()) {
                             TableLayout table = findViewById(R.id.tableLayout);
                             TableRow row1 = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.review_row1, null);
                             ((TextView)row1.findViewById(R.id.firstRowLabel)).setText("No reviews yet!");
+                            ((RatingBar)row1.findViewById(R.id.firstRowRating)).setVisibility(View.GONE);
                             table.addView(row1);
                         }
                         // Dynamically allocate rows to display each review
