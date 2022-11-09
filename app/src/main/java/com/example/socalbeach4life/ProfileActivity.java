@@ -134,7 +134,7 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(switchToReviewView);
     }
     public void redirectClick(View view) {
-        Uri uri = Uri.parse(mtestapLink);
+        Uri uri = Uri.parse(mapLink);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }

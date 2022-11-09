@@ -41,6 +41,7 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
     private String beachName;
     private BeachModel beachObj;
     private String restaurantName;
+    private boolean isRestaurant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +98,7 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                             }
                             else {
                                 BeachModel beachResult = task.getResult().getValue(BeachModel.class);
-                                BeachModel beachObj = beachResult;
+                                beachObj = beachResult;
                                 // System.out.println(beachResult);
                                 LatLng beach = new LatLng(beachResult.getLatitude(), beachResult.getLongitude());
                                 mMap.addMarker(new MarkerOptions().position(beach).title(beachResult.getName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
@@ -131,6 +132,7 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                                         // on marker click we are getting the title of our marker
                                         // which is clicked and displaying it in a toast message.
                                         if (marker.getTitle().equalsIgnoreCase(beachName)) {
+                                            isRestaurant = false;
                                             restaurantName = "";
                                             String markerName = marker.getTitle();
                                             Toast.makeText(RestaurantMapsActivity.this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show();
@@ -138,8 +140,11 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                                             t.setText("");
                                             TextView s = findViewById(R.id.titleView);
                                             s.setText("");
+                                            TextView y = findViewById(R.id.yelpView);
+                                            y.setText("");
                                         }
                                         else {
+                                            isRestaurant = true;
                                             String markerName = marker.getTitle();
                                             restaurantName = markerName;
                                             Toast.makeText(RestaurantMapsActivity.this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show();
@@ -153,7 +158,7 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                                                 if (markerName.equals(name)) {
                                                     s.setText(name);
                                                     t.setText("Hours: " + hours + "\n");
-                                                    y.setText("Menu: " + yelpLink);
+                                                    y.setText("View Menu Here");
                                                     System.out.println("Hours: " + hours + "\nMenu: " + yelpLink);
                                                     break;
                                                 }
@@ -172,14 +177,17 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
     public void linkClicked(View view) {
         String link = "";
         System.out.println("link clicked");
-        for (int i=0; i<beachObj.getRestaruants().size(); i++) {
-            if (beachObj.getRestaruants().get(i).getRestaurantName().equalsIgnoreCase(restaurantName)) {
-                link = beachObj.getRestaruants().get(i).getYelpLink();
+        System.out.println("TESTTESTTEST: " + beachObj.getName());
+        if (isRestaurant) {
+            for (int i=0; i<beachObj.getRestaruants().size(); i++) {
+                if (beachObj.getRestaruants().get(i).getRestaurantName().equalsIgnoreCase(restaurantName)) {
+                    link = beachObj.getRestaruants().get(i).getYelpLink();
+                }
             }
+            Uri uri = Uri.parse(link);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         }
-        Uri uri = Uri.parse("https://" + link);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(intent);
     }
 
 }
