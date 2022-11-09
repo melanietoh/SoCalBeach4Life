@@ -56,7 +56,7 @@ public class CreateReviewActivity extends AppCompatActivity {
         Double rating = Double.parseDouble(ratingField.getText().toString());
         String message = messageField.getText().toString();
         SwitchCompat anonymousSwitch = findViewById(R.id.anonymousSwitch);
-        Boolean isAnonymous = anonymousSwitch.isEnabled();
+        Boolean isAnonymous = anonymousSwitch.isChecked();
 
         // Send to database to create review
         DatabaseHelper.createReview(beachNameToSearch, rating, message, isAnonymous);
