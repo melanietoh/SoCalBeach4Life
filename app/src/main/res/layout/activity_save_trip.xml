@@ -224,6 +224,7 @@
                 android:padding="5dip"
                 android:paddingEnd="20dip"
                 android:text="@string/saveTrip"
+                android:onClick="saveTrip"
                 android:textAlignment="textEnd"
                 android:textAllCaps="false"
                 android:textColor="@color/dark_blue"
