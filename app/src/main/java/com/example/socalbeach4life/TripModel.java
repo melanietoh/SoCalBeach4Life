@@ -49,7 +49,7 @@ public class TripModel {
         HashMap<String, Object> result = new HashMap<>();
         result.put("tripid", tripid);
         result.put("dateAndTime", dateAndTime);
-        result.put("arrivalTime", mapsLink);
+        result.put("mapsLink", mapsLink);
         result.put("beach", beach);
         result.put("parkingLotModel", parkingLotModel);
         return result;
