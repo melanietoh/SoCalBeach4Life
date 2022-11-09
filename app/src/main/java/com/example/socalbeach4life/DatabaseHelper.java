@@ -1,22 +1,32 @@
 package com.example.socalbeach4life;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public abstract class DatabaseHelper {
 
     /**
-     * Craetes a review tied to a user and a beach
+     * Creates a review tied to a user and a beach. Deletes any duplicate reviews if they exist
      * @param beachName Must match beach name exactly (BeachModel.getName())
      * @param rating double for how many stars out of 5
      * @param message Optional field. Leave empty string if no message. CANNOT BE NULL
      */
-    public static void createReview(String beachName, Double rating, String message) {
+    public static void createReview(String beachName, Double rating, String message, boolean isAnonymous) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // Name, email address, uid
@@ -24,18 +34,48 @@ public abstract class DatabaseHelper {
             String email = user.getEmail();
             String uid = user.getUid();
 
-            String timeID = String.valueOf(System.currentTimeMillis());
-            ReviewModel reviewToAdd = new ReviewModel(timeID, uid, beachName, name, message, rating);
+            FirebaseDatabase root = FirebaseDatabase.getInstance();
+            root.getReference("users").child(uid).child("reviews").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        GenericTypeIndicator<HashMap<String, ReviewModel>> t = new GenericTypeIndicator<HashMap<String,ReviewModel>>() {}; //beaches are Id'd by name
 
-            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            Map<String, Object> reviewValues = reviewToAdd.toMap();
+                        HashMap<String, ReviewModel> pulledReviews = task.getResult().getValue(t);
+                        if (pulledReviews != null) {
+                            List<ReviewModel> reviewList = new ArrayList<>(pulledReviews.values());
+                            System.out.println("Starting Review Dupe search with beachname=" + beachName + " uid=" + uid);
+                            for (ReviewModel r : reviewList) {
+                                System.out.println(r.getId());
+                                System.out.println(r.getBeachName());
+                                System.out.println(r.getUid());
+                                if (r.getBeachName().equals(beachName) && r.getUid().equals(uid)) {
+                                    System.out.println("Dupe found");
+                                    DatabaseHelper.deleteReview(r.getId(), r.beachName);
+                                    break;
+                                }
+                            }
+                        }
 
-            Map<String, Object> childUpdates = new HashMap<>();
+                        String timeID = String.valueOf(System.currentTimeMillis());
+                        ReviewModel reviewToAdd = new ReviewModel(timeID, uid, beachName, name, isAnonymous, message, rating);
 
-            childUpdates.put("/users/" + uid + "/reviews/" + timeID, reviewValues);
-            childUpdates.put("/beaches/" + reviewToAdd.getBeachName() + "/reviews/" + timeID, reviewValues);
+                        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                        Map<String, Object> reviewValues = reviewToAdd.toMap();
 
-            mDatabase.updateChildren(childUpdates);
+                        Map<String, Object> childUpdates = new HashMap<>();
+
+                        childUpdates.put("/users/" + uid + "/reviews/" + timeID, reviewValues);
+                        childUpdates.put("/beaches/" + reviewToAdd.getBeachName() + "/reviews/" + timeID, reviewValues);
+
+                        mDatabase.updateChildren(childUpdates);
+
+                    }
+                }
+            });
         }
     }
 

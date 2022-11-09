@@ -7,14 +7,16 @@ public class ReviewModel {
     public String uid;
     public String beachName;
     public String displayName;
+    public boolean isAnonymous;
     public String message;
     public Double rating;
 
-    public ReviewModel(String id, String uid, String beachName, String displayName, String message, Double rating) {
+    public ReviewModel(String id, String uid, String beachName, String displayName, boolean isAnonymous, String message, Double rating) {
         this.id = id;
         this.uid = uid;
         this.beachName = beachName;
         this.displayName = displayName;
+        this.isAnonymous = isAnonymous;
         this.message = message;
         this.rating = rating;
     }
@@ -24,8 +26,9 @@ public class ReviewModel {
         this.uid = "erroruidReview";
         this.beachName = "errorbeachNameReview";
         this.displayName = "error";
-        this.message = "error";
-        this.rating = 0.0;
+        this.isAnonymous = true;
+        this.message = "";
+        this.rating = 1.1;
     }
 
     public String getId() { return id;}
@@ -42,6 +45,10 @@ public class ReviewModel {
         return displayName;
     }
 
+    public boolean isAnonymous() {
+        return isAnonymous;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -56,6 +63,7 @@ public class ReviewModel {
         result.put("uid", uid);
         result.put("beachName", beachName);
         result.put("displayName", displayName);
+        result.put("isAnonymous", isAnonymous);
         result.put("message", message);
         result.put("rating", rating);
         return result;
