@@ -50,7 +50,7 @@
         android:text=""
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:onClick="linkClicked"
+        android:onClick="menuLinkClicked"
         app:layout_constraintBottom_toTopOf="@+id/informationView"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -59,6 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:layout_column="1"
+        android:layout_marginTop="15dp"
         android:layout_span="2"
         android:background="@android:color/transparent"
         android:onClick="directionsClicked"
@@ -68,7 +69,7 @@
         android:textAllCaps="false"
         android:textColor="@color/dark_blue"
         android:textSize="16sp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="27dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
