@@ -163,6 +163,14 @@ public abstract class DatabaseHelper {
 
         return link;
     }
+    
+    public static String generateWalkingRoute(String start, String destination) {
+
+        String link = "https://www.google.com/maps?f=d&saddr=" + parseAddress(start)
+                + "&daddr=" + parseAddress(destination) + "&dirflg=w";
+
+        return link;
+    }
 
     private static String parseAddress(String address){
         address = address.substring(0, address.length()-6);
