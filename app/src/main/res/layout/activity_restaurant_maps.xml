@@ -54,4 +54,21 @@
         app:layout_constraintBottom_toTopOf="@+id/informationView"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/googleMapsNow"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_column="1"
+        android:layout_span="2"
+        android:background="@android:color/transparent"
+        android:onClick="directionsClicked"
+        android:padding="5dip"
+        android:text="@string/mapsLink"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/dark_blue"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="27dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

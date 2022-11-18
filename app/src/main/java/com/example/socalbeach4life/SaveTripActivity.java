@@ -33,7 +33,7 @@ import java.util.ArrayList;
 public class SaveTripActivity extends AppCompatActivity {
     /*
     Specifying departure time/reviewing trip information only AFTER parking lot is selected.
-    Redirects to Google Maps if Departure time = now, otherwise, stores information (?)
+    Redirects to Google Maps if De1233parture time = now, otherwise, stores information (?)
      */
     Button dateSelector, timeSelector;
     EditText dateField, timeField;
@@ -41,6 +41,7 @@ public class SaveTripActivity extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String beachName, parkingLotName;
     private int radius = 0;
+    private String link;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,8 +146,9 @@ public class SaveTripActivity extends AppCompatActivity {
     public void departNowRedirect(View view) {
        // Uri uri = Uri.parse("http://www.google.com");
         // Uri uri = Uri.parse("https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=AIzaSyCEnsK36FKyv44d_stqm4i0jwwBAIPS8zg");
-        Uri uri = Uri.parse("https://www.google.com/maps/dir/34.0324863,-118.2819881/University+of+Southern+California,+Los+Angeles,+CA+90007/@34.0274191,-118.2883858,16z/data=!3m1!4b1!4m17!1m6!3m5!1s0x80c2c7e49c71a5ed:0xaa905a5bb427a2c4!2sUniversity+of+Southern+California!8m2!3d34.0223519!4d-118.285117!4m9!1m1!4e1!1m5!1m1!1s0x80c2c7e49c71a5ed:0xaa905a5bb427a2c4!2m2!1d-118.285117!2d34.0223519!3e2");
+        // Uri uri = Uri.parse("https://www.google.com/maps/dir/34.0324863,-118.2819881/University+of+Southern+California,+Los+Angeles,+CA+90007/@34.0274191,-118.2883858,16z/data=!3m1!4b1!4m17!1m6!3m5!1s0x80c2c7e49c71a5ed:0xaa905a5bb427a2c4!2sUniversity+of+Southern+California!8m2!3d34.0223519!4d-118.285117!4m9!1m1!4e1!1m5!1m1!1s0x80c2c7e49c71a5ed:0xaa905a5bb427a2c4!2m2!1d-118.285117!2d34.0223519!3e2");
         // https://www.google.com/maps/dir/34.0324863,-118.2819881//@34.0325965,-118.3172156,13z/data=!4m5!4m4!1m1!4e1!1m0!3e2
+        Uri uri = Uri.parse(link);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }
@@ -197,6 +199,7 @@ public class SaveTripActivity extends AppCompatActivity {
                     ArrayList<ParkingLotModel> parkingLots = beachResult.getParkingLots();
                     for(int i=0; i<parkingLots.size(); i++) {
                         if (parkingLots.get(i).getName().equals(parkingLotName)) {
+                            link = DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress());
                             DatabaseHelper.createTrip(dateAndTime, DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress()), beachName, parkingLots.get(i));
                             break;
                         }
