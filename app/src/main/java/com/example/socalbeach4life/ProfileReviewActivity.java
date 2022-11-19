@@ -86,7 +86,7 @@ public class ProfileReviewActivity extends AppCompatActivity {
                                 Float userRating = reviews.get(i).getRating().floatValue();
                                 String message = reviews.get(i).getMessage();
 
-                                TableRow row1 = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.review_row1, null);
+                                TableRow row1 = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.beachreview_row1, null);
                                 ((TextView)row1.findViewById(R.id.firstRowLabel)).setText(beachName);
                                 ((RatingBar)row1.findViewById(R.id.firstRowRating)).setRating(userRating);
                                 table.addView(row1);
@@ -97,8 +97,8 @@ public class ProfileReviewActivity extends AppCompatActivity {
                                     table.addView(row2);
                                 }
 
-                                TableRow row3 = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.review_row3, null);
-                                ((Button)row3.findViewById(R.id.thirdRowButton)).setText("Delete review: " + beachName);
+                                TableRow row3 = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.beachreview_row3, null);
+//                                ((TextView)row3.findViewById(R.id.thirdRowButton)).setText(R.string.deleteReview);
                                 table.addView(row3);
 
                                 TableRow divider = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.review_divider, null);

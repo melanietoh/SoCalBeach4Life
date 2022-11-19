@@ -18,11 +18,14 @@
         <entry key="app/src/main/res/layout/activity_restaurant_menu.xml" value="0.18948468194491624" />
         <entry key="app/src/main/res/layout/activity_save_trip.xml" value="0.26683209315295464" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.22662556966145836" />
+        <entry key="app/src/main/res/layout/beachreview_row1.xml" value="0.11904761904761904" />
+        <entry key="app/src/main/res/layout/beachreview_row2.xml" value="0.11854103343465046" />
         <entry key="app/src/main/res/layout/content_create_review.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/layout/reveiw_row2.xml" value="0.14635416666666667" />
         <entry key="app/src/main/res/layout/review_divider.xml" value="0.14635416666666667" />
         <entry key="app/src/main/res/layout/review_row.xml" value="0.14635416666666667" />
         <entry key="app/src/main/res/layout/review_row1.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/review_row2.xml" value="0.11904761904761904" />
         <entry key="app/src/main/res/layout/review_row3.xml" value="0.32653985507246375" />
         <entry key="app/src/main/res/layout/savedtrip_row3.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/savedtrips_row1.xml" value="0.24427083333333333" />

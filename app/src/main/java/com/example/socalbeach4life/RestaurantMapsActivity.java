@@ -42,6 +42,7 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
     private BeachModel beachObj;
     private String restaurantName;
     private boolean isRestaurant;
+    private String link;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,8 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
         beachName = intent.getStringExtra("beachName");
         View yelp = findViewById(R.id.yelpView);
         yelp.setOnClickListener(this::menuLinkClicked);
+        View openMapsNow = findViewById(R.id.googleMapsNow);
+        openMapsNow.setOnClickListener(this::directionsClicked);
     }
 
     /**
@@ -147,10 +150,12 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                                             isRestaurant = true;
                                             String markerName = marker.getTitle();
                                             restaurantName = markerName;
+                                            link = DatabaseHelper.generateWalkingRoute(beachName, restaurantName);
                                             Toast.makeText(RestaurantMapsActivity.this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show();
                                             TextView t = findViewById(R.id.informationView);
                                             TextView s = findViewById(R.id.titleView);
                                             TextView y = findViewById(R.id.yelpView);
+                                            TextView m = findViewById(R.id.googleMapsNow);
                                             for(int i=0; i<beachResult.getRestaruants().size(); i++) {
                                                 String name = beachResult.getRestaruants().get(i).getRestaurantName();
                                                 String hours = beachResult.getRestaruants().get(i).getHours();
@@ -158,7 +163,8 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                                                 if (markerName.equals(name)) {
                                                     s.setText(name);
                                                     t.setText("Hours: " + hours + "\n");
-                                                    y.setText("View Menu Here");
+                                                    y.setText(R.string.restaurantMenu);
+                                                    m.setText(R.string.restaurantMapsLink);
                                                     break;
                                                 }
                                             }
@@ -188,5 +194,9 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
             startActivity(intent);
         }
     }
-
+    public void directionsClicked(View view) {
+        Uri uri = Uri.parse(link);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
 }
