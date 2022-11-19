@@ -60,6 +60,8 @@
     <string name="restaurantDistance">xx miles away</string>
     <string name="viewRestaurantMenu"><u>View menu</u></string>
     <string name="selectRadius">Select radius from the beach for restaurants</string>
+    <string name="restaurantMapsLink"><u>Open route in Google Maps</u></string>
+    <string name="restaurantMenu"><u>View menu</u></string>
 
     <!--    activity_save_trip.xml -->
     <string name="tripInformationLabel">Trip Information</string>

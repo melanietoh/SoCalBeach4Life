@@ -4,6 +4,7 @@
     <TextView
         android:id="@+id/firstRowLabel"
         android:layout_column="0"
+        android:layout_span="2"
         android:padding="5dip"
         android:paddingStart="20dip"
         android:text="@string/reviewDisplayName"
@@ -15,7 +16,7 @@
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_column="1"
+        android:layout_column="2"
         android:layout_marginTop="8dp"
         android:isIndicator="false"
         android:max="5"

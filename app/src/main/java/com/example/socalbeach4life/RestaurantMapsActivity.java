@@ -155,6 +155,7 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                                             TextView t = findViewById(R.id.informationView);
                                             TextView s = findViewById(R.id.titleView);
                                             TextView y = findViewById(R.id.yelpView);
+                                            TextView m = findViewById(R.id.googleMapsNow);
                                             for(int i=0; i<beachResult.getRestaruants().size(); i++) {
                                                 String name = beachResult.getRestaruants().get(i).getRestaurantName();
                                                 String hours = beachResult.getRestaruants().get(i).getHours();
@@ -162,7 +163,8 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                                                 if (markerName.equals(name)) {
                                                     s.setText(name);
                                                     t.setText("Hours: " + hours + "\n");
-                                                    y.setText("View Menu Here");
+                                                    y.setText(R.string.restaurantMenu);
+                                                    m.setText(R.string.restaurantMapsLink);
                                                     break;
                                                 }
                                             }
