@@ -80,7 +80,10 @@ public class BeachMapsActivity extends FragmentActivity implements OnMapReadyCal
                     Log.d("firebase", String.valueOf(beachList));
                     for (int i=0; i<beachList.size(); i++) {
                         LatLng temp = new LatLng(beachList.get(i).getLatitude(), beachList.get(i).getLongitude());
-                        mMap.addMarker(new MarkerOptions().position(temp).title(beachList.get(i).getName()));
+                        Marker markerTemp = mMap.addMarker(new MarkerOptions().position(temp).title(beachList.get(i).getName()));
+//                        if (beachList.get(i).getName() == "Bruce's Beach") {
+//                            markerTemp.setAlpha();
+//                        }
 //                        System.out.println(beachList.get(i).getName() + ": " + beachList.get(i).getLatitude() + ", " + beachList.get(i).getLongitude() + "\n");
                     }
                 }
