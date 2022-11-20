@@ -10,12 +10,9 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
-import static java.lang.Thread.sleep;
-
 import android.content.Intent;
 
 import androidx.test.espresso.intent.Intents;
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.rule.ActivityTestRule;
 
 import org.junit.After;
@@ -35,9 +32,9 @@ public class signUpWhiteBox {
     // Test case #1
     @Test
     public void emailValidation() {
-        onView(withId(R.id.displayNameField)).perform(typeText("Melanie"));
-        onView(withId(R.id.emailField)).perform(typeText("hihi"), closeSoftKeyboard());
-        onView(withId(R.id.passwordField)).perform(typeText("hieric"), closeSoftKeyboard());
+        onView(withId(R.id.displayNameField)).perform(typeText("Eric"));
+        onView(withId(R.id.emailField)).perform(typeText("test"), closeSoftKeyboard());
+        onView(withId(R.id.passwordField)).perform(typeText("password"), closeSoftKeyboard());
         onView(withId(R.id.logInButton)).perform(click());
         try {
             Thread.sleep(1000);
@@ -50,9 +47,9 @@ public class signUpWhiteBox {
     // Test case #2
     @Test
     public void passwordValidation() {
-        onView(withId(R.id.displayNameField)).perform(typeText("Melanie"));
-        onView(withId(R.id.emailField)).perform(typeText("melanietoh@hotmail.com"), closeSoftKeyboard());
-        onView(withId(R.id.passwordField)).perform(typeText("hi"), closeSoftKeyboard());
+        onView(withId(R.id.displayNameField)).perform(typeText("Eric"));
+        onView(withId(R.id.emailField)).perform(typeText("testing@gmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.passwordField)).perform(typeText("test"), closeSoftKeyboard());
         onView(withId(R.id.logInButton)).perform(click());
         try {
             Thread.sleep(1000);
@@ -65,9 +62,9 @@ public class signUpWhiteBox {
     // Test case #3
     @Test
     public void signUpRedirects() {
-        onView(withId(R.id.displayNameField)).perform(typeText("Melanie"));
-        onView(withId(R.id.emailField)).perform(typeText("melanietoh@hotmail.com"), closeSoftKeyboard());
-        onView(withId(R.id.passwordField)).perform(typeText("hieric"), closeSoftKeyboard());
+        onView(withId(R.id.displayNameField)).perform(typeText("Eric"));
+        onView(withId(R.id.emailField)).perform(typeText("testing@gmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.passwordField)).perform(typeText("password"), closeSoftKeyboard());
         onView(withId(R.id.logInButton)).perform(click());
         rule.launchActivity(new Intent());
         try {
