@@ -3,6 +3,7 @@ package com.example.socalbeach4life;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -125,8 +126,13 @@ public class ProfileReviewActivity extends AppCompatActivity {
         DatabaseHelper.deleteReviewByBeachName(beachName);
 
         // Reload
-        finish();
-        startActivity(getIntent());
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent switchToProfileReviewView = new Intent(ProfileReviewActivity.this, ProfileReviewActivity.class);
+                startActivity(switchToProfileReviewView);            }
+        }, 200);
     }
 
     public void logOut(View view) {

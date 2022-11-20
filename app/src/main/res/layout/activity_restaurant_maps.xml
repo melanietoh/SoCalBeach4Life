@@ -50,7 +50,7 @@
         android:text=""
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:onClick="linkClicked"
+        android:onClick="menuLinkClicked"
         app:layout_constraintBottom_toTopOf="@+id/informationView"
         app:layout_constraintStart_toStartOf="parent" />
 
