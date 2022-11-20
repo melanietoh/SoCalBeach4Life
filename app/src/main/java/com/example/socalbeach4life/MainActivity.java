@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(switchToHomepageView);
                 }
                 else {
-
                     // Registration failed
                     System.out.println(task.getException());
                     System.out.println(
