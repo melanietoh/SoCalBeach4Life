@@ -1,18 +1,19 @@
 package com.example.socalbeach4life;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DatabaseModeler {
 
     private ArrayList<UserModel> users;
     private ArrayList<BeachModel> beaches;
     private ArrayList<TripModel> trips;
-    private ArrayList<ReviewModel> reviews;
+    private ArrayList<ReviewModel> localReviews;
     public DatabaseModeler() {
         users = new ArrayList<>();
         initBeaches();
         trips = new ArrayList<>();
-        reviews = new ArrayList<>();
+        localReviews = new ArrayList<>();
     }
 
     private void initBeaches() {
@@ -27,7 +28,7 @@ public class DatabaseModeler {
         restaurants.add(new RestaurantModel("Venice Way Pizza", "https://www.yelp.com/biz/venice-way-pizza-venice", "12pm-8pm", 33.988, -118.47, 0.1));
         restaurants.add(new RestaurantModel("The Cow's End Cafe", "https://www.yelp.com/biz/the-cows-end-cafe-venice", "6am-6pm", 34.01, -118.5, 0.6));
         restaurants.add(new RestaurantModel("Cafe Gratitude Venice", "https://www.yelp.com/biz/cafe-gratitude-venice", "9am-9pm", 33.99801, -118.47, 0.8));
-        beaches.add(new BeachModel("Venice Beach", "1800 Ocean Front Walk\nVenice, CA 90291", "6am - 12am",33.99, -118.47, parkingLots, null, restaurants));
+        beaches.add(new BeachModel("Venice Beach", "1800 Ocean Front Walk\nVenice, CA 90291", "6am - 12am",33.99, -118.47, parkingLots, new HashMap<>(), restaurants));
 
         parkingLots = new ArrayList<>();
         restaurants = new ArrayList<>();
@@ -38,7 +39,7 @@ public class DatabaseModeler {
         restaurants.add(new RestaurantModel("Fishbar Manhattan Beach Seafood Restaurant", "https://www.fishbarmb.com/#fishbarr", "11am-12am", 32.79, -116.96, 1.8));
         restaurants.add(new RestaurantModel("zinc@shade", "https://www.yelp.com/biz/zinc-shade-manhattan-beach", "7am-9pm", 33.88, -118.409, 0.8));
         restaurants.add(new RestaurantModel("Pancho's Restaurant", "https://www.yelp.com/biz/panchos-restaurant-manhattan-beach-6", "11am-9pm", 32.699, -116.95, 0.5));
-        beaches.add(new BeachModel("Bruce's Beach", "2600 Highland Ave\nManhattan Beach, CA 90266", "6am - 10PM", 33.89, -118.42, parkingLots, null, restaurants));
+        beaches.add(new BeachModel("Bruce's Beach", "2600 Highland Ave\nManhattan Beach, CA 90266", "6am - 10PM", 33.89, -118.42, parkingLots, new HashMap<>(), restaurants));
 
         parkingLots = new ArrayList<>();
         restaurants = new ArrayList<>();
@@ -49,7 +50,7 @@ public class DatabaseModeler {
         restaurants.add(new RestaurantModel("Fishbar Manhattan Beach Seafood Restaurant", "https://www.fishbarmb.com/#fishbarr", "11am-12am", 32.79, -116.96, 1.8));
         restaurants.add(new RestaurantModel("Chef Hannes Restaurant", "https://www.yelp.com/biz/chef-hannes-restaurant-el-segundo?osq=Chef+Hannes+Restaurant", "5pm-10pm", 33.92, -118.416, 0.9));
         restaurants.add(new RestaurantModel("Jame Enoteca", "https://www.yelp.com/biz/jame-enoteca-el-segundo-2", "5pm-10pm", 33.915, -118.404, 1.0));
-        beaches.add(new BeachModel("Dockweiler Beach", "12000 Vista Del Mar\nPlaya Del Rey, CA 90293", "6am - 10PM", 33.9, -118.4, parkingLots, null, restaurants));
+        beaches.add(new BeachModel("Dockweiler Beach", "12000 Vista Del Mar\nPlaya Del Rey, CA 90293", "6am - 10PM", 33.9, -118.4, parkingLots, new HashMap<>(), restaurants));
 
         parkingLots = new ArrayList<>();
         restaurants = new ArrayList<>();
@@ -60,7 +61,7 @@ public class DatabaseModeler {
         restaurants.add(new RestaurantModel());
         restaurants.add(new RestaurantModel());
         restaurants.add(new RestaurantModel());
-        beaches.add(new BeachModel("Playa Del Rey Beach", "Culver Blvd & Pacific Ave\nLos Angeles, CA 90293", "9am - 5PM", 33.95, -118.44, parkingLots, null, restaurants));
+        beaches.add(new BeachModel("Playa Del Rey Beach", "Culver Blvd & Pacific Ave\nLos Angeles, CA 90293", "9am - 5PM", 33.95, -118.44, parkingLots, new HashMap<>(), restaurants));
 
         parkingLots = new ArrayList<>();
         restaurants = new ArrayList<>();
@@ -71,7 +72,7 @@ public class DatabaseModeler {
         restaurants.add(new RestaurantModel("Ensenada's Surf N Turf Grill", "https://www.yelp.com/biz/ensenadas-surf-n-turf-grill-el-segundo", "10am-8pm", 34.012, -118.413, 0.4));
         restaurants.add(new RestaurantModel("Chef Hannes Restaurant", "https://m.yelp.com/biz/chef-hannes-restaurant-el-segundo	11:30am-2pm", "5-9pm", 33.9682, -118.41202, 0.4));
         restaurants.add(new RestaurantModel("Sausal", "https://www.yelp.com/biz/sausal-el-segundo", "11:30am-8:30pm", 33.98123, -118.4012, 0.7));
-        beaches.add(new BeachModel("El Segundo Beach", "Grand Ave & Vista Del Mar Blvd\nEl Segundo, CA 90245", "6am - 10PM", 33.91, -118.42, parkingLots, null, restaurants));
+        beaches.add(new BeachModel("El Segundo Beach", "Grand Ave & Vista Del Mar Blvd\nEl Segundo, CA 90245", "6am - 10PM", 33.91, -118.42, parkingLots, new HashMap<>(), restaurants));
     }
 
     public boolean testRegisterUser(UserModel u) {
@@ -120,22 +121,25 @@ public class DatabaseModeler {
 
     public boolean addReview(ReviewModel r) {
         String s = r.id;
-        for (int i = 0; i < reviews.size(); i++) {
-            if (r.beachName.equals(reviews.get(i).beachName)) {
-                reviews.remove(i);
+        for (int i = 0; i < localReviews.size(); i++) {
+            if (r.beachName.equals(localReviews.get(i).beachName)) {
+                BeachModel b = searchBeach(r.beachName);
+                b.reviews.remove(localReviews.get(i).id);
+                localReviews.remove(i);
                 break;
             }
         }
-        reviews.add(r);
-        for (int i = 0; i < reviews.size(); i++) {
-            if (s.equals(reviews.get(i).id)) return true;
+        localReviews.add(r);
+        searchBeach(r.beachName).reviews.put(r.id,r);
+        for (int i = 0; i < localReviews.size(); i++) {
+            if (s.equals(localReviews.get(i).id)) return true;
         }
         return false;
     }
 
     public boolean checkReview(ReviewModel r) {
-        for (int i = 0; i < reviews.size(); i++) {
-            if (r.id.equals(reviews.get(i).id)) return true;
+        for (int i = 0; i < localReviews.size(); i++) {
+            if (r.id.equals(localReviews.get(i).id)) return true;
         }
         return false;
     }

@@ -45,7 +45,6 @@ public class DataModelTester {
 
 
         for (int i = 0; i < beach.parkingLots.size(); i++) {
-            System.out.println(beach.parkingLots.get(i).name);
             if (beach.parkingLots.get(i).name.equals("Lot 9")) {
                 lot1Exists = true;
             } else if (beach.parkingLots.get(i).name.equals("Parking")) {
@@ -106,14 +105,14 @@ public class DataModelTester {
     /** Test Case #9 */
     @Test
     public void createTripTesting() {
-        TripModel test = new TripModel("testid", "testdate", "testarrivaltime", "testbeach", new ParkingLotModel());
+        TripModel test = new TripModel("testid", "testdate", "testarrivaltime", "Venice Beach", new ParkingLotModel());
         assertTrue("Creating a trip associated with a user worked", db.addTrip(test));
     }
 
     /** Test Case #11 */
     @Test
     public void retrieveTripTesting() {
-        TripModel test = new TripModel("testid", "testdate", "testarrivaltime", "testbeach", new ParkingLotModel());
+        TripModel test = new TripModel("testid", "testdate", "testarrivaltime", "Venice Beach", new ParkingLotModel());
         db.addTrip(test);
         assertTrue("Pulling trip associated with user matched", db.checkTrip(test));
     }
@@ -121,14 +120,14 @@ public class DataModelTester {
     /** Test Case #13 */
     @Test
     public void createFirstReviewTesting() {
-        ReviewModel test = new ReviewModel("testid", "testuid", "testbeach", "testdisplayname", false, "testrating", 2.2);
+        ReviewModel test = new ReviewModel("testid", "testuid", "Venice Beach", "testdisplayname", false, "testrating", 2.2);
         assertTrue("Creating first instance of review for a beach for a user works", db.addReview(test));
     }
 
     /** Test Case #12 */
     @Test
     public void retrieveUserReviewTesting() {
-        ReviewModel test = new ReviewModel("testid", "testuid", "testbeach", "testdisplayname", false, "testrating", 2.2);
+        ReviewModel test = new ReviewModel("testid", "testuid", "Venice Beach", "testdisplayname", false, "testrating", 2.2);
         db.addReview(test);
         assertTrue("Retrieving review associated with a user works", db.checkReview(test));
     }
@@ -136,14 +135,31 @@ public class DataModelTester {
     /** Test Case #14 */
     @Test
     public void createSecondReviewTesting() {
-        ReviewModel test = new ReviewModel("testid", "testuid", "testbeach", "testdisplayname", false, "testrating", 2.2);
+        ReviewModel test = new ReviewModel("testid", "testuid", "Venice Beach", "testdisplayname", false, "testrating", 2.2);
         db.addReview(test);
-        ReviewModel test2 = new ReviewModel("newid", "testuid", "testbeach", "testdisplayname", false, "testrating", 2.2);
+        ReviewModel test2 = new ReviewModel("newid", "testuid", "Venice Beach", "testdisplayname", false, "testrating", 2.2);
         db.addReview(test2);
         //search is done via id, and matched for duplicate based on beachname
         assertTrue("Second review added exists after overwrite", db.checkReview(test2));
         assertFalse("First review no longer exists after overwrite.", db.checkReview(test));
     }
 
+    /** Test Case #10 */
+    @Test
+    public void verifyDynamicBeachRating() {
+        BeachModel beach = db.searchBeach("Venice Beach");
+        ReviewModel test = new ReviewModel("testid", "testuid", "Venice Beach", "testdisplayname", false, "testrating", 2.2);
+        assertEquals("Beach with no reviews correctly returns 0",0.0, beach.calculateRating(), 0.1);
+        db.addReview(test);
+
+        assertEquals("First review correctly gives beach review value",2.2, beach.calculateRating(), 0.1);
+        test = new ReviewModel("testid2", "testuid", "Venice Beach", "testdisplayname", false, "testrating", 5.0);
+        db.addReview(test);
+        assertEquals("Replacement review correctly gives new review value",5.0, beach.calculateRating(), 0.1);
+        //placing a second unique review
+        beach.reviews.put("second review value", new ReviewModel("testid3", "testuid", "Venice Beach", "testdisplayname", false, "testrating", 1.0));
+        assertEquals("Second review adds gives correct beach rating average",3.0, beach.calculateRating(), 0.1);
+
+    }
 
 }
