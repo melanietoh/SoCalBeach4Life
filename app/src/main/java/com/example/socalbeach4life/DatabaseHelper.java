@@ -172,7 +172,7 @@ public abstract class DatabaseHelper {
         return link;
     }
 
-    private static String parseAddress(String address){
+    public static String parseAddress(String address){
         address = address.substring(0, address.length()-6);
         address += ", USA";
         address = address.replaceAll(" ", "+");
