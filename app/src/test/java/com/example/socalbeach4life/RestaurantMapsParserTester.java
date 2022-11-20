@@ -22,6 +22,7 @@ public class RestaurantMapsParserTester {
         ArrayList<RestaurantModel> onethousand = new ArrayList<>();
         ArrayList<RestaurantModel> twothousand = new ArrayList<>();
         ArrayList<RestaurantModel> threethousand = new ArrayList<>();
+        // Code copied from what was used in RestaurantMaps Activity
         for (int i=0; i<restaurants.size(); i++) {
             // 1k radius
             if (restaurants.get(i).getDist()*5280 < 1000) {
