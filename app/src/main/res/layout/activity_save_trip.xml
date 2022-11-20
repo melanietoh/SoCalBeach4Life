@@ -278,6 +278,7 @@
                 android:layout_height="35dp"
                 android:layout_column="1"
                 android:layout_span="2"
+                android:id="@+id/nearbyRestaurants"
                 android:background="@android:color/transparent"
                 android:onClick="viewNearbyRestaurants"
                 android:paddingEnd="20dip"
