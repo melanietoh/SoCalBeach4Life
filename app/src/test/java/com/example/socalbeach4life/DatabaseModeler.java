@@ -29,8 +29,8 @@ public class DatabaseModeler {
         restaurants.add(new RestaurantModel("Cafe Gratitude Venice", "https://www.yelp.com/biz/cafe-gratitude-venice", "9am-9pm", 33.99801, -118.47, 0.8));
         beaches.add(new BeachModel("Venice Beach", "1800 Ocean Front Walk\nVenice, CA 90291", "6am - 12am",33.99, -118.47, parkingLots, null, restaurants));
 
-        parkingLots.clear();
-        restaurants.clear();
+        parkingLots = new ArrayList<>();
+        restaurants = new ArrayList<>();
         parkingLots.add(new ParkingLotModel("111 26th St Parking", "111 26th St, Manhattan Beach, CA 90266", 18.5, 33.89, -118.41));
         parkingLots.add(new ParkingLotModel("Dune Park Parking", "Manhattan Beach, CA 90266", 16.8, 33.90, -118.41));
         restaurants.add(new RestaurantModel("Bobo Chinese Deli", "https://www.yelp.com/biz/bobo-chinese-deli-manhattan-beach-2", "11am-9:30pm", 32.791, -116.96, 0.2));
@@ -40,8 +40,8 @@ public class DatabaseModeler {
         restaurants.add(new RestaurantModel("Pancho's Restaurant", "https://www.yelp.com/biz/panchos-restaurant-manhattan-beach-6", "11am-9pm", 32.699, -116.95, 0.5));
         beaches.add(new BeachModel("Bruce's Beach", "2600 Highland Ave\nManhattan Beach, CA 90266", "6am - 10PM", 33.89, -118.42, parkingLots, null, restaurants));
 
-        parkingLots.clear();
-        restaurants.clear();
+        parkingLots = new ArrayList<>();
+        restaurants = new ArrayList<>();
         parkingLots.add(new ParkingLotModel("Grand Ave Parking Lot", "12793 Vista Del Mar, Playa Del Rey, CA 90293", 18.0, 33.94, -118.44));
         parkingLots.add(new ParkingLotModel("Dockweiler - Grand Ave", "699 W Grand Ave, El Segundo, CA 90293", 17.7, 33.919, -118.4165));
         restaurants.add(new RestaurantModel("El Segundo Beach Cafe", "https://www.yelp.com/biz/el-segundo-beach-cafe-los-angeles", "9am-4:30pm", 33.92, -118.43, 0.1));
@@ -51,8 +51,8 @@ public class DatabaseModeler {
         restaurants.add(new RestaurantModel("Jame Enoteca", "https://www.yelp.com/biz/jame-enoteca-el-segundo-2", "5pm-10pm", 33.915, -118.404, 1.0));
         beaches.add(new BeachModel("Dockweiler Beach", "12000 Vista Del Mar\nPlaya Del Rey, CA 90293", "6am - 10PM", 33.9, -118.4, parkingLots, null, restaurants));
 
-        parkingLots.clear();
-        restaurants.clear();
+        parkingLots = new ArrayList<>();
+        restaurants = new ArrayList<>();
         parkingLots.add(new ParkingLotModel("AirGarage", "200 Culver Blvd, Playa Del Rey, CA 90293", 16.0, 33.959, -118.448));
         parkingLots.add(new ParkingLotModel("422 Campdell St Parking", "422 Campdell St, Playa Del Rey, CA 90293", 17.0, 33.957, -118.44));
         restaurants.add(new RestaurantModel());
@@ -62,8 +62,8 @@ public class DatabaseModeler {
         restaurants.add(new RestaurantModel());
         beaches.add(new BeachModel("Playa Del Rey Beach", "Culver Blvd & Pacific Ave\nLos Angeles, CA 90293", "9am - 5PM", 33.95, -118.44, parkingLots, null, restaurants));
 
-        parkingLots.clear();
-        restaurants.clear();
+        parkingLots = new ArrayList<>();
+        restaurants = new ArrayList<>();
         parkingLots.add(new ParkingLotModel("Grand Ave Parking Lot", "12793 Vista Del Mar, Playa Del Rey, CA 90293", 18.0, 33.94, -118.44));
         parkingLots.add(new ParkingLotModel("533 Main St Parking", "533 Main St, El Segundo, CA 90245", 16.0, 33.923, -118.416));
         restaurants.add(new RestaurantModel("The Habit Burger Grill", "https://www.yelp.com/biz/the-habit-burger-grill-el-segundo", "10:30am-11pm", 33.919182, -118.416466, 0.3));
@@ -138,5 +138,14 @@ public class DatabaseModeler {
             if (r.id.equals(reviews.get(i).id)) return true;
         }
         return false;
+    }
+
+    public BeachModel searchBeach(String name) {
+        for (int i = 0; i < beaches.size(); i++) {
+            if (beaches.get(i).name.equals(name)) {
+                return beaches.get(i);
+            }
+        }
+        return null;
     }
 }
