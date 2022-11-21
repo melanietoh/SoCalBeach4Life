@@ -2,6 +2,7 @@ package com.example.socalbeach4life;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class DatabaseModeler {
 
@@ -77,11 +78,19 @@ public class DatabaseModeler {
 
     public boolean testRegisterUser(UserModel u) {
         String s = u.uid;
+        if (!validateEmail(u.email)) return false;
         users.add(u);
         for (int i = 0; i < users.size(); i++) {
-            if (s.equals(users.get(i).getUid())) return true;
+            if (s.equals(users.get(i).getUid()) && u.email.equals(users.get(i).getEmail())) return true;
         }
         return false;
+    }
+    public static boolean validateEmail(String emailAddress) {
+        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        return Pattern.compile(regexPattern)
+                .matcher(emailAddress)
+                .matches();
     }
 
     public boolean signInValidate(UserModel u) {
