@@ -20,6 +20,8 @@ public class UserModelTester {
         UserModel test = new UserModel("testid", "testemail@gmail.com", "testname", new HashMap<>(), new HashMap<>());
 
         assertTrue("Registering User Successful", db.testRegisterUser(test));
+        test = new UserModel("testid", "testemailinvalid.com", "testname", new HashMap<>(), new HashMap<>());
+        assertFalse("Registering user with invalid email", db.testRegisterUser(test));
     }
 
     /** Test Case #2 */
@@ -28,6 +30,8 @@ public class UserModelTester {
         UserModel test = new UserModel("testid", "testemail@gmail.com", "testname", new HashMap<>(), new HashMap<>());
 
         db.testRegisterUser(test);
-        assertTrue("Registering User Successful", db.signInValidate(test));
+        assertTrue("Logging in User Successful", db.signInValidate(test));
+        test = new UserModel("secondid", "different@email.com", "new user", new HashMap<>(), new HashMap<>());
+        assertFalse("Logging in with invalid credentials", db.signInValidate(test));
     }
 }
