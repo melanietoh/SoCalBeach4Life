@@ -1,7 +1,10 @@
 package com.example.socalbeach4life;
 import android.app.Activity;
+import android.app.Instrumentation;
 import android.content.Intent;
+import android.net.Uri;
 
+import org.hamcrest.Matcher;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -26,6 +29,8 @@ import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.Intents.intending;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
@@ -33,7 +38,9 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+import static com.google.android.gms.common.data.DataBufferUtils.hasData;
 import static org.hamcrest.CoreMatchers.containsString;
+import static java.util.EnumSet.allOf;
 
 public class RestaurantMapsActivityWhiteboxTests {
     @Rule
@@ -50,25 +57,44 @@ public class RestaurantMapsActivityWhiteboxTests {
     @Test
     public void whitebox12_test() {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
-        UiObject marker1 = device.findObject(new UiSelector().descriptionContains("Bruce's Beach"));
+        UiObject marker1 = device.findObject(new UiSelector().descriptionContains("Playa Del Rey Beach"));
         try {
             marker1.click();
-            // System.out.println("found marker for Bruce's Beach");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             onView(withId(R.id.selectView)).check(matches(withText(containsString("Select"))));
             onView(withId(R.id.selectView)).perform(click());
             // redirects to new page
-            onView(withId(R.id.headerView)).check(matches(withText(containsString("Parking lots near"))));
-            UiObject marker2 = device.findObject(new UiSelector().descriptionContains("Dune Park Parking"));
+            onView(withId(R.id.lotHeaderView)).check(matches(withText(containsString("Parking lots near"))));
+            UiObject marker2 = device.findObject(new UiSelector().descriptionContains("AirGarage"));
             try {
                 marker2.click();
-                onView(withId(R.id.selectView)).check(matches(withText(containsString("Select"))));
-                onView(withId(R.id.selectView)).perform(click()); // selecting parking lot
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                onView(withId(R.id.lotSelectView)).check(matches(withText(containsString("Select"))));
+                onView(withId(R.id.lotSelectView)).perform(click()); // selecting parking lot
                 onView(withId(R.id.nearbyRestaurants)).perform(click()); // redirects to RestaurantMapsActivity
-                onView(withId(R.id.headerView)).check(matches(withText(containsString("marker"))));
-                UiObject marker3 = device.findObject(new UiSelector().descriptionContains("Fishbar Manhattan Beach Seafood Restaurant"));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                // onView(withId(R.id.headerView)).check(matches(withText(containsString("marker"))));
+                UiObject marker3 = device.findObject(new UiSelector().descriptionContains("The Tripel"));
                 try {
                     marker3.click();
-                    onView(withId(R.id.headerView)).check(matches(withText(containsString("Fishbar"))));
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    onView(withId(R.id.titleView)).check(matches(withText(containsString("Tripel"))));
                 } catch (UiObjectNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -78,15 +104,14 @@ public class RestaurantMapsActivityWhiteboxTests {
         } catch (UiObjectNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println("Done with Whitebox Test 12");
     }
     @Test
     public void whitebox13_test() {
+        rule.launchActivity(new Intent());
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         UiObject marker = device.findObject(new UiSelector().descriptionContains("Playa Del Rey Beach"));
         try {
             marker.click();
-            // System.out.println("found marker for Bruce's Beach");
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -95,7 +120,6 @@ public class RestaurantMapsActivityWhiteboxTests {
             onView(withId(R.id.selectView)).check(matches(withText(containsString("Select"))));
             onView(withId(R.id.selectView)).perform(click());
             // redirects to new page
-            rule.launchActivity(new Intent());
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -103,15 +127,14 @@ public class RestaurantMapsActivityWhiteboxTests {
             }
             UiObject marker2 = device.findObject(new UiSelector().descriptionContains("AirGarage"));
             try {
-                // System.out.println("found parking lot marker");
                 marker2.click();
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                onView(withId(R.id.selectView)).check(matches(withText(containsString("Select AirGarage"))));
-                onView(withId(R.id.selectView)).perform(click());
+                onView(withId(R.id.lotSelectView)).check(matches(withText(containsString("Select AirGarage"))));
+                onView(withId(R.id.lotSelectView)).perform(click());
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -123,15 +146,15 @@ public class RestaurantMapsActivityWhiteboxTests {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                UiObject marker3 = device.findObject(new UiSelector().descriptionContains("Bacari PDR"));
+                UiObject marker3 = device.findObject(new UiSelector().descriptionContains("The Tripel"));
                 marker3.click();
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                onView(withId(R.id.yelpView)).perform(click());
-                intended(toPackage("https://www.yelp.com/biz/bacari-pdr-playa-del-rey-2?osq=Best+Ocean+View+Restaurants"));
+                 onView(withId(R.id.yelpView)).perform(click());
+                intended(toPackage("com.android.chrome"));
             } catch (UiObjectNotFoundException e) {
                 e.printStackTrace();
             }

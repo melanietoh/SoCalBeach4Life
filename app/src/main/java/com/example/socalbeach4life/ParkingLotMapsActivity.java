@@ -52,10 +52,10 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
         // Retrieve selected beach and set relevant info
         Intent intent = getIntent();
         beachName = intent.getStringExtra("beachName");
-        TextView tv = findViewById(R.id.headerView);
+        TextView tv = findViewById(R.id.lotHeaderView);
         tv.setText("Parking lots near " + beachName);
 
-        TextView s = findViewById(R.id.selectView);
+        TextView s = findViewById(R.id.lotSelectView);
         s.setOnClickListener(this::selectViewClick);
     }
 
@@ -111,7 +111,7 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
                                 Toast.makeText(ParkingLotMapsActivity.this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show();
                                 TextView t = findViewById(R.id.informationView);
                                 t.setText("");
-                                TextView s = findViewById(R.id.selectView);
+                                TextView s = findViewById(R.id.lotSelectView);
                                 s.setText("");
                             }
                             else {
@@ -120,7 +120,7 @@ public class ParkingLotMapsActivity extends FragmentActivity implements OnMapRea
                                 selectedLot = marker.getTitle();
                                 Toast.makeText(ParkingLotMapsActivity.this, "Clicked location is " + markerName, Toast.LENGTH_SHORT).show();
                                 TextView t = findViewById(R.id.informationView);
-                                TextView s = findViewById(R.id.selectView);
+                                TextView s = findViewById(R.id.lotSelectView);
                                 for(int i=0; i<parkingLots.size(); i++) {
                                     String name = parkingLots.get(i).getName();
                                     String address = parkingLots.get(i).getAddress();

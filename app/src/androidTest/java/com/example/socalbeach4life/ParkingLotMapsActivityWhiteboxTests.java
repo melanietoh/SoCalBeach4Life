@@ -61,24 +61,21 @@ public class ParkingLotMapsActivityWhiteboxTests {
             onView(withId(R.id.selectView)).check(matches(withText(containsString("Select"))));
             onView(withId(R.id.selectView)).perform(click());
             // redirects to new page
-            // rule.launchActivity(new Intent());
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            // intended(hasComponent(ParkingLotMapsActivity.class.getName()));
-            onView(withId(R.id.headerView)).check(matches(withText(containsString("Parking lots near"))));
+            onView(withId(R.id.lotHeaderView)).check(matches(withText(containsString("Parking lots near"))));
             UiObject marker2 = device.findObject(new UiSelector().descriptionContains("AirGarage"));
             try {
-                // System.out.println("found parking lot marker");
                 marker2.click();
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                onView(withId(R.id.selectView)).check(matches(withText(containsString("Select AirGarage"))));
+                onView(withId(R.id.lotSelectView)).check(matches(withText(containsString("Select AirGarage"))));
             } catch (UiObjectNotFoundException e) {
                 e.printStackTrace();
             }
@@ -89,11 +86,11 @@ public class ParkingLotMapsActivityWhiteboxTests {
 
     @Test
     public void whitebox8_test() {
+        rule.launchActivity(new Intent());
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         UiObject marker = device.findObject(new UiSelector().descriptionContains("Playa Del Rey Beach"));
         try {
             marker.click();
-            // System.out.println("found marker for Bruce's Beach");
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -102,7 +99,6 @@ public class ParkingLotMapsActivityWhiteboxTests {
             onView(withId(R.id.selectView)).check(matches(withText(containsString("Select"))));
             onView(withId(R.id.selectView)).perform(click());
             // redirects to new page
-            rule.launchActivity(new Intent());
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -117,8 +113,8 @@ public class ParkingLotMapsActivityWhiteboxTests {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                onView(withId(R.id.selectView)).check(matches(withText(containsString("Select AirGarage"))));
-                onView(withId(R.id.selectView)).perform(click());
+                onView(withId(R.id.lotSelectView)).check(matches(withText(containsString("Select AirGarage"))));
+                onView(withId(R.id.lotSelectView)).perform(click());
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -132,8 +128,10 @@ public class ParkingLotMapsActivityWhiteboxTests {
             e.printStackTrace();
         }
     }
+
     @Test
     public void whitebox11_test() {
+        rule.launchActivity(new Intent());
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         UiObject marker = device.findObject(new UiSelector().descriptionContains("Playa Del Rey Beach"));
         try {
@@ -147,7 +145,6 @@ public class ParkingLotMapsActivityWhiteboxTests {
             onView(withId(R.id.selectView)).check(matches(withText(containsString("Select"))));
             onView(withId(R.id.selectView)).perform(click());
             // redirects to new page
-            rule.launchActivity(new Intent());
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -155,15 +152,14 @@ public class ParkingLotMapsActivityWhiteboxTests {
             }
             UiObject marker2 = device.findObject(new UiSelector().descriptionContains("AirGarage"));
             try {
-                // System.out.println("found parking lot marker");
                 marker2.click();
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                onView(withId(R.id.selectView)).check(matches(withText(containsString("Select AirGarage"))));
-                onView(withId(R.id.selectView)).perform(click());
+                onView(withId(R.id.lotSelectView)).check(matches(withText(containsString("Select AirGarage"))));
+                onView(withId(R.id.lotSelectView)).perform(click());
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -186,12 +182,11 @@ public class ParkingLotMapsActivityWhiteboxTests {
 
     @Test
     public void whitebox14_test() {
-        System.out.println("whitebox14");
+        rule.launchActivity(new Intent());
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         UiObject marker = device.findObject(new UiSelector().descriptionContains("Playa Del Rey Beach"));
         try {
             marker.click();
-            // System.out.println("found marker for Bruce's Beach");
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -200,7 +195,6 @@ public class ParkingLotMapsActivityWhiteboxTests {
             onView(withId(R.id.selectView)).check(matches(withText(containsString("Select"))));
             onView(withId(R.id.selectView)).perform(click());
             // redirects to new page
-            rule.launchActivity(new Intent());
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -208,21 +202,19 @@ public class ParkingLotMapsActivityWhiteboxTests {
             }
             UiObject marker2 = device.findObject(new UiSelector().descriptionContains("AirGarage"));
             try {
-                System.out.println("found parking lot marker");
                 marker2.click();
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                onView(withId(R.id.selectView)).check(matches(withText(containsString("Select AirGarage"))));
-                onView(withId(R.id.selectView)).perform(click());
+                onView(withId(R.id.lotSelectView)).check(matches(withText(containsString("Select AirGarage"))));
+                onView(withId(R.id.lotSelectView)).perform(click());
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("selected parkning lot");
                 intended(hasComponent(SaveTripActivity.class.getName()));
                 onView(withId(R.id.leaveReviewButton)).perform(click()); // clicking on "View Nearby Restaurants" button page
                 try {
@@ -230,7 +222,6 @@ public class ParkingLotMapsActivityWhiteboxTests {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("made it here");
                 intended(hasComponent(CreateReviewActivity.class.getName()));
             } catch (UiObjectNotFoundException e) {
                 e.printStackTrace();
