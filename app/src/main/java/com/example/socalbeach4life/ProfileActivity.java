@@ -104,7 +104,8 @@ public class ProfileActivity extends AppCompatActivity {
 
                             for(int i=0; i<trips.size(); i++) {
                                 String beachName = trips.get(i).getBeach();
-                                String dateAndTime = trips.get(i).getDateAndTime();
+                                String departure = trips.get(i).getDateAndTime();
+                                String arrival = trips.get(i).getArrivalDateAndTime();
                                 mapLink = trips.get(i).getMapsLink();
 
                                 TableRow row1 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row1, null);
@@ -112,13 +113,17 @@ public class ProfileActivity extends AppCompatActivity {
                                 table.addView(row1);
 
                                 TableRow row2 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row2, null);
-                                ((TextView) row2.findViewById(R.id.secondRowLabel)).setText(dateAndTime);
+                                ((TextView) row2.findViewById(R.id.secondRowLabel)).setText("Departure: " + departure);
                                 table.addView(row2);
 
-                                TableRow row3 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row3, null);
-
-                                ((Button) row3.findViewById(R.id.thirdRowButton)).setText("Open in Google Maps");
+                                TableRow row3 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row2, null);
+                                ((TextView) row3.findViewById(R.id.secondRowLabel)).setText("Arrival: " + arrival);
                                 table.addView(row3);
+
+                                TableRow row4 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row3, null);
+
+                                ((Button) row4.findViewById(R.id.thirdRowButton)).setText("Open in Google Maps");
+                                table.addView(row4);
 
                                 TableRow divider = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.review_divider, null);
                                 table.addView(divider);
