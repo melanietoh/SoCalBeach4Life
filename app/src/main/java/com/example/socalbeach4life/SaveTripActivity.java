@@ -243,7 +243,8 @@ public class SaveTripActivity extends AppCompatActivity {
                     }
                     int arrivalHours = Integer.parseInt(timeFieldText.substring(0,2));
                     int arrivalMinutes = Integer.parseInt(timeFieldText.substring(3,5));
-                    arrivalMinutes += 30;
+                    arrivalMinutes += 25 + (int)(12*Math.random());
+
                     if (arrivalMinutes >= 60) {
                         arrivalMinutes -= 60;
                         arrivalHours +=1;
