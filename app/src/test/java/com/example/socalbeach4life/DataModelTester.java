@@ -105,14 +105,14 @@ public class DataModelTester {
     /** Test Case #9 */
     @Test
     public void createTripTesting() {
-        TripModel test = new TripModel("testid", "testdate", "testarrivaltime", "Venice Beach", new ParkingLotModel());
+        TripModel test = new TripModel("testid", "testdate", "testarrivaltime","", "Venice Beach", new ParkingLotModel());
         assertTrue("Creating a trip associated with a user worked", db.addTrip(test));
     }
 
     /** Test Case #11 */
     @Test
     public void retrieveTripTesting() {
-        TripModel test = new TripModel("testid", "testdate", "testarrivaltime", "Venice Beach", new ParkingLotModel());
+        TripModel test = new TripModel("testid", "testdate", "testarrivaltime", "", "Venice Beach", new ParkingLotModel());
         db.addTrip(test);
         assertTrue("Pulling trip associated with user matched", db.checkTrip(test));
     }

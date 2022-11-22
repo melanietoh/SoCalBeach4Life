@@ -138,7 +138,25 @@ public class SaveTripActivity extends AppCompatActivity {
                     BeachModel beachResult = task.getResult().getValue(BeachModel.class);
                     System.out.println(beachResult);
 
-                    String dateAndTime = dateField.getText() + " " + timeField.getText();
+//                    String dateAndTime = dateField.getText() + " " + timeField.getText();
+//                    String arrivalDateAndTime = dateField.getText() + " ";
+//                    int arrivalHours = Integer.parseInt((String) timeField.getText().subSequence(0,2));
+//                    int arrivalMinutes = Integer.parseInt((String) timeField.getText().subSequence(3,5));
+//                    arrivalMinutes += 30;
+//                    if (arrivalMinutes >= 60) {
+//                        arrivalMinutes -= 60;
+//                        arrivalHours +=1;
+//                        //extra day edge case not checked
+//                    }
+//                    if (arrivalHours < 10) {
+//                        arrivalDateAndTime += "0";
+//                    }
+//                    arrivalDateAndTime += arrivalHours + ":";
+//                    if (arrivalMinutes < 10) {
+//                        arrivalDateAndTime += "0";
+//                    }
+//                    arrivalDateAndTime += arrivalMinutes;
+
 
                     // Search for parking lot
                     ArrayList<ParkingLotModel> parkingLots = beachResult.getParkingLots();
@@ -147,7 +165,7 @@ public class SaveTripActivity extends AppCompatActivity {
                             System.out.println("FOUND PARKING LOT IN ONCREATE()");
                             link = DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress());
                             System.out.println("link is: " + link);
-                            DatabaseHelper.createTrip(dateAndTime, DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress()), beachName, parkingLots.get(i));
+                            //DatabaseHelper.createTrip(dateAndTime, arrivalDateAndTime, DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress()), beachName, parkingLots.get(i));
                             break;
                         }
                     }
@@ -218,6 +236,27 @@ public class SaveTripActivity extends AppCompatActivity {
                     System.out.println(beachResult);
 
                     String dateAndTime = dateField.getText() + " " + timeField.getText();
+                    String arrivalDateAndTime = dateField.getText() + " ";
+                    String timeFieldText = "" + timeField.getText();
+                    if (timeFieldText.length() < 5) {
+                        timeFieldText = "0" + timeFieldText;
+                    }
+                    int arrivalHours = Integer.parseInt(timeFieldText.substring(0,2));
+                    int arrivalMinutes = Integer.parseInt(timeFieldText.substring(3,5));
+                    arrivalMinutes += 30;
+                    if (arrivalMinutes >= 60) {
+                        arrivalMinutes -= 60;
+                        arrivalHours +=1;
+                        //extra day edge case not checked
+                    }
+                    if (arrivalHours < 10) {
+                        arrivalDateAndTime += "0";
+                    }
+                    arrivalDateAndTime += arrivalHours + ":";
+                    if (arrivalMinutes < 10) {
+                        arrivalDateAndTime += "0";
+                    }
+                    arrivalDateAndTime += arrivalMinutes;
 
                     // Search for parking lot
                     ArrayList<ParkingLotModel> parkingLots = beachResult.getParkingLots();
@@ -226,7 +265,7 @@ public class SaveTripActivity extends AppCompatActivity {
                             System.out.println("FOUND PARKING LOT");
                             link = DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress());
                             System.out.println("link is: " + link);
-                            DatabaseHelper.createTrip(dateAndTime, DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress()), beachName, parkingLots.get(i));
+                            DatabaseHelper.createTrip(dateAndTime,arrivalDateAndTime, DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress()), beachName, parkingLots.get(i));
                             break;
                         }
                     }
