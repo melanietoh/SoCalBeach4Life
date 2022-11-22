@@ -181,53 +181,39 @@ public class ParkingLotMapsActivityWhiteboxTests {
     }
 
     @Test
-    public void whitebox14_test() {
+    public void leaveReviewRedirects() {
         rule.launchActivity(new Intent());
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         UiObject marker = device.findObject(new UiSelector().descriptionContains("Playa Del Rey Beach"));
         try {
             marker.click();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            Thread.sleep(1000);
+
             onView(withId(R.id.selectView)).check(matches(withText(containsString("Select"))));
             onView(withId(R.id.selectView)).perform(click());
+            Thread.sleep(1000);
+
             // redirects to new page
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             UiObject marker2 = device.findObject(new UiSelector().descriptionContains("AirGarage"));
-            try {
-                marker2.click();
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                onView(withId(R.id.lotSelectView)).check(matches(withText(containsString("Select AirGarage"))));
-                onView(withId(R.id.lotSelectView)).perform(click());
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                intended(hasComponent(SaveTripActivity.class.getName()));
-                onView(withId(R.id.leaveReviewButton)).perform(click()); // clicking on "View Nearby Restaurants" button page
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                intended(hasComponent(CreateReviewActivity.class.getName()));
-            } catch (UiObjectNotFoundException e) {
-                e.printStackTrace();
-            }
-        } catch (UiObjectNotFoundException e) {
+            marker2.click();
+            Thread.sleep(1000);
+
+            onView(withId(R.id.lotSelectView)).check(matches(withText(containsString("Select AirGarage"))));
+            onView(withId(R.id.lotSelectView)).perform(click());
+            Thread.sleep(1000);
+
+
+            intended(hasComponent(SaveTripActivity.class.getName()));
+            onView(withId(R.id.leaveReviewButton)).perform(click()); // clicking on "View Nearby Restaurants" button page
+            Thread.sleep(1000);
+            
+            intended(hasComponent(CreateReviewActivity.class.getName()));
+        }
+        catch (UiObjectNotFoundException e) {
             e.printStackTrace();
+        }
+        catch (InterruptedException Ie) {
+            Ie.printStackTrace();
         }
     }
 
