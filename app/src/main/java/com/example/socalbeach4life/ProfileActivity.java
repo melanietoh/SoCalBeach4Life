@@ -105,7 +105,8 @@ public class ProfileActivity extends AppCompatActivity {
                             for(int i=0; i<trips.size(); i++) {
                                 String beachName = trips.get(i).getBeach();
                                 String departure = trips.get(i).getDateAndTime();
-                                String arrival = trips.get(i).getArrivalDateAndTime();
+//                                String arrival = trips.get(i).getArrivalDateAndTime();
+                                String arrival = departure;
                                 mapLink = trips.get(i).getMapsLink();
 
                                 TableRow row1 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row1, null);

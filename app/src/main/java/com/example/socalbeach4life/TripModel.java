@@ -9,10 +9,10 @@ public class TripModel {
     public String beach;
     public ParkingLotModel parkingLotModel;
 
-    public TripModel(String tripid, String dateAndTime, String arrivalTime, String beach, ParkingLotModel parkingLotModel) {
+    public TripModel(String tripid, String dateAndTime, String mapsLink, String beach, ParkingLotModel parkingLotModel) {
         this.tripid = tripid;
         this.dateAndTime = dateAndTime;
-        this.mapsLink = arrivalTime;
+        this.mapsLink = mapsLink;
         this.beach = beach;
         this.parkingLotModel = parkingLotModel;
     }
@@ -40,6 +40,8 @@ public class TripModel {
     public String getBeach() {
         return beach;
     }
+
+
 
     public ParkingLotModel getParkingLotModel() {
         return parkingLotModel;
