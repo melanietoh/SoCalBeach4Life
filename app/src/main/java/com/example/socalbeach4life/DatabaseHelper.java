@@ -140,7 +140,7 @@ public abstract class DatabaseHelper {
             String timeID = String.valueOf(System.currentTimeMillis());
             Map<String, Object> childUpdates = new HashMap<>();
 
-            TripModel trip = new TripModel(timeID, dateAndTime, arrivalDateAndTime, tripMapLink, beach, parkingLotModel);
+            TripModel trip = new TripModel(timeID, dateAndTime, arrivalDateAndTime, tripMapLink, beach, parkingLotModel, "***");
             Map<String, Object> tripValues = trip.toMap();
             childUpdates.put("/users/" + user.getUid() + "/trips/" + timeID, tripValues);
 

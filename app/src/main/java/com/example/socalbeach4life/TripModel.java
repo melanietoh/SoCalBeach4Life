@@ -9,14 +9,16 @@ public class TripModel {
     public String mapsLink;
     public String beach;
     public ParkingLotModel parkingLotModel;
+    public String restaurantName;
 
-    public TripModel(String tripid, String dateAndTime, String arrivalDateAndTime, String mapsLink, String beach, ParkingLotModel parkingLotModel) {
+    public TripModel(String tripid, String dateAndTime, String arrivalDateAndTime, String mapsLink, String beach, ParkingLotModel parkingLotModel, String restaurantName) {
         this.tripid = tripid;
         this.dateAndTime = dateAndTime;
         this.arrivalDateAndTime = arrivalDateAndTime;
         this.mapsLink = mapsLink;
         this.beach = beach;
         this.parkingLotModel = parkingLotModel;
+        this.restaurantName = restaurantName;
     }
 
     public TripModel() {
@@ -26,6 +28,7 @@ public class TripModel {
         this.mapsLink = "errortripLink";
         this.beach = null;
         this.parkingLotModel = null;
+        this.restaurantName = "***";
     }
 
     public String getTripid() {
@@ -52,6 +55,10 @@ public class TripModel {
         return parkingLotModel;
     }
 
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
     public HashMap<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("tripid", tripid);
@@ -60,6 +67,7 @@ public class TripModel {
         result.put("mapsLink", mapsLink);
         result.put("beach", beach);
         result.put("parkingLotModel", parkingLotModel);
+        result.put("restaurantName", restaurantName);
         return result;
     }
 }
