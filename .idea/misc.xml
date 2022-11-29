@@ -11,7 +11,7 @@
         <entry key="app/src/main/res/layout/activity_homepage.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_parking_lot_maps.xml" value="0.20065285503000452" />
-        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.24947916666666667" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_profile_review.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/activity_restaurant.xml" value="0.275634765625" />
         <entry key="app/src/main/res/layout/activity_restaurant_maps.xml" value="0.19583333333333333" />
@@ -20,6 +20,7 @@
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.22662556966145836" />
         <entry key="app/src/main/res/layout/beachreview_row1.xml" value="0.11904761904761904" />
         <entry key="app/src/main/res/layout/beachreview_row2.xml" value="0.11854103343465046" />
+        <entry key="app/src/main/res/layout/beachreview_row3.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/content_create_review.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/layout/reveiw_row2.xml" value="0.14635416666666667" />
         <entry key="app/src/main/res/layout/review_divider.xml" value="0.14635416666666667" />

@@ -35,7 +35,7 @@ public class SaveTripActivity extends AppCompatActivity {
     Specifying departure time/reviewing trip information only AFTER parking lot is selected.
     Redirects to Google Maps if De1233parture time = now, otherwise, stores information (?)
      */
-    Button dateSelector, timeSelector;
+    Button dateSelector, timeSelector, saveTripButton;
     EditText dateField, timeField;
     private int year, month, day, hour, minute;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -44,6 +44,8 @@ public class SaveTripActivity extends AppCompatActivity {
     // private String link = "https://www.google.com/maps/dir/34.0324863,-118.2819881/University+of+Southern+California,+Los+Angeles,+CA+90007/@34.0274191,-118.2883858,16z/data=!3m1!4b1!4m17!1m6!3m5!1s0x80c2c7e49c71a5ed:0xaa905a5bb427a2c4!2sUniversity+of+Southern+California!8m2!3d34.0223519!4d-118.285117!4m9!1m1!4e1!1m5!1m1!1s0x80c2c7e49c71a5ed:0xaa905a5bb427a2c4!2m2!1d-118.285117!2d34.0223519!3e2";
     private String link = "";
     private String restaurantName = "***";
+    private Boolean enableSaveTrip = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +106,6 @@ public class SaveTripActivity extends AppCompatActivity {
                                                   int monthOfYear, int dayOfMonth) {
 
                                 dateField.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-
                             }
                         }, year, month, day);
                 datePickerDialog.show();
@@ -141,26 +142,6 @@ public class SaveTripActivity extends AppCompatActivity {
                 else {
                     BeachModel beachResult = task.getResult().getValue(BeachModel.class);
                     System.out.println(beachResult);
-
-//                    String dateAndTime = dateField.getText() + " " + timeField.getText();
-//                    String arrivalDateAndTime = dateField.getText() + " ";
-//                    int arrivalHours = Integer.parseInt((String) timeField.getText().subSequence(0,2));
-//                    int arrivalMinutes = Integer.parseInt((String) timeField.getText().subSequence(3,5));
-//                    arrivalMinutes += 30;
-//                    if (arrivalMinutes >= 60) {
-//                        arrivalMinutes -= 60;
-//                        arrivalHours +=1;
-//                        //extra day edge case not checked
-//                    }
-//                    if (arrivalHours < 10) {
-//                        arrivalDateAndTime += "0";
-//                    }
-//                    arrivalDateAndTime += arrivalHours + ":";
-//                    if (arrivalMinutes < 10) {
-//                        arrivalDateAndTime += "0";
-//                    }
-//                    arrivalDateAndTime += arrivalMinutes;
-
 
                     // Search for parking lot
                     ArrayList<ParkingLotModel> parkingLots = beachResult.getParkingLots();
@@ -240,43 +221,42 @@ public class SaveTripActivity extends AppCompatActivity {
                     BeachModel beachResult = task.getResult().getValue(BeachModel.class);
                     System.out.println(beachResult);
 
-                    String dateAndTime = dateField.getText() + " " + timeField.getText();
-                    String arrivalDateAndTime = dateField.getText() + " ";
-                    String timeFieldText = "" + timeField.getText();
-                    if (timeFieldText.length() < 5) {
-                        timeFieldText = "0" + timeFieldText;
-                    }
-                    int arrivalHours = Integer.parseInt(timeFieldText.substring(0,2));
-                    int arrivalMinutes = Integer.parseInt(timeFieldText.substring(3,5));
-                    arrivalMinutes += 25 + (int)(12*Math.random());
+                    if(!timeField.getText().toString().matches("") && !dateField.getText().toString().matches("")) {
+                        enableSaveTrip = true;
+                        String dateAndTime = dateField.getText() + " " + timeField.getText();
+                        String arrivalDateAndTime = dateField.getText() + " ";
+                        String timeFieldText = "" + timeField.getText();
+                        if (timeFieldText.length() < 5) {
+                            timeFieldText = "0" + timeFieldText;
+                        }
+                        int arrivalHours = Integer.parseInt(timeFieldText.substring(0,2));
+                        int arrivalMinutes = Integer.parseInt(timeFieldText.substring(3,5));
+                        arrivalMinutes += 25 + (int)(12*Math.random());
 
-                    if (arrivalMinutes >= 60) {
-                        arrivalMinutes -= 60;
-                        arrivalHours +=1;
-                        //extra day edge case not checked
-                    }
-                    if (arrivalHours < 10) {
-                        arrivalDateAndTime += "0";
-                    }
-                    arrivalDateAndTime += arrivalHours + ":";
-                    if (arrivalMinutes < 10) {
-                        arrivalDateAndTime += "0";
-                    }
-                    arrivalDateAndTime += arrivalMinutes;
+                        if (arrivalMinutes >= 60) {
+                            arrivalMinutes -= 60;
+                            arrivalHours +=1;
+                            //extra day edge case not checked
+                        }
+                        if (arrivalHours < 10) {
+                            arrivalDateAndTime += "0";
+                        }
+                        arrivalDateAndTime += arrivalHours + ":";
+                        if (arrivalMinutes < 10) {
+                            arrivalDateAndTime += "0";
+                        }
+                        arrivalDateAndTime += arrivalMinutes;
 
-                    // TODO: Retrieve restaurant if selected and store in TripModel (store in string)
-                    // String restaurantName = "***";
-                    // If exists, overwrite
-                    
-                    // Search for parking lot
-                    ArrayList<ParkingLotModel> parkingLots = beachResult.getParkingLots();
-                    for(int i=0; i<parkingLots.size(); i++) {
-                        if (parkingLots.get(i).getName().equals(parkingLotName)) {
-                            System.out.println("FOUND PARKING LOT");
-                            link = DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress());
-                            System.out.println("link is: " + link);
-                            DatabaseHelper.createTrip(dateAndTime,arrivalDateAndTime, DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress()), beachName, parkingLots.get(i), restaurantName);
-                            break;
+                        // Search for parking lot
+                        ArrayList<ParkingLotModel> parkingLots = beachResult.getParkingLots();
+                        for(int i=0; i<parkingLots.size(); i++) {
+                            if (parkingLots.get(i).getName().equals(parkingLotName)) {
+                                System.out.println("FOUND PARKING LOT");
+                                link = DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress());
+                                System.out.println("link is: " + link);
+                                DatabaseHelper.createTrip(dateAndTime,arrivalDateAndTime, DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress()), beachName, parkingLots.get(i), restaurantName);
+                                break;
+                            }
                         }
                     }
                 }
@@ -288,9 +268,12 @@ public class SaveTripActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                //time delay to allow database to update
-                Intent switchToProfileView = new Intent(SaveTripActivity.this, ProfileActivity.class);
-                startActivity(switchToProfileView);
+                if(enableSaveTrip) {
+                    //time delay to allow database to update
+                    Intent switchToProfileView = new Intent(SaveTripActivity.this, ProfileActivity.class);
+                    startActivity(switchToProfileView);
+                }
+
             }
         }, 200);
 
