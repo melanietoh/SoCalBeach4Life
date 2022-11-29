@@ -161,7 +161,7 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                                                 String hours = beachResult.getRestaruants().get(i).getHours();
                                                 String yelpLink = beachResult.getRestaruants().get(i).getYelpLink();
                                                 if (markerName.equals(name)) {
-                                                    s.setText(name);
+                                                    s.setText("Select " + name);
                                                     t.setText("Hours: " + hours + "\n");
                                                     y.setText(R.string.restaurantMenu);
                                                     m.setText(R.string.restaurantMapsLink);
@@ -178,6 +178,12 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                 }
             }
         });
+    }
+
+    // TODO
+    public void selectRestaurant(View view) {
+        // Intent to savedTripActivity
+        // Pass over the restaurant name + address
     }
     public void menuLinkClicked(View view) {
         String link = "";
