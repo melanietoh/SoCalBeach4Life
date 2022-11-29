@@ -1,6 +1,15 @@
 # SoCalBeach4Life - CSCI310 Project 2
 By [Melanie Toh](https://github.com/melanietoh) (melaniex@usc.edu), [Catriona Jung](https://github.com/cjung109) (cyjung@usc.edu), and [Eric Cheng](https://github.com/Eric-Chng) (echeng68@usc.edu)
 
+## Improved Capabilities 
+
+(since 2.4)   
+
+We added 3 major capability improvements.  
+- Our first additional capability is augmenting trips to allow users to select restaurants as part of their trip.   
+- Our second additional capability is allowing users to share their trips with friends so they can coordinate trips.   
+- Our second additional capability is adjusting our stored routes for trips to support multi-stop trips.   
+
 ## Installation
 
 Note: If at any point the system shows a popup saying allow `qemu-services-386` to receive incoming connections. Allow it.
