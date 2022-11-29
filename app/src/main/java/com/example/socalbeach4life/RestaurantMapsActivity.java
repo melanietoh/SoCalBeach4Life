@@ -43,6 +43,9 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
     private String restaurantName;
     private boolean isRestaurant;
     private String link;
+    private double restaurantLat;
+    private double restaurantLong;
+    private String selectedLot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
         Intent intent = getIntent();
         radius = intent.getIntExtra("radius", 0);
         beachName = intent.getStringExtra("beachName");
+        selectedLot = intent.getStringExtra("selectedLot");
         View yelp = findViewById(R.id.yelpView);
         yelp.setOnClickListener(this::menuLinkClicked);
         View openMapsNow = findViewById(R.id.googleMapsNow);
@@ -165,6 +169,8 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
                                                     t.setText("Hours: " + hours + "\n");
                                                     y.setText(R.string.restaurantMenu);
                                                     m.setText(R.string.restaurantMapsLink);
+                                                    restaurantLat = beachResult.getRestaruants().get(i).getLatitude();
+                                                    restaurantLong = beachResult.getRestaruants().get(i).getLongitude();
                                                     break;
                                                 }
                                             }
@@ -184,6 +190,13 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
     public void selectRestaurant(View view) {
         // Intent to savedTripActivity
         // Pass over the restaurant name + address
+        Intent intent = new Intent(RestaurantMapsActivity.this, SaveTripActivity.class);
+        intent.putExtra("restaurantName", restaurantName);
+        intent.putExtra("restaurantAddressLat", restaurantLat);
+        intent.putExtra("restaurantAddressLong", restaurantLong);
+        intent.putExtra("beachName", beachName);
+        intent.putExtra("parkingLot", selectedLot);
+        startActivity(intent);
     }
     public void menuLinkClicked(View view) {
         String link = "";

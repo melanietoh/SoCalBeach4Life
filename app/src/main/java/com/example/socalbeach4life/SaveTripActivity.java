@@ -43,6 +43,7 @@ public class SaveTripActivity extends AppCompatActivity {
     private int radius = 0;
     // private String link = "https://www.google.com/maps/dir/34.0324863,-118.2819881/University+of+Southern+California,+Los+Angeles,+CA+90007/@34.0274191,-118.2883858,16z/data=!3m1!4b1!4m17!1m6!3m5!1s0x80c2c7e49c71a5ed:0xaa905a5bb427a2c4!2sUniversity+of+Southern+California!8m2!3d34.0223519!4d-118.285117!4m9!1m1!4e1!1m5!1m1!1s0x80c2c7e49c71a5ed:0xaa905a5bb427a2c4!2m2!1d-118.285117!2d34.0223519!3e2";
     private String link = "";
+    private String restaurantName = "***";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,9 @@ public class SaveTripActivity extends AppCompatActivity {
         Intent intent = getIntent();
         beachName = intent.getStringExtra("beachName");
         parkingLotName = intent.getStringExtra("parkingLot");
+        if (intent.hasExtra("restaurantName")) {
+            restaurantName = intent.getStringExtra("restaurantName");
+        }
         TextView beachNameHeader = findViewById(R.id.beachName);
         beachNameHeader.setText(beachName);
         TextView lotNameHeader = findViewById(R.id.parkingLotLabel);
@@ -178,6 +182,7 @@ public class SaveTripActivity extends AppCompatActivity {
         Intent switchToRestaurant = new Intent(this, RestaurantMapsActivity.class);
         switchToRestaurant.putExtra("beachName", beachName);
         switchToRestaurant.putExtra("radius", radius);
+        switchToRestaurant.putExtra("selectedLot", parkingLotName);
         startActivity(switchToRestaurant);
     }
 
@@ -260,7 +265,7 @@ public class SaveTripActivity extends AppCompatActivity {
                     arrivalDateAndTime += arrivalMinutes;
 
                     // TODO: Retrieve restaurant if selected and store in TripModel (store in string)
-                    String restaurantName = "***";
+                    // String restaurantName = "***";
                     // If exists, overwrite
                     
                     // Search for parking lot

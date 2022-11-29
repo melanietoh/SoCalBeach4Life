@@ -35,6 +35,10 @@ public class ProfileActivity extends AppCompatActivity {
      */
     String mapLink = "";
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String beachName = "";
+    String restaurantName = "";
+    String departure = "";
+    String arrival = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,10 +96,14 @@ public class ProfileActivity extends AppCompatActivity {
                             TextView rating = findViewById(R.id.rating);
 
                             for(int i=0; i<trips.size(); i++) {
-                                String beachName = trips.get(i).getBeach();
-                                String restaurantName = trips.get(i).getRestaurantName();
-                                String departure = trips.get(i).getDateAndTime();
-                                String arrival = trips.get(i).getArrivalDateAndTime();
+//                                String beachName = trips.get(i).getBeach();
+//                                String restaurantName = trips.get(i).getRestaurantName();
+//                                String departure = trips.get(i).getDateAndTime();
+//                                String arrival = trips.get(i).getArrivalDateAndTime();
+                                beachName = trips.get(i).getBeach();
+                                restaurantName = trips.get(i).getRestaurantName();
+                                departure = trips.get(i).getDateAndTime();
+                                arrival = trips.get(i).getArrivalDateAndTime();
                                 mapLink = trips.get(i).getMapsLink();
 
                                 TableRow row1 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row1, null);
@@ -145,7 +153,16 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void sendInvite(View view) {
-
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "View My Trip Information!");
+        if (restaurantName.equalsIgnoreCase("***")) {
+            intent.putExtra(Intent.EXTRA_TEXT, "Hi! Below are the details for my trip to " + beachName + "!\n\nDeparture: " + departure + "\nScheduled Arrival: " + arrival +"\n\nHope you can make it! :)\n\nBest,\n\t" + user.getDisplayName());
+        }
+        else {
+            intent.putExtra(Intent.EXTRA_TEXT, "Hi! Below are the details for my trip to " + beachName + "!\n\nDeparture: " + departure + "\nScheduled Arrival: " + arrival +"\nWe can go to a nearby restaurant named " + restaurantName + ".\n\nHope you can make it! :)\n\nBest.\n\t" + user.getDisplayName());
+        }
+        startActivity(intent);
     }
     public void logOut(View view) {
         FirebaseAuth.getInstance().signOut();
