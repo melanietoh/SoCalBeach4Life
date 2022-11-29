@@ -259,6 +259,10 @@ public class SaveTripActivity extends AppCompatActivity {
                     }
                     arrivalDateAndTime += arrivalMinutes;
 
+                    // TODO: Retrieve restaurant if selected and store in TripModel (store in string)
+                    String restaurantName = "***";
+                    // If exists, overwrite
+                    
                     // Search for parking lot
                     ArrayList<ParkingLotModel> parkingLots = beachResult.getParkingLots();
                     for(int i=0; i<parkingLots.size(); i++) {
@@ -266,13 +270,10 @@ public class SaveTripActivity extends AppCompatActivity {
                             System.out.println("FOUND PARKING LOT");
                             link = DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress());
                             System.out.println("link is: " + link);
-                            //TODO: Mel hook this
-                            DatabaseHelper.createTrip(dateAndTime,arrivalDateAndTime, DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress()), beachName, parkingLots.get(i), "***");
+                            DatabaseHelper.createTrip(dateAndTime,arrivalDateAndTime, DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress()), beachName, parkingLots.get(i), restaurantName);
                             break;
                         }
                     }
-
-                    // TODO: Retrieve restaurant if selected and store in TripModel
                 }
             }
         });
