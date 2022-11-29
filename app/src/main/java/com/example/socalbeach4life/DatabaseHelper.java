@@ -20,6 +20,8 @@ import java.util.Map;
 
 public abstract class DatabaseHelper {
 
+    public static final String USCADDRESS = "3551 Trousdale Pkwy, Los Angeles, CA 90089";
+
     /**
      * Creates a review tied to a user and a beach. Deletes any duplicate reviews if they exist
      * @param beachName Must match beach name exactly (BeachModel.getName())
@@ -156,11 +158,43 @@ public abstract class DatabaseHelper {
     */
     public static String generateRouteFromUSC(String destination) {
         //Always start from USC
-        String start = "3551 Trousdale Pkwy, Los Angeles, CA 90089";
+        String start = DatabaseHelper.USCADDRESS;
 
         String link = "https://www.google.com/maps?f=d&saddr=" + parseAddress(start)
                 + "&daddr=" + parseAddress(destination) + "&dirflg=d";
 
+        return link;
+    }
+
+    /**
+     * Generates a Google Maps Route link from user's current location to the given address
+     * @param destination String destination address. Pulled from Firebase Realtime DB
+     */
+    public static String generateRouteFromMyLocation(String destination) {
+        String link = "https://www.google.com/maps?saddr=My+Location&daddr=" + parseAddress(destination) + "&dirflg=d";
+        return link;
+    }
+
+    /**
+     * Generate a Google Maps Route link from users current location to stopOne and then final destination.
+     * @param stopOne First stop
+     * @param finalDestination Final stop
+     * @return 3 stop route via driving
+     */
+    public static String generateTwoPartRouteFromCurrentLocation(String stopOne, String finalDestination) {
+        String link = "https://www.google.com/maps/dir/?api=1&origin=My+Location&waypoints=" + parseAddress(stopOne) + "|" + parseAddress(finalDestination);
+        return link;
+    }
+
+    /**
+     * Generate a Google Maps Route link from users current location to stopOne and then final destination.
+     * @param start Initial starting address
+     * @param stopOne first stop
+     * @param finalDestination final stop
+     * @return 3 stop route via driving
+     */
+    public static String generateTwoPartRouteWithCustomStart(String start, String stopOne, String finalDestination) {
+        String link = "https://www.google.com/maps/dir/?api=1&origin=" + parseAddress(start) +"&waypoints=" + parseAddress(stopOne) + "|" + parseAddress(finalDestination);
         return link;
     }
     
