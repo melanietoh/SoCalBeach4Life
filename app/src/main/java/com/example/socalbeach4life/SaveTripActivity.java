@@ -266,7 +266,8 @@ public class SaveTripActivity extends AppCompatActivity {
                             System.out.println("FOUND PARKING LOT");
                             link = DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress());
                             System.out.println("link is: " + link);
-                            DatabaseHelper.createTrip(dateAndTime,arrivalDateAndTime, DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress()), beachName, parkingLots.get(i));
+                            //TODO: Mel hook this
+                            DatabaseHelper.createTrip(dateAndTime,arrivalDateAndTime, DatabaseHelper.generateRouteFromUSC(parkingLots.get(i).getAddress()), beachName, parkingLots.get(i), "***");
                             break;
                         }
                     }
