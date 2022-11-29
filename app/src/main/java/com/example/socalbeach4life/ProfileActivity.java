@@ -104,26 +104,36 @@ public class ProfileActivity extends AppCompatActivity {
 
                             for(int i=0; i<trips.size(); i++) {
                                 String beachName = trips.get(i).getBeach();
+                                String restaurantName = trips.get(i).getRestaurantName();
                                 String departure = trips.get(i).getDateAndTime();
                                 String arrival = trips.get(i).getArrivalDateAndTime();
                                 mapLink = trips.get(i).getMapsLink();
 
                                 TableRow row1 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row1, null);
-                                ((TextView) row1.findViewById(R.id.firstRowLabel)).setText(beachName);
+                                ((TextView) row1.findViewById(R.id.firstRowLabel)).setText(restaurantName);
                                 table.addView(row1);
 
-                                TableRow row2 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row2, null);
-                                ((TextView) row2.findViewById(R.id.secondRowLabel)).setText("Departure: " + departure);
-                                table.addView(row2);
+                                if(restaurantName != "***") {
+                                    TableRow row2 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row1, null);
+                                    ((TextView) row2.findViewById(R.id.firstRowLabel)).setText(beachName);
+                                    table.addView(row2);
+                                }
 
                                 TableRow row3 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row2, null);
-                                ((TextView) row3.findViewById(R.id.secondRowLabel)).setText("Arrival: " + arrival);
+                                ((TextView) row3.findViewById(R.id.secondRowLabel)).setText("Departure: " + departure);
                                 table.addView(row3);
 
-                                TableRow row4 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row3, null);
-
-                                ((Button) row4.findViewById(R.id.thirdRowButton)).setText("Open in Google Maps");
+                                TableRow row4 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row2, null);
+                                ((TextView) row4.findViewById(R.id.secondRowLabel)).setText("Arrival: " + arrival);
                                 table.addView(row4);
+
+                                TableRow row5 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row3, null);
+                                ((Button) row5.findViewById(R.id.thirdRowButton)).setText("Open in Google Maps");
+                                table.addView(row5);
+
+                                TableRow row6 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row4, null);
+                                ((Button) row6.findViewById(R.id.fourthRowButton)).setText("Send invite");
+                                table.addView(row6);
 
                                 TableRow divider = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.review_divider, null);
                                 table.addView(divider);
@@ -143,6 +153,9 @@ public class ProfileActivity extends AppCompatActivity {
         Uri uri = Uri.parse(mapLink);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
+    }
+    public void sendInvite(View view) {
+
     }
     public void logOut(View view) {
         FirebaseAuth.getInstance().signOut();

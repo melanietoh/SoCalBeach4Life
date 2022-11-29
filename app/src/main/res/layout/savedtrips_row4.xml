@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button
+        android:id="@+id/fourthRowButton"
+        android:layout_column="2"
+        android:layout_width="wrap_content"
+        android:text="@string/mapsLink"
+        android:textSize="16sp"
+        android:textColor="@color/dark_blue"
+        android:textAlignment="textEnd"
+        android:background="@android:color/transparent"
+        android:textAllCaps="false"
+        android:onClick="sendInvite"
+        android:padding="5dip"/>
+</TableRow>

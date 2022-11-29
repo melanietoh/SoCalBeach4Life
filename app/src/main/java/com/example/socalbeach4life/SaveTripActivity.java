@@ -271,6 +271,8 @@ public class SaveTripActivity extends AppCompatActivity {
                             break;
                         }
                     }
+
+                    // TODO: Retrieve restaurant if selected and store in TripModel
                 }
             }
         });
