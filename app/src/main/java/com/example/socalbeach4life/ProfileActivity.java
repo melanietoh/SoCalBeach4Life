@@ -1,5 +1,7 @@
 package com.example.socalbeach4life;
 
+import static com.example.socalbeach4life.DatabaseHelper.generateTwoPartRouteFromCurrentLocation;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -18,21 +20,8 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.os.Parcelable;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.net.PlacesClient;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import android.location.Location;
-import com.google.android.gms.location.LocationServices;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -125,6 +114,7 @@ public class ProfileActivity extends AppCompatActivity {
                                     TableRow row2 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row1, null);
                                     ((TextView) row2.findViewById(R.id.firstRowLabel)).setText(beachName);
                                     table.addView(row2);
+                                    mapLink = generateTwoPartRouteFromCurrentLocation(trips.get(i).getParkingLotModel().getName(), trips.get(i).getRestaurantName());
                                 }
 
                                 TableRow row3 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row2, null);
