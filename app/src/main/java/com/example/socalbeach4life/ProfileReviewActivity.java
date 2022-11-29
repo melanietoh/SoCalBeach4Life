@@ -120,7 +120,7 @@ public class ProfileReviewActivity extends AppCompatActivity {
 
     public void deleteReview(View view) {
         // Database call
-        Button button = (Button)view;
+        TextView button = (TextView) view;
         int length = button.getText().length();
         String beachName = (String) button.getText().subSequence(15, length);
         System.out.println("Deleting: " + beachName);
