@@ -99,7 +99,8 @@ public class ProfileReviewActivity extends AppCompatActivity {
                                 }
 
                                 TableRow row3 = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.beachreview_row3, null);
-//                                ((TextView)row3.findViewById(R.id.thirdRowButton)).setText(R.string.deleteReview);
+                                String deleteText = "Delete review: " + beachName;
+                                ((TextView)row3.findViewById(R.id.thirdRowText)).setText(deleteText);
                                 table.addView(row3);
 
                                 TableRow divider = (TableRow) LayoutInflater.from(ProfileReviewActivity.this).inflate(R.layout.review_divider, null);
@@ -119,7 +120,7 @@ public class ProfileReviewActivity extends AppCompatActivity {
 
     public void deleteReview(View view) {
         // Database call
-        Button button = (Button)view;
+        TextView button = (TextView) view;
         int length = button.getText().length();
         String beachName = (String) button.getText().subSequence(15, length);
         System.out.println("Deleting: " + beachName);

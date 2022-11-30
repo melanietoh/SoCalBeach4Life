@@ -189,8 +189,8 @@ public class RestaurantMapsActivity extends FragmentActivity implements OnMapRea
     // TODO
     public void selectRestaurant(View view) {
         // Intent to savedTripActivity
-        // Pass over the restaurant name + address
         Intent intent = new Intent(RestaurantMapsActivity.this, SaveTripActivity.class);
+        // Pass over the restaurant name + address
         intent.putExtra("restaurantName", restaurantName);
         intent.putExtra("restaurantAddressLat", restaurantLat);
         intent.putExtra("restaurantAddressLong", restaurantLong);

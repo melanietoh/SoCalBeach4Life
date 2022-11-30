@@ -69,6 +69,7 @@
             android:textColor="@color/dark_grey"
             android:onClick="myReviews"
             android:text="@string/myReviews" />
+
     </LinearLayout>
 
     <ScrollView
@@ -76,8 +77,11 @@
         android:layout_width="match_parent"
         android:layout_height="370dp"
         android:fillViewport="true"
+        android:animateLayoutChanges="true"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TableLayout
             android:id="@+id/tableLayout"
@@ -89,10 +93,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TableRow android:layout_height="2dip" android:background="@color/grey">
-                <TextView android:layout_span="3" android:layout_height="2dip"
-                    android:layout_width="fill_parent" android:text="">
-                </TextView>
+            <TableRow
+                android:layout_height="2dip"
+                android:background="@color/grey">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dip"
+                    android:layout_span="3"
+                    android:text=""></TextView>
             </TableRow>
 
         </TableLayout>

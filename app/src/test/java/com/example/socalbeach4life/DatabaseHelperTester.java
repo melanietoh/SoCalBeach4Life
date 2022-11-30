@@ -29,4 +29,17 @@ public class DatabaseHelperTester {
         assertEquals("Address 2 parsing", "2114+Highland+Ave+Manhattan+Beach,+CA,+USA", DatabaseHelper.parseAddress(address2));
     }
 
+    @Test
+    public void testCoordParsing() {
+        String address1 = "2600 Highland AveManhattan Beach, CA 90266";
+        String address2 = "2114 Highland Ave Manhattan Beach, CA 90266";
+        assertFalse("address 1 is not waypoint", DatabaseHelper.isWaypoint(address1));
+        assertFalse("address 2 is not waypoint", DatabaseHelper.isWaypoint(address2));
+        String waypoint1 = "43.12345,-76.12345";
+        String waypoint2 = "0,0";
+        assertTrue("waypoint 1", DatabaseHelper.isWaypoint(waypoint1));
+        assertTrue("waypoint 2", DatabaseHelper.isWaypoint(waypoint2));
+
+    }
+
 }

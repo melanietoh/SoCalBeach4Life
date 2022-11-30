@@ -96,10 +96,6 @@ public class ProfileActivity extends AppCompatActivity {
                             TextView rating = findViewById(R.id.rating);
 
                             for(int i=0; i<trips.size(); i++) {
-//                                String beachName = trips.get(i).getBeach();
-//                                String restaurantName = trips.get(i).getRestaurantName();
-//                                String departure = trips.get(i).getDateAndTime();
-//                                String arrival = trips.get(i).getArrivalDateAndTime();
                                 beachName = trips.get(i).getBeach();
                                 restaurantName = trips.get(i).getRestaurantName();
                                 departure = trips.get(i).getDateAndTime();
@@ -110,11 +106,11 @@ public class ProfileActivity extends AppCompatActivity {
                                 ((TextView) row1.findViewById(R.id.firstRowLabel)).setText(restaurantName);
                                 table.addView(row1);
 
-                                if(restaurantName != "***") {
+                                if(restaurantName.equals("***") == false) {
                                     TableRow row2 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row1, null);
                                     ((TextView) row2.findViewById(R.id.firstRowLabel)).setText(beachName);
                                     table.addView(row2);
-                                    mapLink = generateTwoPartRouteFromCurrentLocation(trips.get(i).getParkingLotModel().getName(), trips.get(i).getRestaurantName());
+//                                    mapLink = generateTwoPartRouteFromCurrentLocation(trips.get(i).getParkingLotModel().getName(), trips.get(i).getRestaurantName());
                                 }
 
                                 TableRow row3 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row2, null);
