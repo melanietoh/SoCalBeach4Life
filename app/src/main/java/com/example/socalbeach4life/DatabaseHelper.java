@@ -159,9 +159,12 @@ public abstract class DatabaseHelper {
     public static String generateRouteFromUSC(String destination) {
         //Always start from USC
         String start = DatabaseHelper.USCADDRESS;
+        if (!isWaypoint(destination)) {
+            destination = parseAddress(destination);
+        }
 
         String link = "https://www.google.com/maps?f=d&saddr=" + parseAddress(start)
-                + "&daddr=" + parseAddress(destination) + "&dirflg=d";
+                + "&daddr=" + destination + "&dirflg=d";
 
         return link;
     }
@@ -171,7 +174,10 @@ public abstract class DatabaseHelper {
      * @param destination String destination address. Pulled from Firebase Realtime DB
      */
     public static String generateRouteFromMyLocation(String destination) {
-        String link = "https://www.google.com/maps?saddr=My+Location&daddr=" + parseAddress(destination) + "&dirflg=d";
+        if (!isWaypoint(destination)) {
+            destination = parseAddress(destination);
+        }
+        String link = "https://www.google.com/maps?saddr=My+Location&daddr=" + destination + "&dirflg=d";
         return link;
     }
 
@@ -182,7 +188,13 @@ public abstract class DatabaseHelper {
      * @return 3 stop route via driving
      */
     public static String generateTwoPartRouteFromCurrentLocation(String stopOne, String finalDestination) {
-        String link = "https://www.google.com/maps/dir/?api=1&origin=My+Location&waypoints=" + parseAddress(stopOne) + "|" + parseAddress(finalDestination);
+        if (!isWaypoint(stopOne)) {
+            stopOne = parseAddress(stopOne);
+        }
+        if (!isWaypoint(finalDestination)) {
+            finalDestination = parseAddress(finalDestination);
+        }
+        String link = "https://www.google.com/maps/dir/?api=1&origin=My+Location&waypoints=" + stopOne + "|" + (finalDestination);
         return link;
     }
 
@@ -194,14 +206,29 @@ public abstract class DatabaseHelper {
      * @return 3 stop route via driving
      */
     public static String generateTwoPartRouteWithCustomStart(String start, String stopOne, String finalDestination) {
-        String link = "https://www.google.com/maps/dir/?api=1&origin=" + parseAddress(start) +"&waypoints=" + parseAddress(stopOne) + "|" + parseAddress(finalDestination);
+        if (!isWaypoint(start)){
+            start = parseAddress(start);
+        }
+        if (!isWaypoint(stopOne)) {
+            stopOne = parseAddress(stopOne);
+        }
+        if (!isWaypoint(finalDestination)) {
+            finalDestination = parseAddress(finalDestination);
+        }
+        String link = "https://www.google.com/maps/dir/?api=1&origin=" + start +"&waypoints=" + stopOne + "|" + finalDestination;
         return link;
     }
     
     public static String generateWalkingRoute(String start, String destination) {
+        if (!isWaypoint(start)) {
+            start = parseAddress(start);
+        }
+        if (!isWaypoint(destination)) {
+            destination = parseAddress(destination);
+        }
 
-        String link = "https://www.google.com/maps?f=d&saddr=" + parseAddress(start)
-                + "&daddr=" + parseAddress(destination) + "&dirflg=w";
+        String link = "https://www.google.com/maps?f=d&saddr=" + (start)
+                + "&daddr=" + (destination) + "&dirflg=w";
 
         return link;
     }
@@ -211,5 +238,16 @@ public abstract class DatabaseHelper {
         address += ", USA";
         address = address.replaceAll(" ", "+");
         return address;
+    }
+
+    public static boolean isWaypoint(String input) {
+        for (char c : input.toCharArray()) {
+            if (c == '-' || c == '.' || c == ',' || c >= '0' && c <= '9') {
+
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 }
