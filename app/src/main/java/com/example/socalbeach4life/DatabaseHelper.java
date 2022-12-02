@@ -194,7 +194,8 @@ public abstract class DatabaseHelper {
         if (!isWaypoint(finalDestination)) {
             finalDestination = parseAddress(finalDestination);
         }
-        String link = "https://www.google.com/maps/dir/?api=1&origin=My+Location&waypoints=" + stopOne + "|" + (finalDestination);
+        String start = "My+Location";
+        String link = "https://www.google.com/maps/?saddr=" + start +"&daddr=" + stopOne + "+to:" + finalDestination;
         return link;
     }
 
@@ -215,7 +216,7 @@ public abstract class DatabaseHelper {
         if (!isWaypoint(finalDestination)) {
             finalDestination = parseAddress(finalDestination);
         }
-        String link = "https://www.google.com/maps/dir/?api=1&origin=" + start +"&waypoints=" + stopOne + "|" + finalDestination;
+        String link = "https://www.google.com/maps/?saddr=" + start +"&daddr=" + stopOne + "+to:" + finalDestination;
         return link;
     }
     
@@ -242,7 +243,7 @@ public abstract class DatabaseHelper {
 
     public static boolean isWaypoint(String input) {
         for (char c : input.toCharArray()) {
-            if (c == '-' || c == '.' || c == ',' || c >= '0' && c <= '9') {
+            if (c == ' ' || c == '-' || c == '.' || c == ',' || c >= '0' && c <= '9') {
 
             } else {
                 return false;
