@@ -136,13 +136,13 @@ public abstract class DatabaseHelper {
      * @param beach Beach name. Must case match exactly
      * @param parkingLotModel a model object of the parkingLot
      */
-    public static void createTrip(String dateAndTime, String arrivalDateAndTime, String tripMapLink, String beach, ParkingLotModel parkingLotModel, String restaurantName) {
+    public static void createTrip(String dateAndTime, String arrivalDateAndTime, String tripMapLink, String beach, ParkingLotModel parkingLotModel, String restaurantName, Double restaurantLatitude, Double restaurantLongitude) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String timeID = String.valueOf(System.currentTimeMillis());
             Map<String, Object> childUpdates = new HashMap<>();
 
-            TripModel trip = new TripModel(timeID, dateAndTime, arrivalDateAndTime, tripMapLink, beach, parkingLotModel, restaurantName);
+            TripModel trip = new TripModel(timeID, dateAndTime, arrivalDateAndTime, tripMapLink, beach, parkingLotModel, restaurantName, restaurantLatitude, restaurantLongitude);
             Map<String, Object> tripValues = trip.toMap();
             childUpdates.put("/users/" + user.getUid() + "/trips/" + timeID, tripValues);
 
