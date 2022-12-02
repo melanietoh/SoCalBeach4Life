@@ -111,7 +111,7 @@ public class ProfileActivity extends AppCompatActivity {
                                     TableRow row2 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row1, null);
                                     ((TextView) row2.findViewById(R.id.firstRowLabel)).setText(beachName);
                                     table.addView(row2);
-                                    mapLink = generateTwoPartRouteFromCurrentLocation(trips.get(i).getParkingLotModel().getAddress(), trips.get(i).getRestaurantName());
+                                    mapLink = generateTwoPartRouteFromCurrentLocation(trips.get(i).getParkingLotModel().getAddress(), trips.get(i).getLatitude() + "," + trips.get(i).getLongitude());
                                 } else {
                                     TableRow row2 = (TableRow) LayoutInflater.from(ProfileActivity.this).inflate(R.layout.savedtrips_row1, null);
                                     ((TextView) row2.findViewById(R.id.firstRowLabel)).setText(beachName);
