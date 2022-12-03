@@ -8,7 +8,8 @@ By [Melanie Toh](https://github.com/melanietoh) (melaniex@usc.edu), [Catriona Ju
 We added 3 major capability improvements.  
 - Our first additional capability is augmenting trips to allow users to select restaurants as part of their trip.   
 - Our second additional capability is allowing users to share their trips with friends so they can coordinate trips.   
-- Our second additional capability is adjusting our stored routes for trips to support multi-stop trips.   
+- Our third additional capability is adjusting our stored routes for trips to support multi-stop trips.   
+We also augmented our helper/model classes to provide further support for future development, such as supporting multistop routes, waypoints and addresses exchangeability, and adding trip variables. We also patched any bugs discovered in 2.4 and during development.
 
 ## Installation
 
